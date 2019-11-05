@@ -17,8 +17,10 @@ class UsersTableSeeder extends Seeder
         });
         factory(App\User::class, 5)->create()->each(function ($user) {
             $user->assignRole('moderateur');
+            $user->profiles()->save(factory(App\Profile::class)->make());
         });
         factory(App\User::class, 50)->create()->each(function ($user) {
             $user->assignRole('yourtubeur');
+            $user->profiles()->save(factory(App\Profile::class)->make());
         });    }
 }
