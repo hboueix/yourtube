@@ -14,10 +14,32 @@ Description du projet
 
 ### Ajout de l'authentification
 
-`composer require laravel/ui --dev`
+```shell
+composer require laravel/ui --dev
 
-`php artisan ui vue --auth`
+php artisan ui vue --auth
 
-`npm installl`
+npm installl
 
-`npm run dev`
+npm run dev
+```
+
+## Ajout des seeders
+
+On va générer un seeder avec la commande `make:seeder` de artisan
+```shell
+php artisan make:seeder UsersTableSeeder
+```
+
+Dans la fonction *run()* de notre `UserTableSeer.php` :
+```php
+public function run()
+{
+    factory(App\User::class, 50)->create();
+}
+```
+
+Rajouter dans la fonction *run()* de notre `DatabaseSeeder.php` :
+```php
+$this->call([UsersTableSeeder::class]);
+```
