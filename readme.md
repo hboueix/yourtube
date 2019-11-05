@@ -43,3 +43,25 @@ Rajouter dans la fonction *run()* de notre `DatabaseSeeder.php` :
 ```php
 $this->call([UsersTableSeeder::class]);
 ```
+
+# Créer un profil
+
+Création du modèle profil avec un controller, une factory et une migration :
+```shell
+php artisan make:model Profile -a
+```
+
+On procède à une relation `One-to-One` pour assigner un profil à un user :
+
+```php
+// App\User
+public function profile() {
+    return $this->hasOne('App\Profile');
+}
+
+// App\Profile
+public function user() {
+     return $this->belongsTo('App\User');
+}
+```
+
