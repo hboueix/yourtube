@@ -14,9 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in {{ $user->user_name  }}!
+                    Bonjour à vous, {{ $user->user_name  }} !
                     <hr />
-                    <a href="{{ route('show') }}"><button type="submit" class="btn btn-secondary">Your profil</button></a>
+                    <a href="{{ route('show') }}"><button type="submit" class="btn btn-secondary">Mon profil</button></a>
+                    <a href="{{ route('reset') }}"><button type="submit" class="btn btn-secondary">Changer de mot de passe</button></a>
+                    <a href="{{ route('show') }}"><button type="submit" class="btn btn-secondary">Supprimer le compte</button></a>
                 </div>
             </div>
         </div>
