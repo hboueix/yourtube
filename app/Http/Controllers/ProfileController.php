@@ -81,10 +81,17 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        $id = Auth::id();
+        $user_id = Auth::id();
         $parameters = $request->except('_token');
+        if(isset($parameters['email'])) {
+            DB::table('users')
+                ->where('id', $user_id)
+                ->update([
+                    'email' => $parameters['email']
+                ]);
+        }
         DB::table('profiles')
-            ->where('user_id', $id)
+            ->where('user_id', $user_id)
             ->update([
                 'last_name' => $parameters['last_name'],
                 'first_name' => $parameters['first_name'],
