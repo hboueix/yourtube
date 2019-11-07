@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in {{ $user->user_name  }}!
+                    <hr />
+                    <a href="{{ route('show') }}"><button type="submit" class="btn btn-secondary">Your profil</button></a>
                 </div>
             </div>
         </div>
