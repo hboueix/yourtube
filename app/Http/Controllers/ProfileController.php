@@ -48,7 +48,12 @@ class ProfileController extends Controller
      */
     public function show()
     {
-        return view('profile/showProfile');
+        $user_id = Auth::id();
+        $profile = DB::table('profiles')->get()->where('user_id', $user_id)->first();
+        return view('profile/showProfile', [
+            'user_id' => $user_id,
+            'profile' => $profile
+        ]);
     }
 
     /**
@@ -59,7 +64,12 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('profile/editProfile');
+        $user_id = Auth::id();
+        $profile = DB::table('profiles')->get()->where('user_id', $user_id)->first();
+        return view('profile/editProfile', [
+            'user_id' => $user_id,
+            'profile' => $profile
+        ]);
     }
 
     /**
@@ -71,7 +81,17 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //
+        $id = Auth::id();
+        $parameters = $request->except('_token');
+        DB::table('profiles')
+            ->where('user_id', $id)
+            ->update([
+                'last_name' => $parameters['last_name'],
+                'first_name' => $parameters['first_name'],
+                'dateOfBirth' => $parameters['birthday'],
+                'updated_at' => date('y-m-d h:m:s')
+            ]);
+        return redirect()->route('edit')->with('updated', true);
     }
 
     /**
