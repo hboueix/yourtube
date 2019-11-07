@@ -22,13 +22,17 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'home',
         'uses' => 'HomeController@index'
     ]);
-    Route::get('/profile/show', [
+    Route::get('/profile', [
         'as' => 'show',
         'uses' => 'ProfileController@show'
     ]);
     Route::get('/profile/edit', [
         'as' => 'edit',
         'uses' => 'ProfileController@edit'
+    ]);
+    Route::post('/profile/update', [
+        'as' => 'update',
+        'uses' => 'ProfileController@update'
     ]);
 });
 
