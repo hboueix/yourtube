@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('accueil');
 
 Auth::routes();
 
@@ -33,6 +33,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/update', [
         'as' => 'update',
         'uses' => 'ProfileController@update'
+    ]);
+    Route::get('/profile/destroy', [
+        'as' => 'delete',
+        'uses' => 'ProfileController@destroy'
     ]);
 });
 
