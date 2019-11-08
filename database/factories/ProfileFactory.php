@@ -10,5 +10,6 @@ $factory->define(Profile::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'first_name' => $faker->firstName,
         'dateOfBirth' => $faker->dateTime,
+        'image' => $faker->imageUrl(250, 250)
     ];
 });

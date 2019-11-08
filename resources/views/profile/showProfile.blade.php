@@ -7,7 +7,7 @@
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                    <img src="{{ $profile->image }}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
