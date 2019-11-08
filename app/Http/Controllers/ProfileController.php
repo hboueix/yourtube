@@ -109,6 +109,13 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile)
     {
-        //
+        $user_id = Auth::id();
+        DB::table('profiles')
+            ->where('user_id', $user_id)
+            ->delete();
+        DB::table('users')
+            ->where('id', $user_id)
+            ->delete();
+        return redirect()->route('accueil')->with('account_deleted', true);
     }
 }
