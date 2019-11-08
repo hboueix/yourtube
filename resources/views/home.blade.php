@@ -14,11 +14,11 @@
                         </div>
                     @endif
 
-                    Bonjour à vous, {{ $user->user_name  }} !
+                    Bonjour à vous, {{ $user->name  }} !
                     <hr />
                     <a href="{{ route('show') }}"><button type="submit" class="btn btn-secondary">Mon profil</button></a>
-                    <a href="{{ route('reset') }}"><button type="submit" class="btn btn-secondary">Changer de mot de passe</button></a>
-                    <a href="{{ route('show') }}"><button type="submit" class="btn btn-secondary">Supprimer le compte</button></a>
+                    <a href=""><button type="submit" class="btn btn-secondary">Changer de mot de passe</button></a>
+                    <a href="{{ route('delete') }}"><button type="submit" class="btn btn-secondary">Supprimer le compte</button></a>
                 </div>
             </div>
         </div>
