@@ -9,6 +9,11 @@
     <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
 <body>
+@if (session('account_deleted'))
+    <div class="alert alert-success">
+        Compte supprimé avec succès !
+    </div>
+@endif
 <div class="flex-center position-ref full-height">
     @if (Route::has('login'))
         <div class="top-right links">
@@ -23,7 +28,6 @@
             @endauth
         </div>
     @endif
-
     <div class="content">
         <div class="title m-b-md">
             Yourtube
