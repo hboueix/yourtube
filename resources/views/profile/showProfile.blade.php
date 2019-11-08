@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="border: 1px solid">
     <div class="row profile">
-        <div class="col-md-12">
+        <div class="col-md-3">
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">

@@ -118,4 +118,23 @@ class ProfileController extends Controller
             ->delete();
         return redirect()->route('accueil')->with('account_deleted', true);
     }
+
+    /**
+     * @param \App\Profile $profile
+     * @return \Illuminate\Http\Response
+     */
+    public function editAvatar(Request $request)
+    {
+        $user_id = Auth::id();
+        $parameters = $request->except('_token');
+        $profile = DB::table('profiles')
+            ->where('user_id', $user_id)
+            ->update([
+                'image' => $parameters['image']
+        ]);
+        return view('profile/showProfile', [
+            'user_id' => $user_id,
+            'profile' => $profile
+        ]);
+    }
 }
