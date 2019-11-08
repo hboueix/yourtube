@@ -16,8 +16,8 @@
 
                     Bonjour à vous, {{ $user->name  }} !
                     <hr />
-                    <a href="{{ route('show') }}"><button type="submit" class="btn btn-success">Mon profil</button></a>
-                    <a href="{{ route('password.request') }}"><button type="submit" class="btn btn-warning">Changer de mot de passe</button></a>
+                    <a href="{{ route('show') }}"><button type="submit" class="btn btn-secondary">Mon profil</button></a>
+                    <a href="{{ route('password.request') }}"><button type="submit" class="btn btn-dark">Changer de mot de passe</button></a>
                     <a href="{{ route('delete') }}"><button type="submit" class="btn btn-danger">Supprimer le compte</button></a>
                 </div>
             </div>
