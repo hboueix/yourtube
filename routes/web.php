@@ -38,5 +38,9 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'delete',
         'uses' => 'ProfileController@destroy'
     ]);
+    Route::post('/profile/editAvatar', [
+       'as' => 'editAvatar',
+       'uses' => 'ProfileController@editAvatar'
+    ]);
 });
 

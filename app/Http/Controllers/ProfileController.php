@@ -6,6 +6,9 @@ use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
+use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
@@ -127,14 +130,14 @@ class ProfileController extends Controller
     {
         $user_id = Auth::id();
         $parameters = $request->except('_token');
-        $profile = DB::table('profiles')
+        $avatar = $parameters['image'];
+        $path = 'public/storage/';
+        DB::table('profiles')
             ->where('user_id', $user_id)
             ->update([
-                'image' => $parameters['image']
+                'image' => $avatar
         ]);
-        return view('profile/showProfile', [
-            'user_id' => $user_id,
-            'profile' => $profile
-        ]);
+        Storage::put($avatar, $path);
+        return redirect()->route('show')->with('avatar_updated', true);
     }
 }
