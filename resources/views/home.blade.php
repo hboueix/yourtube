@@ -15,7 +15,10 @@
                     @endif
 
                     Bonjour à vous, {{ $user->name  }} !
+                    <br>
+                    Bienvenue dans la communauté {{ucfirst($user->roles()->pluck('name')[0])}}.
                     <hr />
+                    <a href="{{ route('profile_show') }}"><button type="submit" class="btn btn-success">Upload une video</button></a>
                     <a href="{{ route('profile_show') }}"><button type="submit" class="btn btn-secondary">Mon profil</button></a>
                     <a href="{{ route('password.request') }}"><button type="submit" class="btn btn-dark">Changer de mot de passe</button></a>
                     <a href="{{ route('profile_destroy') }}"><button type="submit" class="btn btn-danger">Supprimer le compte</button></a>
