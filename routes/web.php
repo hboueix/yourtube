@@ -23,23 +23,19 @@ Route::middleware(['auth'])->group(function () {
         'uses' => 'HomeController@index'
     ]);
     Route::get('/profile', [
-        'as' => 'show',
+        'as' => 'profile_show',
         'uses' => 'ProfileController@show'
     ]);
     Route::get('/profile/edit', [
-        'as' => 'edit',
+        'as' => 'profile_edit',
         'uses' => 'ProfileController@edit'
     ]);
     Route::post('/profile/update', [
-        'as' => 'update',
+        'as' => 'profile_update',
         'uses' => 'ProfileController@update'
     ]);
     Route::get('/profile/destroy', [
-        'as' => 'delete',
+        'as' => 'profile_destroy',
         'uses' => 'ProfileController@destroy'
-    ]);
-    Route::post('/profile/editAvatar', [
-       'as' => 'editAvatar',
-       'uses' => 'ProfileController@editAvatar'
     ]);
 });
