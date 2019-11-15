@@ -10,7 +10,7 @@
                     @php
                     var_dump($profile->image);
                     @endphp
-                    <img src="{{ asset('storage/'.$profile->image) }}" style="width: 250px; height: 250px">
+                    <img src="{{ asset('storage/images/'.$profile->image) }}" style="width: 250px; height: 250px">
                     <form method="post" action="{{ route('editAvatar') }}">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="customFile" name="image">

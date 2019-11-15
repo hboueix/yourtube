@@ -43,4 +43,3 @@ Route::middleware(['auth'])->group(function () {
        'uses' => 'ProfileController@editAvatar'
     ]);
 });
-

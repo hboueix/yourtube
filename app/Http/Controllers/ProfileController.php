@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -131,13 +132,15 @@ class ProfileController extends Controller
         $user_id = Auth::id();
         $parameters = $request->except('_token');
         $avatar = $parameters['image'];
-        $path = 'public/storage/';
+        $contents = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $avatar));
+        $path = '/images/';
         DB::table('profiles')
             ->where('user_id', $user_id)
             ->update([
                 'image' => $avatar
         ]);
-        Storage::put($avatar, $path);
+        Storage::put($avatar, $contents, 'public');
+        Storage::setVisibility($avatar, 'public');
         return redirect()->route('show')->with('avatar_updated', true);
     }
 }
