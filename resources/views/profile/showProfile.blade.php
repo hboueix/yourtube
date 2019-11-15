@@ -33,8 +33,8 @@
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
                 <div class="profile-userbuttons">
-                    <a href="{{ route('edit') }}"><button type="submit" class="btn btn-success btn-sm">Éditer profil</button></a>
-                    <a href="{{ route('delete') }}"><button type="submit" class="btn btn-danger btn-sm">Supprimer le profil</button></a>
+                    <a href="{{ route('profile_edit') }}"><button type="submit" class="btn btn-success btn-sm">Éditer profil</button></a>
+                    <a href="{{ route('profile_destroy') }}"><button type="submit" class="btn btn-danger btn-sm">Supprimer le profil</button></a>
                 </div>
                 <!-- END SIDEBAR BUTTONS -->
             </div>
