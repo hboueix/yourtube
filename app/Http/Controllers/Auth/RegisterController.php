@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/profile/edit';
 
     /**
      * Create a new controller instance.
@@ -52,12 +52,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
-            'first_name' => ['required', 'string', 'max:255'],
-            'birthday' => ['required', 'string', 'max:11'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
     }
 
     /**
@@ -68,18 +66,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user_id = DB::table('users')->insertGetId([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
-        DB::table('profiles')->insert([
-            'user_id' => $user_id,
-            'last_name' => $data['last_name'],
-            'first_name' => $data['first_name'],
-            'dateOfBirth' => $data['birthday'],
-            'created_at' => time(),
-            'updated_at' => time()
-        ]);
+        ])->assignRole('yourtubeur');
     }
 }

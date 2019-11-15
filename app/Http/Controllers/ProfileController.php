@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
-use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -94,15 +93,30 @@ class ProfileController extends Controller
                     'email' => $parameters['email']
                 ]);
         }
-        DB::table('profiles')
-            ->where('user_id', $user_id)
-            ->update([
-                'last_name' => $parameters['last_name'],
-                'first_name' => $parameters['first_name'],
-                'dateOfBirth' => $parameters['birthday'],
-                'updated_at' => date('y-m-d h:m:s')
-            ]);
-        return redirect()->route('edit')->with('updated', true);
+        $profile_id = DB::table('profiles')->select('id')->where('user_id', $user_id)->get();
+        if (sizeof($profile_id) > 0) {
+            DB::table('profiles')
+                ->where('user_id', $user_id)
+                ->update([
+                    'last_name' => $parameters['last_name'],
+                    'first_name' => $parameters['first_name'],
+                    'dateOfBirth' => $parameters['birthday'],
+                    'updated_at' => date('y-m-d h:m:s')
+                ]);
+        }
+        else {
+            DB::table('profiles')
+                ->insert([
+                    'id' => $user_id,
+                    'user_id' => $user_id,
+                    'last_name' => $parameters['last_name'],
+                    'first_name' => $parameters['first_name'],
+                    'dateOfBirth' => $parameters['birthday'],
+                    'created_at' => date('y-m-d h:m:s'),
+                    'updated_at' => date('y-m-d h:m:s')
+                ]);
+        }
+        return redirect()->route('profile_edit')->with('updated', true);
     }
 
     /**
@@ -132,15 +146,13 @@ class ProfileController extends Controller
         $user_id = Auth::id();
         $parameters = $request->except('_token');
         $avatar = $parameters['image'];
-        $contents = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $avatar));
-        $path = '/images/';
+        $path = 'public/storage/';
         DB::table('profiles')
             ->where('user_id', $user_id)
             ->update([
                 'image' => $avatar
         ]);
-        Storage::put($avatar, $contents, 'public');
-        Storage::setVisibility($avatar, 'public');
-        return redirect()->route('show')->with('avatar_updated', true);
+        Storage::put($avatar, $path);
+        return redirect()->route('profile_show')->with('avatar_updated', true);
     }
 }
