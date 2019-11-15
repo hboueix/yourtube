@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
 <form method="post" action="{{ route('profile_update') }}" style="margin: 5px">
+    <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile" name="image">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
     <div class="form-group">
         <label for="last_name">Last Name</label>
         <input type="text" class="form-control" id="last_name" placeholder="Enter last name" name="last_name" value="{{ $profile ?? '' ? $profile->last_name : '' }}">

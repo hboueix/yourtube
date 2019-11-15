@@ -11,14 +11,6 @@
                     var_dump($profile->image);
                     @endphp
                     <img src="{{ asset('storage/images/'.$profile->image) }}" style="width: 250px; height: 250px">
-                    <form method="post" action="{{ route('editAvatar') }}">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" name="image">
-                            <label class="custom-file-label" for="customFile">Choose file</label>
-                            @csrf
-                            <button type="submit" class="btn btn-primary btn-sm">Changer avatar</button>
-                        </div>
-                    </form>
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
