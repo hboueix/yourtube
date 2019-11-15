@@ -39,3 +39,16 @@ Route::middleware(['auth'])->group(function () {
         'uses' => 'ProfileController@destroy'
     ]);
 });
+
+
+Route::middleware(['role:administrateur'])->group(function () {
+
+});
+
+Route::middleware(['role:moderateur'])->group(function () {
+
+});
+
+Route::middleware(['role:yourtubeur'])->group(function () {
+
+});
