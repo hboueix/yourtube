@@ -3,23 +3,23 @@
 <form method="post" action="{{ route('profile_update') }}" style="margin: 5px">
     <div class="custom-file">
         <input type="file" class="custom-file-input" id="customFile" name="image">
-        <label class="custom-file-label" for="customFile">Choose file</label>
+        <label class="custom-file-label" for="customFile">Changer d'avatar</label>
     </div>
     <div class="form-group">
         <label for="last_name">Last Name</label>
-        <input type="text" class="form-control" id="last_name" placeholder="Enter last name" name="last_name" value="{{ $profile ?? '' ? $profile->last_name : '' }}">
+        <input type="text" class="form-control" id="last_name" placeholder="Nom" name="last_name" value="{{ $profile ?? '' ? $profile->last_name : '' }}">
     </div>
     <div class="form-group">
         <label for="first_name">First Name</label>
-        <input type="text" class="form-control" id="first_name" placeholder="Enter first name" name="first_name" value="{{ $profile ?? '' ? $profile->first_name : '' }}">
+        <input type="text" class="form-control" id="first_name" placeholder="Prénom" name="first_name" value="{{ $profile ?? '' ? $profile->first_name : '' }}">
     </div>
     <div class="form-group">
         <label for="last_name">Date de naissance</label>
         <input type="date" id="age" placeholder="Definissez une date de naissance" class="form-control" name="birthday" value="{{ $profile ?? '' ? substr($profile->dateOfBirth, 0, 10) : '' }}">
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Adresse Email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{ Auth::user() ?? '' ? Auth::user()->email : '' }}">
+        <label for="email">Adresse Email</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrez votre email" name="email" value="{{ Auth::user() ?? '' ? Auth::user()->email : '' }}">
     </div>
     <input type="hidden" name="id" value="">
     @csrf
