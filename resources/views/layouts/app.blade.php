@@ -63,6 +63,11 @@
                                 <a class="dropdown-item" href="{{ route('profile_show') }}">
                                     Mon profil
                                 </a>
+                                @if(Auth::user()->hasRole('administrateur'))
+                                    <a class="dropdown-item" href="{{ route('profile_all') }}">
+                                        Utilisateurs
+                                    </a>
+                                @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

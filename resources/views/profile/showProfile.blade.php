@@ -1,13 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container" style="border: 1px solid">
+<div class="container">
+    @if (isset($profile) == false)
+        <div class="alert alert-warning" role="alert">
+            Attention, votre profil n'est pas configuré !
+        </div>
+    @endif
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    <img src="{{ asset('storage/images/'.$profile->image) }}" style="width: 250px; height: 250px">
+                    <img src="{{$profile ?? '' ? asset('storage/images/'.$profile->image) : ''}}" style="width: 250px; height: 250px">
                 </div>
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
