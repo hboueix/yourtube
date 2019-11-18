@@ -116,7 +116,7 @@ class ProfileController extends Controller
                     'updated_at' => date('y-m-d h:m:s')
                 ]);
         }
-        return redirect()->route('profile_edit')->with('updated', true);
+        return redirect()->route('profile_edit')->with('profile_updated', true);
     }
 
     /**
@@ -154,5 +154,9 @@ class ProfileController extends Controller
         ]);
         Storage::put($avatar, $path);
         return redirect()->route('profile_show')->with('avatar_updated', true);
+    }
+
+    public function showAll() {
+        return view('profile/showAllProfile');
     }
 }

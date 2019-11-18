@@ -42,7 +42,10 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::middleware(['role:administrateur'])->group(function () {
-
+    Route::get('/profile/all', [
+        'as' => 'profile_all',
+        'uses' => 'ProfileController@showAll'
+    ]);
 });
 
 Route::middleware(['role:moderateur'])->group(function () {
