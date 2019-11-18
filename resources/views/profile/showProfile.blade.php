@@ -7,9 +7,6 @@
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    @php
-                    var_dump($profile->image);
-                    @endphp
                     <img src="{{ asset('storage/images/'.$profile->image) }}" style="width: 250px; height: 250px">
                 </div>
                 <!-- END SIDEBAR USERPIC -->

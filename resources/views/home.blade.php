@@ -16,7 +16,7 @@
 
                     Bonjour à vous, {{ $user->name  }} !
                     <br>
-                    Bienvenue dans la communauté {{ucfirst($user->roles()->pluck('name')[0])}}.
+                    Félicitations pour votre rôle qui est {{ucfirst($user->roles()->pluck('name')[0])}}.
                     <hr />
                     <a href="{{ route('profile_show') }}"><button type="submit" class="btn btn-success">Upload une video</button></a>
                     <a href="{{ route('profile_show') }}"><button type="submit" class="btn btn-secondary">Mon profil</button></a>
