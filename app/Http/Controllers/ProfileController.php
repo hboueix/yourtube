@@ -107,7 +107,7 @@ class ProfileController extends Controller
             DB::table('profiles')
                 ->where('user_id', $user_id)
                 ->update([
-                    'image' => "$file_name",
+                    'image' => "$user_id/$file_name",
                     'last_name' => $parameters['last_name'],
                     'first_name' => $parameters['first_name'],
                     'dateOfBirth' => $parameters['birthday'],
