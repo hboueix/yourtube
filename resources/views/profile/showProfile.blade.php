@@ -1,6 +1,3 @@
-@php
-
-@endphp
 @extends('layouts.app')
 
 @section('content')
@@ -105,6 +102,11 @@
                 </div>
             </div>
             <hr />
+
+            @php
+            dd($videos);
+            @endphp
+
         </div>
     </div>
 @endsection

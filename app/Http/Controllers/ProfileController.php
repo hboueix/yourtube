@@ -52,9 +52,11 @@ class ProfileController extends Controller
     {
         $user_id = Auth::id();
         $profile = DB::table('profiles')->get()->where('user_id', $user_id)->first();
+        $videos = DB::table('videos')->get()->where('user_id', $user_id);
         return view('profile/showProfile', [
             'user_id' => $user_id,
-            'profile' => $profile
+            'profile' => $profile,
+            'videos' => $videos
         ])->with($user_id);
     }
 
