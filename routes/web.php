@@ -55,3 +55,5 @@ Route::middleware(['role:moderateur'])->group(function () {
 Route::middleware(['role:yourtubeur'])->group(function () {
 
 });
+
+Auth::routes();
