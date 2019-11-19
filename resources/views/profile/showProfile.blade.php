@@ -7,7 +7,7 @@
                 <div class="profile">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="{{ asset('storage/'.$profile->user_id) }}" style="border: 3px solid; width: 250px; height: 250px">
+                        <img src="{{ asset('storage/images/'.$profile->user_id . '/'.$profile->image) }}" style="border: 3px solid; width: 250px; height: 250px">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
