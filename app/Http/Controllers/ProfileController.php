@@ -46,7 +46,6 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -56,7 +55,7 @@ class ProfileController extends Controller
         return view('profile/showProfile', [
             'user_id' => $user_id,
             'profile' => $profile
-        ]);
+        ])->with($user_id);
     }
 
     /**
@@ -94,10 +93,13 @@ class ProfileController extends Controller
                 ]);
         }
         $profile_id = DB::table('profiles')->select('id')->where('user_id', $user_id)->get();
+        $avatar = $parameters['image'];
+        $path = 'utf-8';
         if (sizeof($profile_id) > 0) {
             DB::table('profiles')
                 ->where('user_id', $user_id)
                 ->update([
+                    'image' => $avatar,
                     'last_name' => $parameters['last_name'],
                     'first_name' => $parameters['first_name'],
                     'dateOfBirth' => $parameters['birthday'],
@@ -109,6 +111,7 @@ class ProfileController extends Controller
                 ->insert([
                     'id' => $user_id,
                     'user_id' => $user_id,
+                    'image' => $avatar,
                     'last_name' => $parameters['last_name'],
                     'first_name' => $parameters['first_name'],
                     'dateOfBirth' => $parameters['birthday'],
@@ -116,7 +119,8 @@ class ProfileController extends Controller
                     'updated_at' => date('y-m-d h:m:s')
                 ]);
         }
-        return redirect()->route('profile_edit')->with('profile_updated', true);
+        Storage::put($path, $avatar);
+        return redirect()->route('profile_edit', $user_id)->with('profile_updated', true);
     }
 
     /**
@@ -135,25 +139,6 @@ class ProfileController extends Controller
             ->where('id', $user_id)
             ->delete();
         return redirect()->route('accueil')->with('account_deleted', true);
-    }
-
-    /**
-     * @param \App\Profile $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function editAvatar(Request $request)
-    {
-        $user_id = Auth::id();
-        $parameters = $request->except('_token');
-        $avatar = $parameters['image'];
-        $path = 'public/storage/';
-        DB::table('profiles')
-            ->where('user_id', $user_id)
-            ->update([
-                'image' => $avatar
-        ]);
-        Storage::put($avatar, $path);
-        return redirect()->route('profile_show')->with('avatar_updated', true);
     }
 
     public function showAll() {

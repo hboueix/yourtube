@@ -60,7 +60,7 @@
                                 <a class="dropdown-item" href="{{ route('home') }}">
                                     Dashboard
                                 </a>
-                                <a class="dropdown-item" href="{{ route('profile_show') }}">
+                                <a class="dropdown-item" href="{{ route('profile_show', $user_id ?? '') }}">
                                     Mon profil
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
