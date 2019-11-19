@@ -1,3 +1,6 @@
+@php
+
+@endphp
 @extends('layouts.app')
 
 @section('content')
@@ -10,7 +13,7 @@
                         @php
                             var_dump($profile->image);
                         @endphp
-                        <img src="{{ asset('storage/images/'.$profile->image) }}" style="border: 3px solid; width: 250px; height: 250px">
+                        <img src="{{ asset('storage/'.$profile->image) }}" style="border: 3px solid; width: 250px; height: 250px">
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
