@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container align-items-center" style="border: 1px solid">
+    <div class="container align-items-center">
         <div class="profile">
             <div class="col-md-3 text-center" style="margin-left: auto; margin-right: auto; margin-bottom: 40px;">
                 <div class="profile">
@@ -36,7 +36,7 @@
             <div class="media">
                 <img src="https://via.placeholder.com/200x140" class="mr-3" alt="miniature">
                 <div class="media-body" style="text-overflow:  ellipsis; max-height: 130px; overflow: hidden !important;">
-                    <h5 class="mt-1">Il vend de la C à son grand-père (CA TOURNE MAL)</h5>
+                    <h5 class="mt-1">PRANK CLOWN ASSASSIN (CA TOURNE MAL)</h5>
                     <p>
                         Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                         Messors ortum in lutetia!Festus fidess ducunt ad equiso.Magnum, ferox lixas acceleratrix gratia de castus, primus devirginato.Dexter, noster nutrixs hic imperium de audax, gratis tus.Ubi est bassus calcaria?
