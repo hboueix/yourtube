@@ -85,8 +85,6 @@ class ProfileController extends Controller
     {
         $user_id = Auth::id();
         $parameters = $request->except('_token');
-        $file = $request->file();
-        dd($request->all(), $request->file(), $file);
         if(isset($parameters['email'])) {
             DB::table('users')
                 ->where('id', $user_id)
@@ -95,12 +93,12 @@ class ProfileController extends Controller
                 ]);
         }
         $profile_id = DB::table('profiles')->select('id')->where('user_id', $user_id)->get();
-        $path = $parameters['image'];
+        $file = $parameters['image'];
         if (sizeof($profile_id) > 0) {
             DB::table('profiles')
                 ->where('user_id', $user_id)
                 ->update([
-                    'image' => $path,
+                    'image' => $file,
                     'last_name' => $parameters['last_name'],
                     'first_name' => $parameters['first_name'],
                     'dateOfBirth' => $parameters['birthday'],
@@ -112,7 +110,7 @@ class ProfileController extends Controller
                 ->insert([
                     'id' => $user_id,
                     'user_id' => $user_id,
-                    'image' => $path,
+                    'image' => $file,
                     'last_name' => $parameters['last_name'],
                     'first_name' => $parameters['first_name'],
                     'dateOfBirth' => $parameters['birthday'],
@@ -120,7 +118,7 @@ class ProfileController extends Controller
                     'updated_at' => date('y-m-d h:m:s')
                 ]);
         }
-        Storage::put($path, $file);
+        Storage::put("$user_id/", $request->file()['image']);
         return redirect()->route('profile_edit', $user_id)->with('profile_updated', true);
     }
 
