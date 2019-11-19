@@ -18,23 +18,23 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [
+    Route::get('/dashboard/{user_id}', [
         'as' => 'home',
         'uses' => 'HomeController@index'
     ]);
-    Route::get('/profile', [
+    Route::get('/profile/{user_id}', [
         'as' => 'profile_show',
         'uses' => 'ProfileController@show'
     ]);
-    Route::get('/profile/edit', [
+    Route::get('/profile/edit/{user_id}', [
         'as' => 'profile_edit',
         'uses' => 'ProfileController@edit'
     ]);
-    Route::post('/profile/update', [
+    Route::post('/profile/update/{user_id}', [
         'as' => 'profile_update',
         'uses' => 'ProfileController@update'
     ]);
-    Route::get('/profile/destroy', [
+    Route::get('/profile/destroy/{user_id}', [
         'as' => 'profile_destroy',
         'uses' => 'ProfileController@destroy'
     ]);
