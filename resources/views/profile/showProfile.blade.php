@@ -8,7 +8,9 @@
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
                         @if(isset($profile->image))
-                            <img src="{{ asset('storage/images/'. $profile->image) }}" style="border: 3px solid; width: 250px; height: 250px">
+                            <img src="{{ asset('storage/images/'. $profile->image) }}" style="width: 250px; height: 250px">
+                        @else
+                            <img src="https://static.asianetnews.com/img/default-user-avatar.png" style="width: 250px; height: 250px">
                         @endif
                     </div>
                     <!-- END SIDEBAR USERPIC -->
