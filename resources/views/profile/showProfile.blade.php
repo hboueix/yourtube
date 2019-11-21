@@ -7,7 +7,9 @@
                 <div class="profile">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        <img src="{{ asset('storage/images/'.$profile->image) }}" style="border: 3px solid; width: 250px; height: 250px">
+                        @if(isset($profile->image))
+                            <img src="{{ asset('storage/images/'. $profile->image) }}" style="border: 3px solid; width: 250px; height: 250px">
+                        @endif
                     </div>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
@@ -99,11 +101,6 @@
                 </div>
             </div>
             <hr />
-
-            @php
-            dd($videos);
-            @endphp
-
         </div>
     </div>
 @endsection
