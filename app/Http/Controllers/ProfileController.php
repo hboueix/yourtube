@@ -142,9 +142,13 @@ class ProfileController extends Controller
         DB::table('profiles')
             ->where('user_id', $user_id)
             ->delete();
+        DB::table('videos')
+            ->where('user_id', $user_id)
+            ->delete();
         DB::table('users')
             ->where('id', $user_id)
             ->delete();
+
         return redirect()->route('accueil')->with('account_deleted', true);
     }
 
