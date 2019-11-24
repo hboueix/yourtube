@@ -34,14 +34,16 @@
             </div>
             <h3>Vidéos publiées</h3>
             <hr />
+            @foreach ($videos as $video)
             <div class="media">
-                <img src="https://via.placeholder.com/200x140" class="mr-3" alt="miniature">
-                <div class="media-body" style="text-overflow:  ellipsis; max-height: 130px; overflow: hidden !important;">
-                    <h5 class="mt-1">PRANK CLOWN ASSASSIN (CA TOURNE MAL)</h5>
+                <img src="{{ asset('storage/images/'. $video->image) }}" class="mr-3" alt="miniature">
+                <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
+                    <h5 class="mt-1">{{ $video->title }}</h5>
                     <p>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        Messors ortum in lutetia!Festus fidess ducunt ad equiso.Magnum, ferox lixas acceleratrix gratia de castus, primus devirginato.Dexter, noster nutrixs hic imperium de audax, gratis tus.Ubi est bassus calcaria?
-                        When> one avoids conclusion and silence, one is able to discover advice.Never rob a sail.Bi-color urias ducunt ad bulla.Zirbuss sunt advenas de altus elevatus.
+                        {{ $video->description }}
+                    </p>
+                    <p>
+                        Sortie le : {{ $video->created_at }}
                     </p>
                 </div>
                 <div class="text-center" style="width: 9%;">
@@ -49,60 +51,15 @@
                         Vues <span class="badge badge-light">79</span>
                     </button>
                     <button type="button" class="btn btn-success" style=" margin-bottom: 14px">
-                        J'aime <span class="badge badge-light">39</span>
+                        J'aime <span class="badge badge-light">{{ $video->likes }}</span>
                     </button>
                     <button type="button" class="btn btn-danger">
-                        Dislikes <span class="badge badge-light">2</span>
+                        Dislikes <span class="badge badge-light">{{$video->dislikes}}</span>
                     </button>
                 </div>
             </div>
             <hr />
-            <div class="media">
-                <img src="https://via.placeholder.com/200x140" class="mr-3" alt="miniature">
-                <div class="media-body" style="text-overflow:  ellipsis; max-height: 130px; overflow: hidden !important;">
-                    <h5 class="mt-1">ICE BUCKET CHALLENGE HARDCORE EN COUPLE (je m'étouffe!!!)</h5>
-                    <p>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        Messors ortum in lutetia!Festus fidess ducunt ad equiso.Magnum, ferox lixas acceleratrix gratia de castus, primus devirginato.Dexter, noster nutrixs hic imperium de audax, gratis tus.Ubi est bassus calcaria?
-                        When> one avoids conclusion and silence, one is able to discover advice.Never rob a sail.Bi-color urias ducunt ad bulla.Zirbuss sunt advenas de altus elevatus.
-                    </p>
-                </div>
-                <div class="text-center" style="width: 9%;">
-                    <button type="button" class="btn btn-secondary" style=" margin-bottom: 14px">
-                        Vues <span class="badge badge-light">215</span>
-                    </button>
-                    <button type="button" class="btn btn-success" style=" margin-bottom: 14px">
-                        J'aime <span class="badge badge-light">76</span>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        Dislikes <span class="badge badge-light">8</span>
-                    </button>
-                </div>
-            </div>
-            <hr />
-            <div class="media">
-                <img src="https://via.placeholder.com/200x140" class="mr-3" alt="miniature">
-                <div class="media-body" style="text-overflow:  ellipsis; max-height: 130px; overflow: hidden !important;">
-                    <h5 class="mt-1">Let's play narratif : SNAKE [4/10]</h5>
-                    <p>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        Messors ortum in lutetia!Festus fidess ducunt ad equiso.Magnum, ferox lixas acceleratrix gratia de castus, primus devirginato.Dexter, noster nutrixs hic imperium de audax, gratis tus.Ubi est bassus calcaria?
-                        When> one avoids conclusion and silence, one is able to discover advice.Never rob a sail.Bi-color urias ducunt ad bulla.Zirbuss sunt advenas de altus elevatus.
-                    </p>
-                </div>
-                <div class="text-center" style="width: 9%;">
-                    <button type="button" class="btn btn-secondary" style=" margin-bottom: 14px">
-                        Vues <span class="badge badge-light">9</span>
-                    </button>
-                    <button type="button" class="btn btn-success" style=" margin-bottom: 14px">
-                        J'aime <span class="badge badge-light">1</span>
-                    </button>
-                    <button type="button" class="btn btn-danger">
-                        Dislikes <span class="badge badge-light">6</span>
-                    </button>
-                </div>
-            </div>
-            <hr />
+            @endforeach
         </div>
     </div>
 @endsection
