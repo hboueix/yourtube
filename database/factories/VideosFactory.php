@@ -11,7 +11,7 @@ $factory->define(Videos::class, function (Faker $faker) {
         'description' => $faker->text,
         'path' => $faker->text,
         'likes' => $faker->randomDigit,
-        'dislikes' => $faker->randomNumber,
-        'image' => $faker->image('public/storage/images',250,250,null,false)
+        'dislikes' => $faker->randomDigit,
+        'image' => $faker->image('public/storage/images',200,140,null,false)
     ];
 });
