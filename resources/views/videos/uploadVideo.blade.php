@@ -7,16 +7,20 @@
                     <div class="card-header">{{ __('Partager une vidéo') }}</div>
                     <form method="post" action="{{ route('video_upload', $user_id ?? '') }}" enctype="multipart/form-data" style="margin: 5px">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" name="image">
+                            <input type="file" class="custom-file-input" id="customFile" name="miniature">
                             <label class="custom-file-label" for="customFile">Choisir la miniature</label>
                         </div>
-                        <div class="form-group">
-                            <label for="last_name">Titre</label>
-                            <input type="text" class="form-control" id="title" placeholder="Titre putaclic" name="title" value="{{ $profile ?? '' ? $profile->last_name : '' }}" required>
+                        <div class="custom-file" style="margin-top:10px">
+                            <input type="file" class="custom-file-input" id="customFile" name="video">
+                            <label class="custom-file-label" for="customFile">Choisir la vidéo</label>
                         </div>
                         <div class="form-group">
-                            <label for="first_name">Description</label>
-                            <textarea type="text" class="form-control" id="first_name" placeholder="Description" name="description" value="{{ $profile ?? '' ? $profile->first_name : '' }}" required></textarea>
+                            <label for="title">Titre</label>
+                            <input type="text" class="form-control" id="title" placeholder="Titre putaclic" name="title" value="{{ $profile ?? '' ? $profile->title : '' }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea type="text" class="form-control" id="description" placeholder="Description" name="description" value="{{ $videos ?? '' ? $videos->description : '' }}" required></textarea>
                         </div>
                         <input type="hidden" name="id" value="">
                         @csrf
