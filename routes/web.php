@@ -38,9 +38,13 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'profile_destroy',
         'uses' => 'ProfileController@destroy'
     ]);
-    Route::get('/dashboard/uploadVideo/', [
-        'as' => 'uploadVideo',
+    Route::get('/dashboard/formVideo/', [
+        'as' => 'video_form',
         'uses' => 'VideosController@create'
+    ]);
+    Route::post('/dashboard/uploadVideo/', [
+        'as' => 'video_upload',
+        'uses' => 'VideosController@update'
     ]);
 });
 
