@@ -1,6 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
+    @if (session('video_updated'))
+        <div class="alert alert-success">
+            Vidéo mise en ligne avec succès !
+        </div>
+    @endif
     <div class="container align-items-center">
         <div class="profile">
             <div class="col-md-3 text-center" style="margin-left: auto; margin-right: auto; margin-bottom: 40px;">
