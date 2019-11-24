@@ -156,8 +156,7 @@ class ProfileController extends Controller
         $user_id = Auth::id();
         $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
         return view('profile/showAllProfile', [
-            'user_id' => $user_id,
             'profile' => $profile
-        ])->with($user_id);
+        ]);
     }
 }
