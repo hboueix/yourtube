@@ -5,9 +5,9 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Partager une vidéo') }}</div>
-                    <form method="post" action="" enctype="multipart/form-data" style="margin: 5px">
+                    <form method="post" action="{{ route('video_upload', $user_id ?? '') }}" enctype="multipart/form-data" style="margin: 5px">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" name="miniature">
+                            <input type="file" class="custom-file-input" id="customFile" name="image">
                             <label class="custom-file-label" for="customFile">Choisir la miniature</label>
                         </div>
                         <div class="form-group">
