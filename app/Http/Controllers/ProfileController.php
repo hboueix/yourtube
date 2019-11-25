@@ -48,16 +48,16 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $user_id = Auth::id();
-        $profile = DB::table('profiles')->get()->where('user_id', $user_id)->first();
-        $videos = DB::table('videos')->get()->where('user_id', $user_id);
+        $auth_id = Auth::id();
+        $profile = DB::table('profiles')->get()->where('user_id', $id)->first();
+        $videos = DB::table('videos')->get()->where('user_id', $id);
         return view('profile/showProfile', [
-            'user_id' => $user_id,
+            'user_id' => $auth_id,
             'profile' => $profile,
             'videos' => $videos
-        ])->with($user_id);
+        ]);
     }
 
     /**
@@ -68,10 +68,10 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user_id = Auth::id();
-        $profile = DB::table('profiles')->get()->where('user_id', $user_id)->first();
+        $auth_id = Auth::id();
+        $profile = DB::table('profiles')->get()->where('user_id', $auth_id)->first();
         return view('profile/editProfile', [
-            'user_id' => $user_id,
+            'user_id' => $auth_id,
             'profile' => $profile
         ]);
     }
@@ -85,17 +85,17 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        $user_id = Auth::id();
-        $path = (string)$user_id;
+        $auth_id = Auth::id();
+        $path = (string)$auth_id;
         $parameters = $request->except('_token');
         if(isset($parameters['email'])) {
             DB::table('users')
-                ->where('id', $user_id)
+                ->where('id', $auth_id)
                 ->update([
                     'email' => $parameters['email']
                 ]);
         }
-        $profile_id = DB::table('profiles')->select('id')->where('user_id', $user_id)->get();
+        $profile_id = DB::table('profiles')->select('id')->where('user_id', $auth_id)->get();
 
         if (isset($parameters['image'])) {
             $file = $parameters['image'];
@@ -105,9 +105,9 @@ class ProfileController extends Controller
 
         if (sizeof($profile_id) > 0) {
             DB::table('profiles')
-                ->where('user_id', $user_id)
+                ->where('user_id', $auth_id)
                 ->update([
-                    'image' => "$user_id/$file_name",
+                    'image' => "$auth_id/$file_name",
                     'last_name' => $parameters['last_name'],
                     'first_name' => $parameters['first_name'],
                     'dateOfBirth' => $parameters['birthday'],
@@ -117,8 +117,8 @@ class ProfileController extends Controller
         else {
             DB::table('profiles')
                 ->insert([
-                    'id' => $user_id,
-                    'user_id' => $user_id,
+                    'id' => $auth_id,
+                    'user_id' => $auth_id,
                     'image' => $file,
                     'last_name' => $parameters['last_name'],
                     'first_name' => $parameters['first_name'],
@@ -127,7 +127,7 @@ class ProfileController extends Controller
                     'updated_at' => date('y-m-d h:m:s')
                 ]);
         }
-        return redirect()->route('profile_edit', $user_id)->with('profile_updated', true);
+        return redirect()->route('profile_edit')->with('profile_updated', true);
     }
 
     /**
@@ -138,26 +138,26 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile)
     {
-        $user_id = Auth::id();
+        $auth_id = Auth::id();
         DB::table('profiles')
-            ->where('user_id', $user_id)
+            ->where('user_id', $auth_id)
             ->delete();
         DB::table('videos')
-            ->where('user_id', $user_id)
+            ->where('user_id', $auth_id)
             ->delete();
         DB::table('users')
-            ->where('id', $user_id)
+            ->where('id', $auth_id)
             ->delete();
 
         return redirect()->route('accueil')->with('account_deleted', true);
     }
 
     public function showAll() {
-        $user_id = Auth::id();
+        $auth_id = Auth::id();
         $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
         return view('profile/showAllProfile', [
-            'user_id' => $user_id,
+            'user_id' => $auth_id,
             'profile' => $profile
-        ])->with($user_id);
+        ])->with($auth_id);
     }
 }

@@ -21,7 +21,7 @@
                                     </p>
                                 </div>
                                 <div class="text-center" style="width: 25%;">
-                                    <a href="{{ route('profile_show', $user_id) }}"><button type="button" class="btn btn-success" style=" margin-bottom: 14px">
+                                    <a href="{{ route('profile_show', $profiler->id) }}"><button type="button" class="btn btn-success" style=" margin-bottom: 14px">
                                         Voir le profil
                                     </button></a>
                                     <button type="button" class="btn btn-danger">
