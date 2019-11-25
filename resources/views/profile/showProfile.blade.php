@@ -54,7 +54,7 @@
                 </div>
                 <div class="text-center" style="width: 9%;">
                     <button type="button" class="btn btn-secondary" style=" margin-bottom: 14px">
-                        Vues <span class="badge badge-light">79</span>
+                        Vues <span class="badge badge-light">{{ $video->nbWatch }}</span>
                     </button>
                     <button type="button" class="btn btn-success" style=" margin-bottom: 14px">
                         J'aime <span class="badge badge-light">{{ $video->likes }}</span>

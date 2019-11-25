@@ -30,7 +30,6 @@
                                 </div>
                             </div>
                             <hr />
-
                         @endforeach
                     </div>
                 </div>
