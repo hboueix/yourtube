@@ -107,4 +107,13 @@ class VideosController extends Controller
     {
         //
     }
+
+    public function showAllVideos(Request $request, Videos $videos) {
+        $auth_id = Auth::id();
+        $videos = DB::table('videos')->orderByDesc('created_at')->take(10)->get();
+        return view('welcome', [
+            'user_id' => $auth_id,
+            'videos' => $videos
+        ]);
+    }
 }
