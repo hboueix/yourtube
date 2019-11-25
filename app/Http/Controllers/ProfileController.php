@@ -52,12 +52,16 @@ class ProfileController extends Controller
     {
         $auth_id = Auth::id();
         $profile = DB::table('profiles')->get()->where('user_id', $id)->first();
-        $videos = DB::table('videos')->get()->where('user_id', $id);
-        return view('profile/showProfile', [
-            'user_id' => $auth_id,
-            'profile' => $profile,
-            'videos' => $videos
-        ]);
+        if ($profile == null) {
+            return abort(404);
+        } else {
+            $videos = DB::table('videos')->get()->where('user_id', $id);
+            return view('profile/showProfile', [
+                'user_id' => $auth_id,
+                'profile' => $profile,
+                'videos' => $videos
+            ]);
+        }
     }
 
     /**
@@ -69,6 +73,20 @@ class ProfileController extends Controller
     public function edit()
     {
         $auth_id = Auth::id();
+        $profile_id = DB::table('profiles')->select('id')->where('user_id', $auth_id)->get();
+        if (sizeof($profile_id) == 0) {
+            DB::table('profiles')
+                ->insert([
+                    'id' => $auth_id,
+                    'user_id' => $auth_id,
+                    'image' => 'test.jpg',
+                    'last_name' => 'John',
+                    'first_name' => 'Doe',
+                    'dateOfBirth' => date('y-m-d'),
+                    'created_at' => date('y-m-d h:m:s'),
+                    'updated_at' => date('y-m-d h:m:s')
+                ]);
+        }
         $profile = DB::table('profiles')->get()->where('user_id', $auth_id)->first();
         return view('profile/editProfile', [
             'user_id' => $auth_id,
@@ -95,38 +113,27 @@ class ProfileController extends Controller
                     'email' => $parameters['email']
                 ]);
         }
-        $profile_id = DB::table('profiles')->select('id')->where('user_id', $auth_id)->get();
 
         if (isset($parameters['image'])) {
             $file = $parameters['image'];
             $file_name = $file->getClientOriginalName();
             $request->image->storeAs($path, $file_name);
-        }
-
-        if (sizeof($profile_id) > 0) {
             DB::table('profiles')
                 ->where('user_id', $auth_id)
                 ->update([
                     'image' => "$auth_id/$file_name",
-                    'last_name' => $parameters['last_name'],
-                    'first_name' => $parameters['first_name'],
-                    'dateOfBirth' => $parameters['birthday'],
-                    'updated_at' => date('y-m-d h:m:s')
-                ]);
+                    ]);
         }
-        else {
-            DB::table('profiles')
-                ->insert([
-                    'id' => $auth_id,
-                    'user_id' => $auth_id,
-                    'image' => $file,
-                    'last_name' => $parameters['last_name'],
-                    'first_name' => $parameters['first_name'],
-                    'dateOfBirth' => $parameters['birthday'],
-                    'created_at' => date('y-m-d h:m:s'),
-                    'updated_at' => date('y-m-d h:m:s')
-                ]);
-        }
+
+        DB::table('profiles')
+            ->where('user_id', $auth_id)
+            ->update([
+                'last_name' => $parameters['last_name'],
+                'first_name' => $parameters['first_name'],
+                'dateOfBirth' => $parameters['birthday'],
+                'updated_at' => date('y-m-d h:m:s')
+            ]);
+
         return redirect()->route('profile_edit')->with('profile_updated', true);
     }
 
