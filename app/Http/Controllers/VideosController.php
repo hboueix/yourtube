@@ -48,12 +48,12 @@ class VideosController extends Controller
      */
     public function show(Videos $videos)
     {
-        $user_id = Auth::id();
-        $videos = DB::table('videos')->get()->where('user_id', $user_id);
+        $auth_id = Auth::id();
+        $videos = DB::table('videos')->get()->where('user_id', $auth_id);
         return view('profile/showProfile', [
-            'user_id' => $user_id,
+            'user_id' => $auth_id,
             'videos' => $videos
-        ])->with($user_id);
+        ]);
     }
 
     /**
@@ -79,6 +79,7 @@ class VideosController extends Controller
         $user_id = Auth::id();
         $path = (string)$user_id;
         $parameters = $request->except('_token');
+        dd($parameters);
         /*if (isset($parameters['miniature'])) {
             $file = $parameters['miniature'];
             $file_name = $file->getClientOriginalName();
