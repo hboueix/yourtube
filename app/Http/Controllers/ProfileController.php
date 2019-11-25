@@ -163,13 +163,8 @@ class ProfileController extends Controller
         $auth_id = Auth::id();
         $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
         return view('profile/showAllProfile', [
-<<<<<<< HEAD
-            'profile' => $profile
-        ]);
-=======
             'user_id' => $auth_id,
             'profile' => $profile
         ])->with($auth_id);
->>>>>>> 1c787361e4d6a4b28397786d2e0a280c670fcb41
     }
 }
