@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('accueil');
 
+Route::get('/', [
+   'as' => 'spawn',
+    'uses' => 'VideosController@showAllVideos'
+]);
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
