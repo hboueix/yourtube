@@ -48,16 +48,20 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $user_id = Auth::id();
-        $profile = DB::table('profiles')->get()->where('user_id', $user_id)->first();
-        $videos = DB::table('videos')->get()->where('user_id', $user_id);
-        return view('profile/showProfile', [
-            'user_id' => $user_id,
-            'profile' => $profile,
-            'videos' => $videos
-        ])->with($user_id);
+        $auth_id = Auth::id();
+        $profile = DB::table('profiles')->get()->where('user_id', $id)->first();
+        if ($profile == null) {
+            return abort(404);
+        } else {
+            $videos = DB::table('videos')->get()->where('user_id', $id);
+            return view('profile/showProfile', [
+                'user_id' => $auth_id,
+                'profile' => $profile,
+                'videos' => $videos
+            ]);
+        }
     }
 
     /**
@@ -68,10 +72,24 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $user_id = Auth::id();
-        $profile = DB::table('profiles')->get()->where('user_id', $user_id)->first();
+        $auth_id = Auth::id();
+        $profile_id = DB::table('profiles')->select('id')->where('user_id', $auth_id)->get();
+        if (sizeof($profile_id) == 0) {
+            DB::table('profiles')
+                ->insert([
+                    'id' => $auth_id,
+                    'user_id' => $auth_id,
+                    'image' => 'test.jpg',
+                    'last_name' => 'John',
+                    'first_name' => 'Doe',
+                    'dateOfBirth' => date('y-m-d'),
+                    'created_at' => date('y-m-d h:m:s'),
+                    'updated_at' => date('y-m-d h:m:s')
+                ]);
+        }
+        $profile = DB::table('profiles')->get()->where('user_id', $auth_id)->first();
         return view('profile/editProfile', [
-            'user_id' => $user_id,
+            'user_id' => $auth_id,
             'profile' => $profile
         ]);
     }
@@ -85,49 +103,38 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        $user_id = Auth::id();
-        $path = (string)$user_id;
+        $auth_id = Auth::id();
+        $path = (string)$auth_id;
         $parameters = $request->except('_token');
         if(isset($parameters['email'])) {
             DB::table('users')
-                ->where('id', $user_id)
+                ->where('id', $auth_id)
                 ->update([
                     'email' => $parameters['email']
                 ]);
         }
-        $profile_id = DB::table('profiles')->select('id')->where('user_id', $user_id)->get();
 
         if (isset($parameters['image'])) {
             $file = $parameters['image'];
             $file_name = $file->getClientOriginalName();
             $request->image->storeAs($path, $file_name);
+            DB::table('profiles')
+                ->where('user_id', $auth_id)
+                ->update([
+                    'image' => "$auth_id/$file_name",
+                    ]);
         }
 
-        if (sizeof($profile_id) > 0) {
-            DB::table('profiles')
-                ->where('user_id', $user_id)
-                ->update([
-                    'image' => "$user_id/$file_name",
-                    'last_name' => $parameters['last_name'],
-                    'first_name' => $parameters['first_name'],
-                    'dateOfBirth' => $parameters['birthday'],
-                    'updated_at' => date('y-m-d h:m:s')
-                ]);
-        }
-        else {
-            DB::table('profiles')
-                ->insert([
-                    'id' => $user_id,
-                    'user_id' => $user_id,
-                    'image' => $file,
-                    'last_name' => $parameters['last_name'],
-                    'first_name' => $parameters['first_name'],
-                    'dateOfBirth' => $parameters['birthday'],
-                    'created_at' => date('y-m-d h:m:s'),
-                    'updated_at' => date('y-m-d h:m:s')
-                ]);
-        }
-        return redirect()->route('profile_edit', $user_id)->with('profile_updated', true);
+        DB::table('profiles')
+            ->where('user_id', $auth_id)
+            ->update([
+                'last_name' => $parameters['last_name'],
+                'first_name' => $parameters['first_name'],
+                'dateOfBirth' => $parameters['birthday'],
+                'updated_at' => date('y-m-d h:m:s')
+            ]);
+
+        return redirect()->route('profile_edit')->with('profile_updated', true);
     }
 
     /**
@@ -138,25 +145,31 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile)
     {
-        $user_id = Auth::id();
+        $auth_id = Auth::id();
         DB::table('profiles')
-            ->where('user_id', $user_id)
+            ->where('user_id', $auth_id)
             ->delete();
         DB::table('videos')
-            ->where('user_id', $user_id)
+            ->where('user_id', $auth_id)
             ->delete();
         DB::table('users')
-            ->where('id', $user_id)
+            ->where('id', $auth_id)
             ->delete();
 
         return redirect()->route('accueil')->with('account_deleted', true);
     }
 
     public function showAll() {
-        $user_id = Auth::id();
+        $auth_id = Auth::id();
         $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
         return view('profile/showAllProfile', [
+<<<<<<< HEAD
             'profile' => $profile
         ]);
+=======
+            'user_id' => $auth_id,
+            'profile' => $profile
+        ])->with($auth_id);
+>>>>>>> 1c787361e4d6a4b28397786d2e0a280c670fcb41
     }
 }

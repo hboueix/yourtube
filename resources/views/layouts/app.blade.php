@@ -57,10 +57,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('home', $user_id ?? '') }}">
+                                <a class="dropdown-item" href="{{ route('home') }}">
                                    Dashboard
                                 </a>
-                                <a class="dropdown-item" href="{{ route('profile_show', $user_id ?? '') }}">
+                                <a class="dropdown-item" href="{{ route('profile_show', Auth::user()->id ?? '') }}">
                                     Mon profil
                                 </a>
                                 @if(Auth::user()->hasRole('administrateur'))
