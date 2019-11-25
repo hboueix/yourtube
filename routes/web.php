@@ -22,7 +22,7 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'home',
         'uses' => 'HomeController@index'
     ]);
-    Route::get('/profile/', [
+    Route::get('/profile/user/{id}', [
         'as' => 'profile_show',
         'uses' => 'ProfileController@show'
     ]);
