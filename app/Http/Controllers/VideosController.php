@@ -76,25 +76,21 @@ class VideosController extends Controller
      */
     public function update(Request $request, Videos $videos)
     {
-        $user_id = Auth::id();
-        $path = (string)$user_id;
+        $auth_id = Auth::id();;
         $parameters = $request->except('_token');
-        dd($parameters);
-        /*if (isset($parameters['miniature'])) {
-            $file = $parameters['miniature'];
-            $file_name = $file->getClientOriginalName();
-            $request->image->storeAs($path, $file_name);
-        }*/
+        $path = $request->file('miniature')->store((string)$auth_id);
+        $path_video = $request->file('video')->store((string)$auth_id);
         DB::table('videos')
             ->insert([
-                'user_id' => $user_id,
+                'user_id' => $auth_id,
                 'title' => $parameters['title'],
-                //'image' => $file,
+                'image' => $path,
+                'path' => $path_video,
                 'description' => $parameters['description'],
                 'created_at' => date('y-m-d h:m:s'),
                 'updated_at' => date('y-m-d h:m:s')
             ]);
-        return redirect()->route('profile_show', $user_id)->with('video_updated', true);
+        return redirect()->route('profile_show', $auth_id)->with('video_updated', true);
     }
 
     /**
