@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('accueil');
-
 Route::get('/', [
-   'as' => 'spawn',
-    'uses' => 'VideosController@showAllVideos'
+    'as' => 'accueil',
+    'uses' =>'VideosController@showAllVideos'
 ]);
 
 Auth::routes();
