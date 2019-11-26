@@ -117,12 +117,17 @@ class ProfileController extends Controller
         if (isset($parameters['image'])) {
             $file = $parameters['image'];
             $file_name = $file->getClientOriginalName();
-            $request->image->storeAs($path, $file_name);
-            DB::table('profiles')
-                ->where('user_id', $auth_id)
-                ->update([
-                    'image' => "$auth_id/$file_name",
+            $file_extension = $file->getClientMimeType();
+            if ($file_extension == "image/jpeg" || $file_extension == "image/png") {
+                $request->image->storeAs($path, $file_name);
+                DB::table('profiles')
+                    ->where('user_id', $auth_id)
+                    ->update([
+                        'image' => "$auth_id/$file_name",
                     ]);
+            } else {
+                return redirect()->route('profile_edit')->with('profile_avatar_error', true);
+            }
         }
 
         DB::table('profiles')
