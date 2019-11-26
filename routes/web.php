@@ -16,6 +16,11 @@ Route::get('/', [
     'uses' =>'VideosController@showAllVideos'
 ]);
 
+Route::get('/video/watch/{id}', [
+    'as' => 'video_show',
+    'uses' => 'VideosController@show'
+]);
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
