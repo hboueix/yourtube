@@ -103,17 +103,21 @@ class VideosController extends Controller
      * @param  \App\Videos  $videos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Videos $videos)
+    public function destroy(Videos $videos, $id)
     {
-        //
+        $videos = Videos::find($id);
+        DB::table('videos')->where('id', '=', $id)->delete();
+        return redirect()->route('profile_show')->with('success', "La vidéo a bien été supprimé !");
     }
 
     public function showAllVideos(Request $request, Videos $videos) {
         $auth_id = Auth::id();
         $videos = DB::table('videos')->orderByDesc('created_at')->take(10)->get();
+        $rand_videos = DB::table('videos')->inRandomOrder('id')->get()->all();
         return view('welcome', [
             'user_id' => $auth_id,
-            'videos' => $videos
+            'videos' => $videos,
+            'rand_videos' => $rand_videos
         ]);
     }
 }
