@@ -113,7 +113,9 @@ class VideosController extends Controller
      */
     public function destroy(Videos $videos, $id)
     {
-        $videos = Videos::find($id);
+        $auth_id = Auth::id();
+        $video_id = Videos::find($id);
+        dd($auth_id, $video_id);
         DB::table('videos')->where('id', '=', $id)->delete();
         return redirect()->route('profile_show')->with('success', "La vidéo a bien été supprimé !");
     }
