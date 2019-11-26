@@ -14,9 +14,8 @@ class VideosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Videos $videos)
     {
-        //
     }
 
     /**
@@ -32,7 +31,7 @@ class VideosController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -43,7 +42,7 @@ class VideosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Videos  $videos
+     * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
     public function show(Videos $videos)
@@ -59,7 +58,7 @@ class VideosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Videos  $videos
+     * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
     public function edit(Videos $videos)
@@ -70,8 +69,8 @@ class VideosController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Videos  $videos
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Videos $videos)
@@ -108,7 +107,7 @@ class VideosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Videos  $videos
+     * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
     public function destroy(Videos $videos, $id)
@@ -120,14 +119,15 @@ class VideosController extends Controller
         return redirect()->route('profile_show')->with('success', "La vidéo a bien été supprimé !");
     }
 
-    public function showAllVideos(Request $request, Videos $videos) {
+    public function showAllVideos(Videos $videos)
+    {
         $auth_id = Auth::id();
-        $videos = DB::table('videos')->orderByDesc('created_at')->take(10)->get();
+        $nb_videos = DB::table('videos')->orderByDesc('created_at')->take(6)->get();
         $rand_videos = DB::table('videos')->inRandomOrder('id')->get()->all();
         $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(6)->get();
         return view('welcome', [
             'user_id' => $auth_id,
-            'videos' => $videos,
+            'nb_videos' => $nb_videos,
             'rand_videos' => $rand_videos,
             'tend_videos' => $tend_videos
         ]);

@@ -28,7 +28,7 @@
                 <div class="card text-white bg-dark mb-3" >
                     <div class="card-header">Nombre de vidéos</div>
                     <div class="card-body">
-                        <h2 class="card-title">8</h2>
+                        <h2 class="card-title">{{ $nb_videos }}</h2>
                     </div>
                 </div>
                 <div class="card text-white bg-secondary mb-3">
@@ -48,13 +48,13 @@
                 <div class="card text-white bg-success mb-3">
                     <div class="card-header">Nombre de likes</div>
                     <div class="card-body">
-                        <h2 class="card-title">973</h2>
+                        <h2 class="card-title">{{ $nb_likes }}</h2>
                     </div>
                 </div>
                 <div class="card text-white bg-danger mb-3">
                     <div class="card-header">Nombre de dislikes</div>
                     <div class="card-body">
-                        <h2 class="card-title">85</h2>
+                        <h2 class="card-title">{{$nb_dislikes}}</h2>
                     </div>
                 </div>
             </div>
