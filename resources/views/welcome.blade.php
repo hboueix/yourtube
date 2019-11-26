@@ -18,10 +18,7 @@
             <div class="row">
             @foreach($videos as $video)
             <div class="card col-sm-4">
-                <video width="320" height="240" class="card-img-top" controls>
-                    <source src="https://www.videvo.net/videvo_files/converted/2013_07/videos/hd0079.mov26726.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <img src="{{asset('storage/'. $video->image)}}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $video->title }}</h5>
                     <p class="card-text">{{ $video->description }}</p>
