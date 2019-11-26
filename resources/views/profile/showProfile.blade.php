@@ -41,9 +41,6 @@
             <h3>Vidéos publiées</h3>
             <hr />
             @foreach ($videos as $video)
-                @php
-                $video->id;
-                @endphp
             <div class="media">
                 <img src="{{ asset('storage/images/'. $video->image) }}" class="mr-3" alt="miniature">
                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
