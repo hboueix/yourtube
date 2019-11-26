@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('content')
+@if (session('video_extension_error'))
+    <div class="alert alert-warning">
+        La miniature doit être une image en png ou jpg.
+        <br>
+        La vidéo doit être de type mp4.
+    </div>
+@endif
+@if (session('video_error'))
+    <div class="alert alert-warning">
+        Une erreur est survenue !
+    </div>
+@endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
