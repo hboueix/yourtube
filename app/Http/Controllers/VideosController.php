@@ -45,13 +45,11 @@ class VideosController extends Controller
      * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
-    public function show(Videos $videos)
+    public function show(Videos $videos, $id)
     {
-        $auth_id = Auth::id();
-        $videos = DB::table('videos')->get()->where('user_id', $auth_id);
-        return view('profile/showProfile', [
-            'user_id' => $auth_id,
-            'videos' => $videos
+        $video = DB::table('videos')->where('id', $id)->first();
+        return view('videos/showVideo', [
+            'video' => $video
         ]);
     }
 
