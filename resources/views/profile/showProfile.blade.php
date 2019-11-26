@@ -41,6 +41,9 @@
             <h3>Vidéos publiées</h3>
             <hr />
             @foreach ($videos as $video)
+                @php
+                $video->id);
+                @endphp
             <div class="media">
                 <img src="{{ asset('storage/images/'. $video->image) }}" class="mr-3" alt="miniature">
                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
@@ -52,16 +55,21 @@
                         Sortie le : {{ $video->created_at }}
                     </p>
                 </div>
-                <div class="text-center" style="width: 9%;">
-                    <button type="button" class="btn btn-secondary" style=" margin-bottom: 14px">
-                        Vues <span class="badge badge-light">{{ $video->nbWatch }}</span>
-                    </button>
+                <div class="text-center" style="width: 20%">
                     <button type="button" class="btn btn-success" style=" margin-bottom: 14px">
-                        J'aime <span class="badge badge-light">{{ $video->likes }}</span>
+                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span class="badge badge-light">{{ $video->likes }}</span>
                     </button>
-                    <button type="button" class="btn btn-danger">
-                        Dislikes <span class="badge badge-light">{{$video->dislikes}}</span>
+                    <button type="button" class="btn btn-danger" style=" margin-bottom: 14px">
+                        <i class="fas fa-thumbs-down" style="margin-right: 10px"></i><span class="badge badge-light">{{$video->dislikes}}</span>
                     </button>
+                    <button type="button" class="btn btn-secondary" style="margin-bottom: 30px">
+                        <i class="fas fa-eye" style="margin-right: 10px"></i><span class="badge badge-light">{{ $video->nbWatch }}</span>
+                    </button>
+                    @if($profile->id == \Illuminate\Support\Facades\Auth::id())
+                        <div class="profile-userbuttons">
+                            <a href="{{ route('video_destroy', $video->id) }}"><button type="submit" class="btn btn-warning btn-sm" style="vertical-align: bottom"><i class="fas fa-trash-alt" style="margin-right: 10px"></i>Supprimer le profil</button></a>
+                        </div>
+                    @endif
                 </div>
             </div>
             <hr />

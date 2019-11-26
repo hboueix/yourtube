@@ -26,7 +26,7 @@
                                     </button></a>
                                     <a href="{{ route('profile_destroy', $profiler->id) }}"><button type="button" class="btn btn-danger">
                                         Supprimer le profil
-                                        </button></a>
+                                    </button></a>
                                 </div>
                             </div>
                             <hr />
