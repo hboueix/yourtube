@@ -5,6 +5,11 @@
         Profil mis à jour avec succès !
     </div>
 @endif
+@if (session('profile_avatar_error'))
+    <div class="alert alert-warning">
+        L'avatar doit être une image en png ou jpg !
+    </div>
+@endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
