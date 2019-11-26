@@ -124,15 +124,12 @@ class VideosController extends Controller
     public function showAllVideos(Videos $videos)
     {
         $auth_id = Auth::id();
-<<<<<<< HEAD
         $nb_videos = DB::table('videos')->orderByDesc('created_at')->take(6)->get();
         $rand_videos = DB::table('videos')->inRandomOrder('id')->get()->all();
         $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(6)->get();
-=======
         $videos = DB::table('videos')->orderByDesc('created_at')->take(3)->get();
         $rand_videos = DB::table('videos')->inRandomOrder('id')->take(6)->get()->all();
         $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(3)->get();
->>>>>>> baa4acb077146520a66bd656f4c05d388259b486
         return view('welcome', [
             'user_id' => $auth_id,
             'nb_videos' => $nb_videos,
