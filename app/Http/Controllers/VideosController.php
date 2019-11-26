@@ -132,7 +132,7 @@ class VideosController extends Controller
         $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(3)->get();
         return view('welcome', [
             'user_id' => $auth_id,
-            'nb_videos' => $nb_videos,
+            'videos' => $nb_videos,
             'rand_videos' => $rand_videos,
             'tend_videos' => $tend_videos
         ]);
