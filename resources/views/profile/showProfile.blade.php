@@ -64,7 +64,7 @@
                     </button>
                     @if($profile->id == \Illuminate\Support\Facades\Auth::id())
                         <div class="profile-userbuttons">
-                            <a href="{{ route('video_destroy', $video->id) }}"><button type="submit" class="btn btn-warning btn-sm" style="vertical-align: bottom"><i class="fas fa-trash-alt" style="margin-right: 10px"></i>Supprimer le profil</button></a>
+                            <a href="{{ route('video_destroy', $video->id) }}"><button type="submit" class="btn btn-warning btn-sm" style="vertical-align: bottom"><i class="fas fa-trash-alt" style="margin-right: 10px"></i>Supprimer</button></a>
                         </div>
                     @endif
                 </div>
