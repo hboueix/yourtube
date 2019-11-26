@@ -5,14 +5,14 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Partager une vidéo') }}</div>
-                    <form method="post" action="{{ route('video_upload', $user_id ?? '') }}" enctype="multipart/form-data" style="margin: 5px">
+                    <form method="post" action="{{ route('video_upload') }}" enctype="multipart/form-data" style="margin: 5px">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" name="miniature" required>
-                            <label class="custom-file-label" for="customFile">Choisir la miniature</label>
+                            <input type="file" class="custom-file-input" id="miniature" name="miniature">
+                            <label class="custom-file-label" for="miniature">Changer d'avatar</label>
                         </div>
                         <div class="custom-file" style="margin-top:10px">
-                            <input type="file" class="custom-file-input" id="customFile" name="video" required>
-                            <label class="custom-file-label" for="customFile">Choisir la vidéo</label>
+                            <input type="file" class="custom-file-input" id="video" name="video" required>
+                            <label class="custom-file-label" for="video">Choisir la vidéo</label>
                         </div>
                         <div class="form-group">
                             <label for="title">Titre</label>

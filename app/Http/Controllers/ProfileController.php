@@ -79,9 +79,9 @@ class ProfileController extends Controller
                 ->insert([
                     'id' => $auth_id,
                     'user_id' => $auth_id,
-                    'image' => 'test.jpg',
-                    'last_name' => 'John',
-                    'first_name' => 'Doe',
+                    'image' => '',
+                    'last_name' => '',
+                    'first_name' => '',
                     'dateOfBirth' => date('y-m-d'),
                     'created_at' => date('y-m-d h:m:s'),
                     'updated_at' => date('y-m-d h:m:s')
