@@ -19,10 +19,12 @@ Route::get('/', [
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/dashboard/', [
         'as' => 'home',
         'uses' => 'HomeController@index'
     ]);
+
     Route::get('/profile/user/{id}', [
         'as' => 'profile_show',
         'uses' => 'ProfileController@show'
@@ -39,15 +41,16 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'profile_destroy',
         'uses' => 'ProfileController@destroy'
     ]);
-    Route::get('/dashboard/formVideo/', [
+
+    Route::get('/video/', [
         'as' => 'video_form',
         'uses' => 'VideosController@create'
     ]);
-    Route::post('/dashboard/uploadVideo/', [
+    Route::post('/video/upload/', [
         'as' => 'video_upload',
         'uses' => 'VideosController@update'
     ]);
-    Route::get('/dashboard/destroyVideo/', [
+    Route::get('/video/destroy/', [
         'as' => 'video_destroy',
         'uses' => 'VideosController@destroy'
     ]);
