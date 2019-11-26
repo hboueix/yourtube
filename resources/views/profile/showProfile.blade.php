@@ -12,7 +12,7 @@
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
                         @if(isset($profile->image))
-                            <img src="{{ asset('storage/images/'. $profile->image) }}" style="width: 250px; height: 250px">
+                            <img src="{{ asset('storage/'. $profile->image) }}" style="width: 250px; height: 250px">
                         @else
                             <img src="https://static.asianetnews.com/img/default-user-avatar.png" style="width: 250px; height: 250px">
                         @endif
@@ -42,14 +42,14 @@
             <hr />
             @foreach ($videos as $video)
             <div class="media">
-                <img src="{{ asset('storage/images/'. $video->image) }}" class="mr-3" alt="miniature">
+                <img src="{{ asset('storage/'. $video->image) }}" class="mr-3" alt="miniature">
                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
                     <h5 class="mt-1">{{ $video->title }}</h5>
                     <p>
                         {{ $video->description }}
                     </p>
                     <p>
-                        Sortie le : {{ $video->created_at }}
+                        {{ $video->created_at }}
                     </p>
                 </div>
                 <div class="text-center" style="width: 20%">

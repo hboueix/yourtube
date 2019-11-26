@@ -84,13 +84,13 @@ class VideosController extends Controller
             $miniature_extension = $miniature->getClientMimeType();
             $video_extension = $video->getClientMimeType();
             if (($miniature_extension == "image/jpeg" || $miniature_extension == "image/png") && $video_extension == "video/mp4") {
-                $path = $request->file('miniature')->store((string)$auth_id);
-                $path_video = $request->file('video')->store((string)$auth_id);
+                $path_miniature = $request->file('miniature')->store((string)$auth_id . '/miniatures');
+                $path_video = $request->file('video')->store((string)$auth_id . '/videos');
                 DB::table('videos')
                     ->insert([
                         'user_id' => $auth_id,
                         'title' => $parameters['title'],
-                        'image' => $path,
+                        'image' => $path_miniature,
                         'path' => $path_video,
                         'description' => $parameters['description'],
                         'created_at' => date('y-m-d h:m:s'),
@@ -124,9 +124,9 @@ class VideosController extends Controller
 
     public function showAllVideos(Request $request, Videos $videos) {
         $auth_id = Auth::id();
-        $videos = DB::table('videos')->orderByDesc('created_at')->take(10)->get();
-        $rand_videos = DB::table('videos')->inRandomOrder('id')->get()->all();
-        $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(6)->get();
+        $videos = DB::table('videos')->orderByDesc('created_at')->take(3)->get();
+        $rand_videos = DB::table('videos')->inRandomOrder('id')->take(6)->get()->all();
+        $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(3)->get();
         return view('welcome', [
             'user_id' => $auth_id,
             'videos' => $videos,
