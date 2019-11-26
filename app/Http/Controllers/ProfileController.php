@@ -104,7 +104,7 @@ class ProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $auth_id = Auth::id();
-        $path = (string)$auth_id;
+        $path = (string)$auth_id . '/images/';
         $parameters = $request->except('_token');
         if(isset($parameters['email'])) {
             DB::table('users')
@@ -123,7 +123,7 @@ class ProfileController extends Controller
                 DB::table('profiles')
                     ->where('user_id', $auth_id)
                     ->update([
-                        'image' => "$auth_id/$file_name",
+                        'image' => "$auth_id/images/$file_name",
                     ]);
             } else {
                 return redirect()->route('profile_edit')->with('profile_avatar_error', true);

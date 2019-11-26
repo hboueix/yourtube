@@ -83,13 +83,13 @@ class VideosController extends Controller
             $miniature_extension = $miniature->getClientMimeType();
             $video_extension = $video->getClientMimeType();
             if (($miniature_extension == "image/jpeg" || $miniature_extension == "image/png") && $video_extension == "video/mp4") {
-                $path = $request->file('miniature')->store((string)$auth_id);
-                $path_video = $request->file('video')->store((string)$auth_id);
+                $path_miniature = $request->file('miniature')->store((string)$auth_id . '/miniatures');
+                $path_video = $request->file('video')->store((string)$auth_id . '/videos');
                 DB::table('videos')
                     ->insert([
                         'user_id' => $auth_id,
                         'title' => $parameters['title'],
-                        'image' => $path,
+                        'image' => $path_miniature,
                         'path' => $path_video,
                         'description' => $parameters['description'],
                         'created_at' => date('y-m-d h:m:s'),
@@ -113,18 +113,26 @@ class VideosController extends Controller
     public function destroy(Videos $videos, $id)
     {
         $auth_id = Auth::id();
-        $video_id = Videos::find($id);
-        dd($auth_id, $video_id);
-        DB::table('videos')->where('id', '=', $id)->delete();
-        return redirect()->route('profile_show')->with('success', "La vidéo a bien été supprimé !");
+        $videos = DB::table('videos')->select('id', 'user_id')->where('id', $id)->first();
+        if ($auth_id == $videos->user_id) {
+            DB::table('videos')->where('id', '=', $id)->delete();
+            return redirect()->route('profile_show', $auth_id)->with('video_delete_success', true);
+        }
+        return redirect()->route('profile_show', $auth_id)->with('video_delete_error', true);
     }
 
     public function showAllVideos(Videos $videos)
     {
         $auth_id = Auth::id();
+<<<<<<< HEAD
         $nb_videos = DB::table('videos')->orderByDesc('created_at')->take(6)->get();
         $rand_videos = DB::table('videos')->inRandomOrder('id')->get()->all();
         $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(6)->get();
+=======
+        $videos = DB::table('videos')->orderByDesc('created_at')->take(3)->get();
+        $rand_videos = DB::table('videos')->inRandomOrder('id')->take(6)->get()->all();
+        $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(3)->get();
+>>>>>>> baa4acb077146520a66bd656f4c05d388259b486
         return view('welcome', [
             'user_id' => $auth_id,
             'nb_videos' => $nb_videos,
