@@ -42,7 +42,7 @@
             <hr />
             @foreach ($videos as $video)
                 @php
-                $video->id);
+                $video->id;
                 @endphp
             <div class="media">
                 <img src="{{ asset('storage/images/'. $video->image) }}" class="mr-3" alt="miniature">
