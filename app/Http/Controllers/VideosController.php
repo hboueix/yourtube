@@ -122,10 +122,12 @@ class VideosController extends Controller
         $auth_id = Auth::id();
         $videos = DB::table('videos')->orderByDesc('created_at')->take(10)->get();
         $rand_videos = DB::table('videos')->inRandomOrder('id')->get()->all();
+        $tend_videos = DB::table('videos')->orderByDesc('nbWatch')->take(6)->get();
         return view('welcome', [
             'user_id' => $auth_id,
             'videos' => $videos,
-            'rand_videos' => $rand_videos
+            'rand_videos' => $rand_videos,
+            'tend_videos' => $tend_videos
         ]);
     }
 }
