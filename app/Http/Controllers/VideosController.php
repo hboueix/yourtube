@@ -125,7 +125,7 @@ class VideosController extends Controller
         $videos = DB::table('videos')->select('id', 'user_id')->where('id', $id)->first();
         if ($auth_id == $videos->user_id) {
             DB::table('videos')->where('id', '=', $id)->delete();
-            return redirect()->route('profile_show', $auth_id)->with('video_delete_success', true);
+            return redirect()->route('profile_show', $auth_id)->with('video_deleted', true);
         }
         return redirect()->route('profile_show', $auth_id)->with('video_delete_error', true);
     }
