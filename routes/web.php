@@ -49,15 +49,19 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/video/', [
         'as' => 'video_form',
-        'uses' => 'VideosController@create'
+        'uses' => 'VideosController@index'
     ]);
     Route::post('/video/upload/', [
         'as' => 'video_upload',
-        'uses' => 'VideosController@update'
+        'uses' => 'VideosController@create'
     ]);
     Route::get('/video/destroy/{id}', [
         'as' => 'video_destroy',
         'uses' => 'VideosController@destroy'
+    ]);
+    Route::get('/video/edit/{id}', [
+        'as' => 'video_edit',
+        'uses' => 'VideosController@edit'
     ]);
 });
 
