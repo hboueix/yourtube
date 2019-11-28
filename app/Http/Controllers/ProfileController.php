@@ -80,7 +80,7 @@ class ProfileController extends Controller
                 ->insert([
                     'id' => $auth_id,
                     'user_id' => $auth_id,
-                    'image' => '',
+                    'avatar' => '',
                     'last_name' => '',
                     'first_name' => '',
                     'dateOfBirth' => date('y-m-d'),
@@ -124,7 +124,7 @@ class ProfileController extends Controller
                 DB::table('profiles')
                     ->where('user_id', $auth_id)
                     ->update([
-                        'image' => "$auth_id/images/$file_name",
+                        'avatar' => "$auth_id/images/$file_name",
                     ]);
             } else {
                 return redirect()->route('profile_edit')->with('profile_avatar_error', true);
