@@ -51,10 +51,12 @@ class VideosController extends Controller
         $videos = DB::table('videos')
             ->join('users', 'videos.user_id', '=', 'users.id')
             ->join('profiles', 'videos.user_id', '=', 'profiles.user_id')
+            ->where('videos.id', $id)
             ->get()->first();
         return view('videos/showVideo', [
             'user_id' => $auth_id,
-            'videos' => $videos
+            'videos' => $videos,
+            'id' => $id
         ]);
     }
 
@@ -134,7 +136,7 @@ class VideosController extends Controller
             'user_id' => $auth_id,
             'videos' => $nb_videos,
             'rand_videos' => $rand_videos,
-            'tend_videos' => $tend_videos
+            'tend_videos' => $tend_videos,
         ]);
     }
 }
