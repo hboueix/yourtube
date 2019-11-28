@@ -83,6 +83,11 @@ class VideosController extends Controller
             ->join('profiles', 'videos.user_id', '=', 'profiles.user_id')
             ->where('videos.id', $id)
             ->get()->first();
+
+        DB::table('videos')
+            ->where('id', $id)
+            ->update(['nbWatch' => ((int)$videos->nbWatch + 1)]);
+
         return view('videos/showVideo', [
             'user_id' => $auth_id,
             'videos' => $videos
