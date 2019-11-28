@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Videos::class, function (Faker $faker) {
     return [
-        'title' => $faker->title,
+        'title' => $faker->sentence,
         'description' => $faker->text,
         'path' => $faker->text,
         'nbWatch' => $faker->numberBetween($min = 100000, $max = 300000),
