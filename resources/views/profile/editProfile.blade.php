@@ -1,13 +1,19 @@
 @extends('layouts.app')
 @section('content')
 @if (session('profile_updated'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
         Profil mis à jour avec succès !
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif
 @if (session('profile_avatar_error'))
-    <div class="alert alert-warning">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
         L'avatar doit être une image en png ou jpg !
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif
 <div class="container">

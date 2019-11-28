@@ -1,15 +1,21 @@
 @extends('layouts.app')
 @section('content')
 @if (session('video_extension_error'))
-    <div class="alert alert-warning">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
         La miniature doit être une image en png ou jpg.
         <br>
         La vidéo doit être de type mp4.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif
 @if (session('video_error'))
-    <div class="alert alert-warning">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
         Une erreur est survenue !
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif
     <div class="container">
