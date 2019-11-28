@@ -55,6 +55,7 @@ class ProfileController extends Controller
         if ($profile == null) {
             return abort(404);
         } else {
+
             $videos = DB::table('videos')->get()->where('user_id', $id);
             return view('profile/showProfile', [
                 'user_id' => $auth_id,
