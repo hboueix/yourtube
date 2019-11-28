@@ -6,14 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
-
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
                     Bonjour à vous, <span style="font-weight: 600">{{ $user->name  }}</span> !
                     <br>
                         Félicitations pour votre rôle : <span style="font-weight: 600">{{ucfirst($user->roles()->pluck('name')[0])}}</span>.
