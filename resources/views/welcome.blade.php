@@ -32,12 +32,11 @@
                                 <div
                                     style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                                 </div>
-                                <a href="{{ route('video_show', $video->id) }}" style="text-decoration: none; color: inherit">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ $video->title }}</h5>
+                                        <a href="{{ route('video_show', $video->id) }}"
+                                           style="text-decoration: none; color: inherit"><h5 class="card-title">{{ $video->title }}</h5></a>
                                         <h6>{{$video->nbWatch}} vues</h6>
                                     </div>
-                                </a>
                             </div>
                         @endforeach
                     </div>
@@ -52,7 +51,7 @@
                                     style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $t_video->title }}</h5>
+                                    <a href="{{ route('video_show', $video->id) }}" style="text-decoration: none; color: inherit"><h5 class="card-title">{{ $t_video->title }}</h5></a>
                                 </div>
                             </div>
                         @endforeach
@@ -68,7 +67,9 @@
                                     style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ $r_video->title }}</h5>
+                                    <a href="{{ route('video_show', $video->id) }}"
+                                       style="text-decoration: none; color: inherit"><h5
+                                            class="card-title">{{ $r_video->title }}</h5></a>
                                 </div>
                             </div>
                         @endforeach
