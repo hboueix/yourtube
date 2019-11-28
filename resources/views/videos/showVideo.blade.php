@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="text-left" style="border: 1px solid; margin-top: 150px">
-            <img src="{{ asset('/storage/', $videos->avatar)}}">
+            <img src="{{ asset('storage/' . $videos->avatar)}}" style="width: 80px; height: 80px; border-radius: 100%">
             <h4>{{$videos->name}}</h4>
         </div>
     </div>
