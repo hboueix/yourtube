@@ -40,6 +40,11 @@
             </div>
             <h3>Vidéos publiées</h3>
             <hr />
+            @if(sizeof($videos) == 0)
+                <div class="alert alert-warning" role="alert">
+                    Vous n'avez pas publié de vidéo, <a href="{{ route('video_form') }}">publiez votre permière vidéo</a> !
+                </div>
+            @endif
             @foreach ($videos as $video)
             <div class="media">
                 <img src="{{ asset('storage/'. $video->image) }}" class="mr-3" alt="miniature">
