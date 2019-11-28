@@ -20,19 +20,19 @@
                     <form method="post" action="{{ route('video_upload') }}" enctype="multipart/form-data" style="margin: 5px">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="miniature" name="miniature">
-                            <label class="custom-file-label" for="miniature">Changer d'avatar</label>
+                            <label class="custom-file-label" for="miniature">Miniature de la vidéo</label>
                         </div>
                         <div class="custom-file" style="margin-top:10px">
                             <input type="file" class="custom-file-input" id="video" name="video" required>
-                            <label class="custom-file-label" for="video">Choisir la vidéo</label>
+                            <label class="custom-file-label" for="video">Vidéo (mp4)</label>
                         </div>
                         <div class="form-group">
                             <label for="title">Titre</label>
-                            <input type="text" class="form-control" id="title" placeholder="Titre putaclic" name="title" value="{{ $profile ?? '' ? $profile->title : '' }}" required>
+                            <input type="text" class="form-control" id="title" placeholder="Titre de la vidéo" name="title" value="{{ $profile ?? '' ? $profile->title : '' }}" required>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea type="text" class="form-control" id="description" placeholder="Description" name="description" value="{{ $videos ?? '' ? $videos->description : '' }}" required></textarea>
+                            <textarea type="text" class="form-control" id="description" placeholder="Description de votre vidéo" name="description" value="{{ $videos ?? '' ? $videos->description : '' }}" required></textarea>
                         </div>
                         <input type="hidden" name="id" value="">
                         @csrf

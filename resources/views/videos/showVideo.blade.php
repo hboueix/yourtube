@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layouts.app')
 
 @section('content')
@@ -22,3 +23,6 @@
         </div>
     </div>
 @endsection
+=======
+{{dd($video)}}
+>>>>>>> b17d096344ba782f3610aa64dc53d7bf99d499d4
