@@ -22,11 +22,14 @@
                         @foreach($videos as $video)
                             <div class="card col-sm-4">
                                 <div
-                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->image)}}'); background-position: center; background-size: cover">
+                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $video->title }}</h5>
-                                </div>
+                                <a href="{{ route('video_show', $video->id) }}" style="text-decoration: none; color: inherit">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $video->title }}</h5>
+                                        <h6>{{$video->nbWatch}} vues</h6>
+                                    </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
@@ -38,7 +41,7 @@
                         @foreach($tend_videos as $t_video)
                             <div class="card col-sm-4">
                                 <div
-                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->image)}}'); background-position: center; background-size: cover">
+                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $t_video->title }}</h5>
@@ -54,7 +57,7 @@
                         @foreach ($rand_videos as $r_video)
                             <div class="card col-sm-4">
                                 <div
-                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->image)}}'); background-position: center; background-size: cover">
+                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $r_video->title }}</h5>
@@ -65,4 +68,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection

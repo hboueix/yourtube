@@ -22,8 +22,8 @@
                 <div class="profile">
                     <!-- SIDEBAR USERPIC -->
                     <div class="profile-userpic">
-                        @if(strlen($profile->image) > 0)
-                            <img src="{{ asset('storage/'. $profile->image) }}" style="width: 250px; height: 250px; border-radius: 100%">
+                        @if(strlen($profile->avatar) > 0)
+                            <img src="{{ asset('storage/'. $profile->avatar) }}" style="width: 250px; height: 250px; border-radius: 100%">
                         @else
                             <img src="https://static.asianetnews.com/img/default-user-avatar.png" style="width: 250px; height: 250px">
                         @endif
@@ -58,7 +58,7 @@
             @endif
             @foreach ($videos as $video)
             <div class="media">
-                <div class="mr-3" style="width: 500px; height: 200px; background-image: url('{{asset('storage/'. $video->image)}}'); background-position: center; background-size: cover"></div>
+                <div class="mr-3" style="width: 500px; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover"></div>
                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
                     <h5 class="mt-1">{{ $video->title }}</h5>
                     <p>
