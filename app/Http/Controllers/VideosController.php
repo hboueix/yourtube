@@ -16,6 +16,7 @@ class VideosController extends Controller
      */
     public function index(Videos $videos)
     {
+        return view('videos/uploadVideo');
     }
 
     /**
@@ -23,9 +24,35 @@ class VideosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('videos/uploadVideo');
+        $auth_id = Auth::id();
+        $parameters = $request->except('_token');
+        if (isset($parameters['miniature']) && isset($parameters['video'])) {
+            $miniature = $request->file('miniature');
+            $video = $request->file('video');
+            $miniature_extension = $miniature->getClientMimeType();
+            $video_extension = $video->getClientMimeType();
+            if (($miniature_extension == "image/jpeg" || $miniature_extension == "image/png") && $video_extension == "video/mp4") {
+                $path_miniature = $request->file('miniature')->store((string)$auth_id . '/miniatures');
+                $path_video = $request->file('video')->store((string)$auth_id . '/videos');
+                DB::table('videos')
+                    ->insert([
+                        'user_id' => $auth_id,
+                        'title' => $parameters['title'],
+                        'image' => $path_miniature,
+                        'path' => $path_video,
+                        'description' => $parameters['description'],
+                        'created_at' => date('y-m-d h:m:s'),
+                        'updated_at' => date('y-m-d h:m:s')
+                    ]);
+                return redirect()->route('profile_show', $auth_id)->with('video_updated', true);
+            } else {
+                return redirect()->route('video_form', $auth_id)->with('video_extension_error', true);
+            }
+        } else {
+            return redirect()->route('video_form', $auth_id)->with('video_error', true);
+        }
     }
 
     /**
@@ -68,7 +95,8 @@ class VideosController extends Controller
      */
     public function edit(Videos $videos)
     {
-        //
+        $auth_id = Auth::id();
+
     }
 
     /**
@@ -80,33 +108,7 @@ class VideosController extends Controller
      */
     public function update(Request $request, Videos $videos)
     {
-        $auth_id = Auth::id();
-        $parameters = $request->except('_token');
-        if (isset($parameters['miniature']) && isset($parameters['video'])) {
-            $miniature = $request->file('miniature');
-            $video = $request->file('video');
-            $miniature_extension = $miniature->getClientMimeType();
-            $video_extension = $video->getClientMimeType();
-            if (($miniature_extension == "image/jpeg" || $miniature_extension == "image/png") && $video_extension == "video/mp4") {
-                $path_miniature = $request->file('miniature')->store((string)$auth_id . '/miniatures');
-                $path_video = $request->file('video')->store((string)$auth_id . '/videos');
-                DB::table('videos')
-                    ->insert([
-                        'user_id' => $auth_id,
-                        'title' => $parameters['title'],
-                        'image' => $path_miniature,
-                        'path' => $path_video,
-                        'description' => $parameters['description'],
-                        'created_at' => date('y-m-d h:m:s'),
-                        'updated_at' => date('y-m-d h:m:s')
-                    ]);
-                return redirect()->route('profile_show', $auth_id)->with('video_updated', true);
-            } else {
-                return redirect()->route('video_form', $auth_id)->with('video_extension_error', true);
-            }
-        } else {
-            return redirect()->route('video_form', $auth_id)->with('video_error', true);
-        }
+        // nothing
     }
 
     /**
