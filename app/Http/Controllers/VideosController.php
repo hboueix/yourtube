@@ -40,7 +40,7 @@ class VideosController extends Controller
                     ->insert([
                         'user_id' => $auth_id,
                         'title' => $parameters['title'],
-                        'image' => $path_miniature,
+                        'miniature' => $path_miniature,
                         'path' => $path_video,
                         'description' => $parameters['description'],
                         'created_at' => date('y-m-d h:m:s'),
