@@ -82,8 +82,7 @@ class VideosController extends Controller
             ->get()->first();
         return view('videos/showVideo', [
             'user_id' => $auth_id,
-            'videos' => $videos,
-            'id' => $id
+            'videos' => $videos
         ]);
     }
 
