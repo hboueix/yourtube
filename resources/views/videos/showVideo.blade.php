@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div style="width: 80%;margin-left: auto; margin-right: auto">
-        <div class="embed-responsive embed-responsive-21by9">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"></iframe>
-        </div>
+    <div style="width: 80%; margin-left: auto; margin-right: auto">
+        <video width="100%" controls>
+            <source src="{{asset('storage/'. $videos->path) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
         <div style="margin-top: 20px">
             <div class="text-left" style="width: 80%; float:left;">
