@@ -92,10 +92,15 @@ class VideosController extends Controller
      * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Videos $videos)
+    public function edit(Videos $videos, $id)
     {
         $auth_id = Auth::id();
-
+        $videos = DB::table('videos')->select()->where('id', $id)->first();
+        if ($auth_id == $videos->user_id) {
+            dd($videos);
+        } else {
+            return redirect()->route('accueil')->with('video_edit_error', true);
+        }
     }
 
     /**
