@@ -2,8 +2,11 @@
 
 @section('content')
     @if (session('account_deleted'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             Compte supprimé avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
     <div class="container">
@@ -18,7 +21,8 @@
             <div class="row">
             @foreach($videos as $video)
             <div class="card col-sm-4">
-                <img src="{{asset('storage/'. $video->image)}}">
+                <div style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->image)}}'); background-position: center; background-size: cover">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ $video->title }}</h5>
                 </div>
@@ -32,7 +36,8 @@
             <div class="row">
             @foreach($tend_videos as $t_video)
             <div class="card col-sm-4">
-                <img src="{{asset('storage/'. $video->image)}}">
+                <div style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->image)}}'); background-position: center; background-size: cover">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ $t_video->title }}</h5>
                 </div>
@@ -46,7 +51,8 @@
             <div class="row">
             @foreach ($rand_videos as $r_video)
             <div class="card col-sm-4">
-                <img src="{{asset('storage/'. $video->image)}}">
+                <div style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->image)}}'); background-position: center; background-size: cover">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ $r_video->title }}</h5>
                 </div>
