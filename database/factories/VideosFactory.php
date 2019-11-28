@@ -13,10 +13,6 @@ $factory->define(Videos::class, function (Faker $faker) {
         'nbWatch' => $faker->numberBetween($min = 100000, $max = 300000),
         'likes' => $faker->numberBetween($min = 0, $max = 50000),
         'dislikes' => $faker->numberBetween($min = 0, $max = 50000),
-<<<<<<< HEAD
-        'miniature' => $faker->image('public/storage/images',200,140,null,false)
-=======
-        'image' => $faker->image('public/storage/',200,140,null,false)
->>>>>>> b17d096344ba782f3610aa64dc53d7bf99d499d4
+        'miniature' => $faker->image('public/storage/images',200,140,null,false),
     ];
 });
