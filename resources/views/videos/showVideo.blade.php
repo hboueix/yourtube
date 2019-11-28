@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div style="width: 80%; margin-left: auto; margin-right: auto">
+    <div class="container" style="margin-left: auto; margin-right: auto">
         <video width="100%" controls>
             <source src="{{asset('storage/'. $videos->path) }}" type="video/mp4">
             Your browser does not support the video tag.
