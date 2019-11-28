@@ -42,6 +42,9 @@ class VideosController extends Controller
                         'title' => $parameters['title'],
                         'miniature' => $path_miniature,
                         'path' => $path_video,
+                        'nbWatch' => 0,
+                        'likes' => 0,
+                        'dislikes' => 0,
                         'description' => $parameters['description'],
                         'created_at' => date('y-m-d h:m:s'),
                         'updated_at' => date('y-m-d h:m:s')
