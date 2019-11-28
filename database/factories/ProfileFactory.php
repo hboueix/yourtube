@@ -12,6 +12,6 @@ $factory->define(Profile::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'first_name' => $faker->firstName,
         'dateOfBirth' => $faker->dateTime,
-        'image' => $faker->image('public/storage/images',250,250,null,false)
+        'avatar' => $faker->image('public/storage/images',250,250,null,false)
     ];
 });

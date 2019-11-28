@@ -50,6 +50,10 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'video_upload',
         'uses' => 'VideosController@update'
     ]);
+    Route::get('/video/show/', [
+        'as' => 'video_show',
+        'uses' => 'VideosController@show'
+    ]);
     Route::get('/video/destroy/{id}', [
         'as' => 'video_destroy',
         'uses' => 'VideosController@destroy'

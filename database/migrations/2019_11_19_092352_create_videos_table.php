@@ -17,7 +17,7 @@ class CreateVideosTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->string('image')->nullable();
+            $table->string('miniature')->nullable();
             $table->string('description');
             $table->string('path')->nullable();
             $table->string('nbWatch')->nullable();
