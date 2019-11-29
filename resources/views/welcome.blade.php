@@ -48,10 +48,10 @@
                         @foreach($tend_videos as $t_video)
                             <div class="card col-sm-4">
                                 <div
-                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
+                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $t_video->miniature)}}'); background-position: center; background-size: cover">
                                 </div>
                                 <div class="card-body">
-                                    <a href="{{ route('video_show', $video->id) }}" style="text-decoration: none; color: inherit"><h5 class="card-title">{{ $t_video->title }}</h5></a>
+                                    <a href="{{ route('video_show', $t_video->id) }}" style="text-decoration: none; color: inherit"><h5 class="card-title">{{ $t_video->title }}</h5></a>
                                 </div>
                             </div>
                         @endforeach
@@ -64,10 +64,10 @@
                         @foreach ($rand_videos as $r_video)
                             <div class="card col-sm-4">
                                 <div
-                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
+                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $r_video->miniature)}}'); background-position: center; background-size: cover">
                                 </div>
                                 <div class="card-body">
-                                    <a href="{{ route('video_show', $video->id) }}"
+                                    <a href="{{ route('video_show', $r_video->id) }}"
                                        style="text-decoration: none; color: inherit"><h5
                                             class="card-title">{{ $r_video->title }}</h5></a>
                                 </div>
