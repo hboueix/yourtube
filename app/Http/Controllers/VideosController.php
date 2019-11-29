@@ -180,25 +180,4 @@ class VideosController extends Controller
             'tend_videos' => $tend_videos,
         ]);
     }
-<<<<<<< HEAD
-=======
-
-    public
-    function reporteded(Request $request, Videos $videos, $id)
-    {
-        $auth_id = Auth::id();
-        $parameters = $request->except('_token');
-        $videos = DB::table('videos')->select()->where('id', $id)->first();
-        //dd($parameters['updated_at']);
-        DB::table('reportings')
-            ->insert([
-                'video_id' => $videos,
-                'reporter_id' => $auth_id,
-                'content' => $parameters['content'],
-                'created_at' => date('y-m-d h:m:s'),
-                'updated_at' => date('y-m-d h:m:s')
-            ]);
-        return redirect()->route('accueil')->with('video_reported', true);
-    }
->>>>>>> d7e371572ae292d1e5e52c9286affabd01fb2a16
 }
