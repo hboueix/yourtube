@@ -18,7 +18,7 @@
         </div>
     @endif
     <div class="container">
-        <div class="card row" style="width: 110%">
+        <div class="card row">
             <div class="card-header">
                 Fil d'actualité
             </div>
