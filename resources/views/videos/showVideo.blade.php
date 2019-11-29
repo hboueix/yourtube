@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('video_reported'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Vidéo signalée avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <!-- Modal -->
     <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -14,7 +22,7 @@
                 <form method="post" action="{{route('video_report', $videos->id)}}">
                     <div class="modal-body">
                         <h6>{{ $videos->title }}</h6>
-                        <textarea type="text" class="form-control" id="content" placeholder="Votre signalement..." name="content"></textarea>
+                        <label for="content"></label><textarea type="text" class="form-control" id="content" placeholder="Votre signalement..." name="content"></textarea>
                     </div>
                     <input type="hidden" name="id" value="">
                     @csrf
