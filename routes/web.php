@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
     ]);
     Route::post('/video/report/{id}', [
         'as' => 'video_report',
-        'uses' => 'VideosController@reporteded'
+        'uses' => 'ReportingController@index'
     ]);
 });
 
