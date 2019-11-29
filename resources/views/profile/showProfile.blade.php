@@ -58,7 +58,7 @@
             @endif
             @foreach ($videos as $video)
             <div class="media">
-                <div class="mr-3" style="width: 500px; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover"></div>
+                <div class="mr-3" style="width: 400px; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover"></div>
                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
                     <a href="{{route('video_show', $video->id)}}"><h5 class="mt-1">{{ $video->title }}</h5></a>
                     <p>
