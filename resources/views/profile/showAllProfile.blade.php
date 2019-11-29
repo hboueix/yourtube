@@ -9,7 +9,7 @@
                     <div class="card-body">
                         @foreach ($profile as $profiler)
                             <div class="media">
-                                <img src="{{ asset('storage/images/' . $profiler->image) }}" class="mr-3" alt="miniature" style="height: 150px; width: 150px">
+                                <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature" style="height: 150px; width: 150px">
                                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
                                     <h5 class="mt-1"> | {{ $profiler->name }}</h5>
                                     <h6 class="mt-1">{{ $profiler->email }}</h6>
