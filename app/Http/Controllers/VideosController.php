@@ -103,9 +103,11 @@ class VideosController extends Controller
     public function edit(Videos $videos, $id)
     {
         $auth_id = Auth::id();
-        $videos = DB::table('videos')->select()->where('id', $id)->first();
-        if ($auth_id == $videos->user_id) {
-            dd($videos);
+        $video = DB::table('videos')->select()->where('id', $id)->first();
+        if ($auth_id == $video->user_id) {
+            return view('videos/editVideo', [
+                'video' => $video
+            ]);
         } else {
             return redirect()->route('accueil')->with('video_edit_error', true);
         }
@@ -118,9 +120,11 @@ class VideosController extends Controller
      * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Videos $videos)
+    public function update(Request $request, Videos $videos, $id)
     {
-        // nothing
+        $auth_id = Auth::id();
+        $video = DB::table('videos')->select()->where('id', $id)->first();
+
     }
 
     /**
