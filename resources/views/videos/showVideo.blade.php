@@ -1,6 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Signaler cette vidéo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{route('video_report', $videos->id)}}">
+                    <div class="modal-body">
+                        <h6>{{ $videos->title }}</h6>
+                        <textarea type="text" class="form-control" id="content" placeholder="Votre signalement..." name="content"></textarea>
+                    </div>
+                    <input type="hidden" name="id" value="">
+                    @csrf
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag" style="margin-right: 10px"></i>Signaler !</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <video width="100%" controls>
             <source src="{{asset('storage/'. $videos->path) }}" type="video/mp4">
@@ -15,6 +39,9 @@
                     </button>
                     <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
                                                                     style="margin-right: 10px"></i>J'aime pas
+                    </button>
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i class="fas fa-flag"
+                                                                    style="margin-right: 10px"></i>Signaler
                     </button>
                 </div>
                 <div><h3>{{$videos->nbWatch}} vues</h3></div>
