@@ -67,6 +67,10 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'video_update',
         'uses' => 'VideosController@update'
     ]);
+    Route::post('/video/report/{id}', [
+        'as' => 'video_report',
+        'uses' => 'VideosController@reporteded'
+    ]);
 });
 
 
