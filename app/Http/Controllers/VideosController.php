@@ -103,9 +103,11 @@ class VideosController extends Controller
     public function edit(Videos $videos, $id)
     {
         $auth_id = Auth::id();
-        $videos = DB::table('videos')->select()->where('id', $id)->first();
-        if ($auth_id == $videos->user_id) {
-            dd($videos);
+        $video = DB::table('videos')->select()->where('id', $id)->first();
+        if ($auth_id == $video->user_id) {
+            return view('videos/editVideo', [
+                'video' => $video
+            ]);
         } else {
             return redirect()->route('accueil')->with('video_edit_error', true);
         }
@@ -118,9 +120,32 @@ class VideosController extends Controller
      * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Videos $videos)
+    public function update(Request $request, Videos $videos, $id)
     {
-        // nothing
+        $auth_id = Auth::id();
+        $video = DB::table('videos')->select()->where('id', $id)->first();
+        $parameters = $request->except('_token');
+        if ($auth_id == $video->user_id) {
+            if (isset($parameters['miniature'])) {
+                $miniature = $request->file('miniature');
+                $miniature_extension = $miniature->getClientMimeType();
+                if ($miniature_extension == "image/jpeg" || $miniature_extension == "image/png") {
+                    $path_miniature = $request->file('miniature')->store((string)$auth_id . '/miniatures');
+                    DB::table('videos')->where('id', $id)->update([
+                        'miniature' => $path_miniature,
+                        'updated_at' => date('y-m-d h:m:s')
+                    ]);
+                }
+            }
+            DB::table('videos')->where('id', $id)->update([
+                'title' => $parameters['title'],
+                'description' => $parameters['description'],
+
+            ]);
+            return redirect()->route('profile_show', $auth_id)->with('video_edit_error', true);
+        } else {
+            return redirect()->route('accueil')->with('video_edit_error', true);
+        }
     }
 
     /**
@@ -129,7 +154,8 @@ class VideosController extends Controller
      * @param \App\Videos $videos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Videos $videos, $id)
+    public
+    function destroy(Videos $videos, $id)
     {
         $auth_id = Auth::id();
         $videos = DB::table('videos')->select('id', 'user_id')->where('id', $id)->first();
@@ -140,7 +166,8 @@ class VideosController extends Controller
         return redirect()->route('profile_show', $auth_id)->with('video_delete_error', true);
     }
 
-    public function showAllVideos(Videos $videos)
+    public
+    function showAllVideos(Videos $videos)
     {
         $auth_id = Auth::id();
         $nb_videos = DB::table('videos')->orderBy('created_at', 'desc')->take(6)->get();
@@ -153,4 +180,25 @@ class VideosController extends Controller
             'tend_videos' => $tend_videos,
         ]);
     }
+<<<<<<< HEAD
+=======
+
+    public
+    function reporteded(Request $request, Videos $videos, $id)
+    {
+        $auth_id = Auth::id();
+        $parameters = $request->except('_token');
+        $videos = DB::table('videos')->select()->where('id', $id)->first();
+        //dd($parameters['updated_at']);
+        DB::table('reportings')
+            ->insert([
+                'video_id' => $videos,
+                'reporter_id' => $auth_id,
+                'content' => $parameters['content'],
+                'created_at' => date('y-m-d h:m:s'),
+                'updated_at' => date('y-m-d h:m:s')
+            ]);
+        return redirect()->route('accueil')->with('video_reported', true);
+    }
+>>>>>>> d7e371572ae292d1e5e52c9286affabd01fb2a16
 }
