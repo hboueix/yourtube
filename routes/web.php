@@ -63,9 +63,9 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'video_edit',
         'uses' => 'VideosController@edit'
     ]);
-    Route::post('/video/report/{id}', [
-        'as' => 'video_report',
-        'uses' => 'VideosController@reporteded'
+    Route::post('/video/upload/{id}', [
+        'as' => 'video_update',
+        'uses' => 'VideosController@update'
     ]);
 });
 
