@@ -111,7 +111,8 @@ class ProfileController extends Controller
             DB::table('users')
                 ->where('id', $auth_id)
                 ->update([
-                    'email' => $parameters['email']
+                    'email' => $parameters['email'],
+                    'updated_at' => date('y-m-d h:m:s')
                 ]);
         }
 
@@ -125,6 +126,7 @@ class ProfileController extends Controller
                     ->where('user_id', $auth_id)
                     ->update([
                         'avatar' => "$auth_id/images/$file_name",
+                        'updated_at' => date('y-m-d h:m:s')
                     ]);
             } else {
                 return redirect()->route('profile_edit')->with('profile_avatar_error', true);
