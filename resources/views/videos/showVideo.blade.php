@@ -62,18 +62,18 @@
         <h4>{{$videos->name}}</h4>
         Partager sur :
         <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $videos->id)}}" target="_blank">
-            Facebook
+            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-facebook" style="margin-right: 5px;"></i>Facebook</button>
         </a>
         <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $videos->id)}}"
            target="_blank">
-            Twitter
+                <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-twitter" style="margin-right: 5px;"></i>Twitter</button>
         </a>
         <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $videos->id)}}" target="_blank">
-            LinkedIn
+            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin</button>
         </a>
         <a href="mailto:?subject={{$videos->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $videos->id)}} via Yourtube.fr"
            target="_blank">
-            Mail
+            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-envelope" style="margin-right: 5px;"></i>Mail</button>
         </a>
         <hr />
         <h4>Commentaires</h4>
