@@ -52,6 +52,7 @@
                                 </div>
                                 <div class="card-body">
                                     <a href="{{ route('video_show', $t_video->id) }}" style="text-decoration: none; color: inherit"><h5 class="card-title">{{ $t_video->title }}</h5></a>
+                                    <h6>{{$t_video->nbWatch}} vues</h6>
                                 </div>
                             </div>
                         @endforeach
@@ -70,6 +71,7 @@
                                     <a href="{{ route('video_show', $r_video->id) }}"
                                        style="text-decoration: none; color: inherit"><h5
                                             class="card-title">{{ $r_video->title }}</h5></a>
+                                    <h6>{{$r_video->nbWatch}} vues</h6>
                                 </div>
                             </div>
                         @endforeach
