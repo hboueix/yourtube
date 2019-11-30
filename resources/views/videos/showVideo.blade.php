@@ -44,9 +44,11 @@
                     <h2>{{$videos->title}}</h2>
                     <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
                                                                      style="margin-right: 10px"></i>J'aime
+                        <span class="badge badge-light">{{$videos->likes}}</span>
                     </button>
                     <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
                                                                     style="margin-right: 10px"></i>J'aime pas
+                        <span class="badge badge-light">{{$videos->dislikes}}</span>
                     </button>
                     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i class="fas fa-flag"
                                                                     style="margin-right: 10px"></i>Signaler
