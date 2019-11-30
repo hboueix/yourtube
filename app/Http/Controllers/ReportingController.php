@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reporting;
 use App\Videos;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -15,14 +16,15 @@ class ReportingController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     * @param Videos $videos
      * @param $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function index(Request $request, Videos $videos, $id)
     {
         $auth_id = Auth::id();
         $parameters = $request->except('_token');
-
+        dd($id);
         DB::table('reportings')
             ->insert([
                 'video_id' => $id,
