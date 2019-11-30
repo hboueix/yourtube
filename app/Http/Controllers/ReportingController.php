@@ -24,7 +24,6 @@ class ReportingController extends Controller
     {
         $auth_id = Auth::id();
         $parameters = $request->except('_token');
-        dd($id);
         DB::table('reportings')
             ->insert([
                 'video_id' => $id,
