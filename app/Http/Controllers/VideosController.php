@@ -73,7 +73,7 @@ class VideosController extends Controller
      * Display the specified resource.
      *
      * @param \App\Videos $videos
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Videos $videos, $id)
     {
