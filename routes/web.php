@@ -21,7 +21,7 @@ Route::get('/video/watch/{id}', [
     'uses' => 'VideosController@show'
 ]);
 
-Route::get('/profile/user/{id}', [
+Route::get('/profile/user/{slug}', [
     'as' => 'profile_show',
     'uses' => 'ProfileController@show'
 ]);
