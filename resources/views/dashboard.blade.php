@@ -12,7 +12,7 @@
                         Félicitations pour votre rôle : <span style="font-weight: 600">{{ucfirst($user->roles()->pluck('name')[0])}}</span>.
                     <hr />
                     <a href="{{ route('video_form') }}"><button type="submit" class="btn btn-success">Upload une video</button></a>
-                    <a href="{{ route('profile_show', Auth::user()->id) }}"><button type="submit" class="btn btn-secondary">Mon profil</button></a>
+                    <a href="{{ route('profile_show', Auth::user()->name) }}"><button type="submit" class="btn btn-secondary">Mon profil</button></a>
                     <a href="{{ route('password.request') }}"><button type="submit" class="btn btn-dark">Changer de mot de passe</button></a>
                     <a href="{{ route('profile_destroy') }}"><button type="submit" class="btn btn-danger">Supprimer le compte</button></a>
                 </div>

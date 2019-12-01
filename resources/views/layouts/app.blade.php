@@ -62,7 +62,7 @@
                                 <a class="dropdown-item" href="{{ route('home') }}">
                                    Dashboard
                                 </a>
-                                <a class="dropdown-item" href="{{ route('profile_show', Auth::user()->id ?? '') }}">
+                                <a class="dropdown-item" href="{{ route('profile_show', Auth::user()->name ?? '') }}">
                                     Mon profil
                                 </a>
                                 @if(Auth::user()->hasRole('administrateur'))
