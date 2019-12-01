@@ -109,15 +109,17 @@
             </div>
         </form>
         <ul class="list-unstyled">
-            @foreach($comments as $comment)
-                <li class="media">
-                    <img class="mr-3" src="https://picsum.photos/100/100" alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        {{$comment->content}}
-                    </div>
-                </li>
-            @endforeach
+            @if(isset($comments))
+                @foreach($comments as $comment)
+                    <li class="media">
+                        <img class="mr-3" src="https://picsum.photos/100/100" alt="Generic placeholder image">
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">List-based media object</h5>
+                            {{$comment->content}}
+                        </div>
+                    </li>
+                @endforeach
+            @endif
         </ul>
     </div>
 @endsection
