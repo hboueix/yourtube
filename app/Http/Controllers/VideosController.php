@@ -49,7 +49,7 @@ class VideosController extends Controller
                         'created_at' => date('y-m-d h:m:s'),
                         'updated_at' => date('y-m-d h:m:s')
                     ]);
-                return redirect()->route('profile_show', $auth_id)->with('video_updated', true);
+                return redirect()->route('profile_show', Auth::user()->name)->with('video_updated', true);
             } else {
                 return redirect()->route('video_form', $auth_id)->with('video_extension_error', true);
             }
@@ -147,7 +147,7 @@ class VideosController extends Controller
                 'description' => $parameters['description'],
 
             ]);
-            return redirect()->route('profile_show', $auth_id)->with('video_edit_error', true);
+            return redirect()->route('profile_show', Auth::user()->name)->with('video_edit_error', true);
         } else {
             return redirect()->route('accueil')->with('video_edit_error', true);
         }
@@ -166,9 +166,9 @@ class VideosController extends Controller
         $videos = DB::table('videos')->select('id', 'user_id')->where('id', $id)->first();
         if ($auth_id == $videos->user_id) {
             DB::table('videos')->where('id', '=', $id)->delete();
-            return redirect()->route('profile_show', $auth_id)->with('video_deleted', true);
+            return redirect()->route('profile_show', Auth::user()->name)->with('video_deleted', true);
         }
-        return redirect()->route('profile_show', $auth_id)->with('video_delete_error', true);
+        return redirect()->route('profile_show', Auth::user()->name)->with('video_delete_error', true);
     }
 
     public
