@@ -13,7 +13,7 @@
 
 Route::get('/', [
     'as' => 'accueil',
-    'uses' =>'VideosController@showAllVideos'
+    'uses' => 'VideosController@showAllVideos'
 ]);
 
 Route::get('/video/watch/{id}', [
@@ -76,6 +76,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/comments/video/{id}', [
         'as' => 'comments_post',
         'uses' => 'CommentsController@create'
+    ]);
+
+    Route::get('/video/like/{id}', [
+        'as' => 'video_like',
+        'uses' => 'ReactionsController@like'
+    ]);
+
+    Route::get('/video/dislike/{id}', [
+        'as' => 'video_dislike',
+        'uses' => 'ReactionsController@dislike'
     ]);
 });
 
