@@ -71,6 +71,11 @@ Route::middleware(['auth'])->group(function () {
         'as' => 'video_report',
         'uses' => 'ReportingController@index'
     ]);
+
+    Route::post('/comments/video/{id}', [
+        'as' => 'comments_post',
+        'uses' => 'CommentsController@create'
+    ]);
 });
 
 
