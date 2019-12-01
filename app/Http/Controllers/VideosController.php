@@ -78,21 +78,23 @@ class VideosController extends Controller
     public function show(Videos $videos, $id)
     {
         $auth_id = Auth::id();
-        $videos = DB::table('videos')
-            ->join('users', 'videos.user_id', '=', 'users.id')
-            ->join('profiles', 'videos.user_id', '=', 'profiles.user_id')
-            ->where('videos.id', $id)
-            ->get()->first();
+        $video = DB::table('videos')
+            ->where('id', $id)
+            ->first();
+
+        $yourtubeur = DB::table('profiles')
+            ->where('id', $video->user_id)
+            ->first();
 
         $comments = DB::table('comments')->where('video_id', $id)->get();
 
         DB::table('videos')
             ->where('id', $id)
-            ->update(['nbWatch' => ((int)$videos->nbWatch + 1)]);
+            ->update(['nbWatch' => ((int)$video->nbWatch + 1)]);
 
         return view('videos/showVideo', [
-            'user_id' => $auth_id,
-            'videos' => $videos,
+            'video' => $video,
+            'yourtubeur' => $yourtubeur,
             'comments' => $comments
         ]);
     }
