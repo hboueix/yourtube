@@ -9,6 +9,14 @@
             </button>
         </div>
     @endif
+    @if (session('comment_created'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Commentaire publié avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <!-- Modal -->
     <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -22,12 +30,16 @@
                 <form method="post" action="{{route('video_report', $videos->id)}}">
                     <div class="modal-body">
                         <h6>{{ $videos->title }}</h6>
-                        <label for="content"></label><textarea type="text" class="form-control" id="content" placeholder="Votre signalement..." name="content"></textarea>
+                        <label for="content"></label><textarea type="text" class="form-control" id="content"
+                                                               placeholder="Votre signalement..."
+                                                               name="content"></textarea>
                     </div>
                     <input type="hidden" name="id" value="">
                     @csrf
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag" style="margin-right: 10px"></i>Signaler !</button>
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
+                                                                        style="margin-right: 10px"></i>Signaler !
+                        </button>
                     </div>
                 </form>
             </div>
@@ -43,15 +55,16 @@
                 <div>
                     <h2>{{$videos->title}}</h2>
                     <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
-                                                                     style="margin-right: 10px"></i>J'aime
+                                                                     style="margin-right: 10px"></i>
                         <span class="badge badge-light">{{$videos->likes}}</span>
                     </button>
                     <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
-                                                                    style="margin-right: 10px"></i>J'aime pas
+                                                                    style="margin-right: 10px"></i>
                         <span class="badge badge-light">{{$videos->dislikes}}</span>
                     </button>
-                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i class="fas fa-flag"
-                                                                    style="margin-right: 10px"></i>Signaler
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
+                            class="fas fa-flag"
+                            style="margin-right: 10px"></i>Signaler
                     </button>
                 </div>
                 <div><h3>{{$videos->nbWatch}} vues</h3></div>
@@ -62,43 +75,49 @@
         <h4>{{$videos->name}}</h4>
         Partager sur :
         <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $videos->id)}}" target="_blank">
-            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-facebook" style="margin-right: 5px;"></i>Facebook</button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-facebook"
+                                                                    style="margin-right: 5px;"></i>Facebook
+            </button>
         </a>
         <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $videos->id)}}"
            target="_blank">
-                <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-twitter" style="margin-right: 5px;"></i>Twitter</button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-twitter"
+                                                                    style="margin-right: 5px;"></i>Twitter
+            </button>
         </a>
         <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $videos->id)}}" target="_blank">
-            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-linkedin" style="margin-right: 5px;"></i>Linkedin</button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-linkedin"
+                                                                    style="margin-right: 5px;"></i>Linkedin
+            </button>
         </a>
         <a href="mailto:?subject={{$videos->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $videos->id)}} via Yourtube.fr"
            target="_blank">
-            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-envelope" style="margin-right: 5px;"></i>Mail</button>
+            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-envelope"
+                                                                    style="margin-right: 5px;"></i>Mail
+            </button>
         </a>
-        <hr />
+        <hr/>
         <h4>Commentaires</h4>
+        <form method="post" action="{{ route('comments_post', $videos->id) }}">
+            <div class="input-group mb-1">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Rejoindre la conversation</span>
+                </div>
+                <textarea class="form-control" aria-label="With textarea" name="comment" required></textarea>
+                @csrf
+                <button type="submit" class="btn btn-success">Publier</button>
+            </div>
+        </form>
         <ul class="list-unstyled">
-            <li class="media">
-                <img class="mr-3" src="https://picsum.photos/100/100" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
-            <li class="media my-4">
-                <img class="mr-3" src="https://picsum.photos/100/100" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
-            <li class="media">
-                <img class="mr-3" src="https://picsum.photos/100/100" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
+            @foreach($comments as $comment)
+                <li class="media">
+                    <img class="mr-3" src="https://picsum.photos/100/100" alt="Generic placeholder image">
+                    <div class="media-body">
+                        <h5 class="mt-0 mb-1">List-based media object</h5>
+                        {{$comment->content}}
+                    </div>
+                </li>
+            @endforeach
         </ul>
     </div>
 @endsection
