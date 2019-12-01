@@ -44,6 +44,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Profile');
     }
 
+    public function reactions() {
+        return $this->hasMany('App\Reactions');
+    }
+
     public function comments() {
         return $this->hasMany('App\Comments');
     }
