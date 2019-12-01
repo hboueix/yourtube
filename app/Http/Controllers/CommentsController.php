@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Comments;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CommentsController extends Controller
 {
@@ -22,9 +24,21 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
+        $auth_id = Auth::id();
+        $parameters = $request->except('_token');
+        $video_id = $id;
+        if (isset($parameters['comment']) && !empty($parameters['comment'])) {
+            DB::table('comments')->insert([
+                'user_id' => $auth_id,
+                'video_id' => $video_id,
+                'content' => $parameters['comment'],
+                'created_at' => date('y-m-d h:m:s'),
+                'updated_at' => date('y-m-d h:m:s')
+            ]);
+            return redirect()->route('video_show', $video_id)->with('comment_created', true);
+        }
     }
 
     /**
