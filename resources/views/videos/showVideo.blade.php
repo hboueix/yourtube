@@ -27,9 +27,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="{{route('video_report', $videos->id)}}">
+                <form method="post" action="{{route('video_report', $video->id)}}">
                     <div class="modal-body">
-                        <h6>{{ $videos->title }}</h6>
+                        <h6>{{ $video->title }}</h6>
                         <label for="content"></label><textarea type="text" class="form-control" id="content"
                                                                placeholder="Votre signalement..."
                                                                name="content"></textarea>
@@ -47,50 +47,50 @@
     </div>
     <div class="container">
         <video width="100%" controls>
-            <source src="{{asset('storage/'. $videos->path) }}" type="video/mp4">
+            <source src="{{asset('storage/'. $video->path) }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div style="margin-top: 20px">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h2>{{$videos->title}}</h2>
+                    <h2>{{$video->title}}</h2>
                     <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
                                                                      style="margin-right: 10px"></i>
-                        <span class="badge badge-light">{{$videos->likes}}</span>
+                        <span class="badge badge-light">{{$video->likes}}</span>
                     </button>
                     <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
                                                                     style="margin-right: 10px"></i>
-                        <span class="badge badge-light">{{$videos->dislikes}}</span>
+                        <span class="badge badge-light">{{$video->dislikes}}</span>
                     </button>
                     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
                             class="fas fa-flag"
                             style="margin-right: 10px"></i>Signaler
                     </button>
                 </div>
-                <div><h3>{{$videos->nbWatch}} vues</h3></div>
+                <div><h3>{{$video->nbWatch}} vues</h3></div>
             </div>
         </div>
         <hr>
-        <img src="{{ asset('storage/' . $videos->avatar)}}" style="width: 80px; height: 80px; border-radius: 100%">
-        <h4>{{$videos->name}}</h4>
+        <img src="{{ asset('storage/' . $yourtubeur->avatar)}}" style="width: 80px; height: 80px; border-radius: 100%">
+        <h4>{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h4>
         Partager sur :
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $videos->id)}}" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}" target="_blank">
             <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-facebook"
                                                                     style="margin-right: 5px;"></i>Facebook
             </button>
         </a>
-        <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $videos->id)}}"
+        <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}}"
            target="_blank">
             <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-twitter"
                                                                     style="margin-right: 5px;"></i>Twitter
             </button>
         </a>
-        <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $videos->id)}}" target="_blank">
+        <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $video->id)}}" target="_blank">
             <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-linkedin"
                                                                     style="margin-right: 5px;"></i>Linkedin
             </button>
         </a>
-        <a href="mailto:?subject={{$videos->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $videos->id)}} via Yourtube.fr"
+        <a href="mailto:?subject={{$video->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}} via Yourtube.fr"
            target="_blank">
             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-envelope"
                                                                     style="margin-right: 5px;"></i>Mail
@@ -98,16 +98,21 @@
         </a>
         <hr/>
         <h4>Commentaires</h4>
-        <form method="post" action="{{ route('comments_post', $videos->id) }}">
-            <div class="input-group mb-1">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">Rejoindre la conversation</span>
+        @auth
+            <form method="post" action="{{ route('comments_post', $video->id) }}">
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Rejoindre la conversation</span>
+                    </div>
+                    <textarea class="form-control" aria-label="With textarea" name="comment" required></textarea>
+                    @csrf
+                    <button type="submit" class="btn btn-success">Publier</button>
                 </div>
-                <textarea class="form-control" aria-label="With textarea" name="comment" required></textarea>
-                @csrf
-                <button type="submit" class="btn btn-success">Publier</button>
-            </div>
-        </form>
+            </form>
+        @endauth
+        @guest
+            Veuillez vous inscrire pour pouvoir commenter cette vidéo.
+        @endguest
         <ul class="list-unstyled">
             @if(isset($comments))
                 @foreach($comments as $comment)
