@@ -84,13 +84,16 @@ class VideosController extends Controller
             ->where('videos.id', $id)
             ->get()->first();
 
+        $comments = DB::table('comments')->where('video_id', $id)->get();
+
         DB::table('videos')
             ->where('id', $id)
             ->update(['nbWatch' => ((int)$videos->nbWatch + 1)]);
 
         return view('videos/showVideo', [
             'user_id' => $auth_id,
-            'videos' => $videos
+            'videos' => $videos,
+            'comments' => $comments
         ]);
     }
 
