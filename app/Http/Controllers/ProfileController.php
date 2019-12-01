@@ -48,15 +48,15 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         $auth_id = Auth::id();
-        $profile = DB::table('profiles')->get()->where('user_id', $id)->first();
-        if ($profile == null) {
+        $user = DB::table('users')->where('name', $slug)->first();
+        if ($user == null) {
             return abort(404);
         } else {
-
-            $videos = DB::table('videos')->get()->where('user_id', $id);
+            $profile = DB::table('profiles')->get()->where('user_id', $user->id)->first();
+            $videos = DB::table('videos')->get()->where('user_id', $user->id);
             return view('profile/showProfile', [
                 'user_id' => $auth_id,
                 'profile' => $profile,
