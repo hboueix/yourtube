@@ -21,6 +21,11 @@ Route::get('/video/watch/{id}', [
     'uses' => 'VideosController@show'
 ]);
 
+Route::get('/profile/user/{id}', [
+    'as' => 'profile_show',
+    'uses' => 'ProfileController@show'
+]);
+
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
@@ -30,10 +35,6 @@ Route::middleware(['auth'])->group(function () {
         'uses' => 'HomeController@index'
     ]);
 
-    Route::get('/profile/user/{id}', [
-        'as' => 'profile_show',
-        'uses' => 'ProfileController@show'
-    ]);
     Route::get('/profile/edit/', [
         'as' => 'profile_edit',
         'uses' => 'ProfileController@edit'
