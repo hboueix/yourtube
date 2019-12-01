@@ -27,11 +27,11 @@
         <label class="custom-file-label" for="customFile">Changer d'avatar</label>
     </div>
     <div class="form-group">
-        <label for="last_name">Last Name</label>
+        <label for="last_name">Nom</label>
         <input type="text" class="form-control" id="last_name" placeholder="Nom" name="last_name" value="{{ $profile ?? '' ? $profile->last_name : '' }}" required>
     </div>
     <div class="form-group">
-        <label for="first_name">First Name</label>
+        <label for="first_name">Prénom</label>
         <input type="text" class="form-control" id="first_name" placeholder="Prénom" name="first_name" value="{{ $profile ?? '' ? $profile->first_name : '' }}" required>
     </div>
     <div class="form-group">
