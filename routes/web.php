@@ -26,9 +26,9 @@ Route::get('/profile/user/{slug}', [
     'uses' => 'ProfileController@show'
 ]);
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard/', [
         'as' => 'home',
@@ -90,7 +90,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::middleware(['role:administrateur'])->group(function () {
+Route::middleware(['role:administrateur', 'verified'])->group(function () {
     Route::get('/profile/all', [
         'as' => 'profile_all',
         'uses' => 'ProfileController@showAll'
@@ -101,7 +101,7 @@ Route::middleware(['role:administrateur'])->group(function () {
     ]);
 });
 
-Route::middleware(['role:administrateur|moderateur'])->group(function () {
+Route::middleware(['role:administrateur|moderateur', 'verified'])->group(function () {
     Route::get('/admin/reportings', [
         'as' => 'reportings',
         'uses' => 'ReportingController@show'
@@ -124,4 +124,3 @@ Route::middleware(['role:yourtubeur'])->group(function () {
 
 });
 
-Auth::routes();
