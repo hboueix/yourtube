@@ -157,7 +157,8 @@ class VideosController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Videos $videos
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public
     function destroy(Videos $videos, $id)
