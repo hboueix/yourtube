@@ -89,13 +89,13 @@
                     <a href="{{route('video_like', $video->id)}}">
                         <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
                                                                          style="margin-right: 10px"></i>
-                            <span class="badge badge-light">{{$video->likes}}</span>
+                            <span class="badge badge-light">{{$nb_likes ?? 0}}</span>
                         </button>
                     </a>
                     <a href="{{route('video_dislike', $video->id)}}">
                         <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
                                                                         style="margin-right: 10px"></i>
-                            <span class="badge badge-light">{{$video->dislikes}}</span>
+                            <span class="badge badge-light">{{$nb_dislikes ?? 0}}</span>
                         </button>
                     </a>
                     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
