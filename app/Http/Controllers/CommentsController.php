@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Comments;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class CommentsController extends Controller
 {
@@ -16,7 +18,7 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -55,8 +57,8 @@ class CommentsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Comments  $comments
-     * @return \Illuminate\Http\Response
+     * @param Comments $comments
+     * @return Factory|View
      */
     public function show(Comments $comments)
     {
@@ -66,7 +68,7 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Comments  $comments
+     * @param Comments $comments
      * @return \Illuminate\Http\Response
      */
     public function edit(Comments $comments)
@@ -78,7 +80,7 @@ class CommentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Comments  $comments
+     * @param Comments $comments
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Comments $comments)
@@ -89,11 +91,12 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comments  $comments
+     * @param Comments $comments
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comments $comments)
+    public function destroy(Comments $comments, $id)
     {
-        //
+        DB::table('comments')->where('id', $id)->delete();
+        return redirect()->route('reportings')->with('comments_deleted', true);
     }
 }
