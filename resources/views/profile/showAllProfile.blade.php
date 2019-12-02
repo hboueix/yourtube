@@ -24,7 +24,7 @@
                                     <a href="{{ route('profile_show', $profiler->id) }}"><button type="button" class="btn btn-success" style=" margin-bottom: 14px">
                                         Voir le profil
                                     </button></a>
-                                    <a href="{{ route('profile_destroy', $profiler->id) }}"><button type="button" class="btn btn-danger">
+                                    <a href="{{ route('admin_profile_destroy', $profiler->id) }}"><button type="button" class="btn btn-danger">
                                         Supprimer le profil
                                     </button></a>
                                 </div>
