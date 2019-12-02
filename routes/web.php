@@ -21,11 +21,6 @@ Route::get('/video/watch/{id}', [
     'uses' => 'VideosController@show'
 ]);
 
-Route::get('/profile/user/{slug}', [
-    'as' => 'profile_show',
-    'uses' => 'ProfileController@show'
-]);
-
 Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -33,6 +28,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/', [
         'as' => 'home',
         'uses' => 'HomeController@index'
+    ]);
+
+    Route::get('/profile/user/{slug}', [
+        'as' => 'profile_show',
+        'uses' => 'ProfileController@show'
     ]);
 
     Route::get('/profile/edit/', [
