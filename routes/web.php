@@ -95,6 +95,10 @@ Route::middleware(['role:administrateur'])->group(function () {
         'as' => 'profile_all',
         'uses' => 'ProfileController@showAll'
     ]);
+    Route::get('admin/profile/destroy/{id}', [
+        'as' => 'admin_profile_destroy',
+        'uses' => 'ProfileController@m_destroy'
+    ]);
 });
 
 Route::middleware(['role:administrateur|moderateur'])->group(function () {
@@ -106,9 +110,9 @@ Route::middleware(['role:administrateur|moderateur'])->group(function () {
         'as' => 'reportings_destroy',
         'uses' => 'ReportingController@v_destroy'
     ]);
-    Route::get('admin/profile/destroy/{id}', [
-        'as' => 'admin_profile_destroy',
-        'uses' => 'ProfileController@m_destroy'
+    Route::get('/admin/comments/destroy/{id}', [
+        'as' => 'comments_destroy',
+        'uses' => 'CommentsController@destroy'
     ]);
 });
 
