@@ -17,6 +17,38 @@
             </button>
         </div>
     @endif
+    @if (session('video_disliked_error'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Vous ne pouvez pas disliker une vidéo que vous avez déjà disliké !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if (session('video_disliked'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Vidéo disliked avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if (session('video_liked_error'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Vous ne pouvez pas liker une vidéo que vous avez déjà liké !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if (session('video_liked'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Vidéo liked avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <!-- Modal -->
     <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
         <div class="modal-dialog" role="document">
