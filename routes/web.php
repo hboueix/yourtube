@@ -26,7 +26,7 @@ Route::get('/profile/user/{slug}', [
     'uses' => 'ProfileController@show'
 ]);
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::middleware(['auth'])->group(function () {
 
@@ -120,4 +120,3 @@ Route::middleware(['role:yourtubeur'])->group(function () {
 
 });
 
-Auth::routes();
