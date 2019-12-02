@@ -97,6 +97,17 @@ Route::middleware(['role:administrateur'])->group(function () {
     ]);
 });
 
+Route::middleware(['role:administrateur|moderateur'])->group(function () {
+    Route::get('/admin/reportings', [
+        'as' => 'reportings',
+        'uses' => 'ReportingController@show'
+    ]);
+    Route::get('/admin/video/destroy/{id}', [
+        'as' => 'reportings_destroy',
+        'uses' => 'ReportingController@v_destroy'
+    ]);
+});
+
 Route::middleware(['role:moderateur'])->group(function () {
 
 });
