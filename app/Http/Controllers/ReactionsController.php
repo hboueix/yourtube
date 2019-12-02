@@ -109,6 +109,7 @@ class ReactionsController extends Controller
                 'is_liked' => 1,
                 'updated_at' => date('y-m-d h:m:s')
             ]);
+            return redirect()->route('video_show', $id)->with('video_liked', true);
         } else {
             return redirect()->route('video_show', $id)->with('video_liked_error', true);
         }
