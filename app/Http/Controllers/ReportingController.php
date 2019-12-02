@@ -60,11 +60,17 @@ class ReportingController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Reporting  $reporting
-     * @return Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Reporting $reporting)
     {
-        //
+        $reports = DB::table('reportings')
+            ->join('users', 'reporter_id', '=','users.id')
+            ->join('videos', 'video_id', '=','videos.id')
+            ->get()->all();
+        return view('admin/showReportings', [
+            'reports' => $reports
+        ]);
     }
 
     /**
@@ -99,5 +105,11 @@ class ReportingController extends Controller
     public function destroy(Reporting $reporting)
     {
         //
+    }
+
+    public function v_destroy(Videos $videos, $id, Request $request) {
+        DB::table('reportings')->where('video_id', $id)->delete();
+        DB::table('videos')->where('id', $id)->delete();
+        return redirect()->route('reportings')->with('video_deleted', true);
     }
 }
