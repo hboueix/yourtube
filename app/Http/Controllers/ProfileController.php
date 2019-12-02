@@ -175,4 +175,19 @@ class ProfileController extends Controller
             'profile' => $profile
         ])->with($auth_id);
     }
+
+    public function m_destroy(Profile $profile, $id)
+    {
+        DB::table('profiles')
+            ->where('user_id', $id)
+            ->delete();
+        DB::table('videos')
+            ->where('user_id', $id)
+            ->delete();
+        DB::table('users')
+            ->where('id', $id)
+            ->delete();
+
+        return redirect()->route('reportings')->with('account_deleted', true);
+    }
 }
