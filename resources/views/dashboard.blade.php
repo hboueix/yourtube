@@ -33,12 +33,6 @@
                             <h2 class="card-title">{{ $nb_videos }}</h2>
                         </div>
                     </div>
-                    <div class="card text-white bg-secondary mb-3">
-                        <div class="card-header">Nombre d'abonnés</div>
-                        <div class="card-body">
-                            <h2 class="card-title">27</h2>
-                        </div>
-                    </div>
                     <div class="card text-white bg-dark mb-3">
                         <div class="card-header">Nombre de commentaires</div>
                         <div class="card-body">
