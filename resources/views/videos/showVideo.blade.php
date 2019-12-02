@@ -115,15 +115,17 @@
             </form>
         @endauth
         @guest
-            Veuillez vous inscrire pour pouvoir commenter cette vidéo.
+            <div class="alert alert-warning" role="alert">
+                Veuillez vous inscrire pour pouvoir commenter cette vidéo.
+            </div>
         @endguest
         <ul class="list-unstyled">
             @if(isset($comments))
                 @foreach($comments as $comment)
                     <li class="media">
-                        <img class="mr-3" src="https://picsum.photos/100/100" alt="Generic placeholder image">
+                        <img class="mr-3" src="{{asset('storage/'. $yourtubeur->avatar)}}" alt="Generic placeholder image" style="width: 100px; height: 100px">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1">List-based media object</h5>
+                            <h5 class="mt-0 mb-1">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h5>
                             {{$comment->content}}
                         </div>
                     </li>
