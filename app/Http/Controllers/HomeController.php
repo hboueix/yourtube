@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comments;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,8 +39,8 @@ class HomeController extends Controller
             ->where('user_id', '=', $auth_id)
             ->sum('dislikes');
         $nb_comments = DB::table('comments')
-            ->join('videos', 'video_id', '=', 'videos.id')
-            ->join('users', 'videos.user_id', '=', 'users.id')
+            ->join('videos', 'comments.video_id', '=', 'videos.id')
+            ->where('videos.user_id', '=', $auth_id)
             ->count('comments.id');
         return view('dashboard', [
             'nb_videos' => $nb_videos,
