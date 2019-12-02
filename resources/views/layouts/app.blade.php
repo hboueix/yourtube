@@ -72,7 +72,7 @@
                                 @endif
                                 @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
                                     <a class="dropdown-item" href="{{ route('reportings') }}">
-                                        Signalements
+                                        Administration
                                     </a>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
