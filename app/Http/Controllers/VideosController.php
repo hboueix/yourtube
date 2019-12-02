@@ -92,10 +92,22 @@ class VideosController extends Controller
             ->where('id', $id)
             ->update(['nbWatch' => ((int)$video->nbWatch + 1)]);
 
+        $nb_likes = DB::table('reactions')
+            ->where('video_id', '=', $id)
+            ->where('is_liked', '=', 1)
+            ->count('id');
+
+        $nb_dislikes = DB::table('reactions')
+            ->where('video_id', '=', $id)
+            ->where('is_liked', '=', 0)
+            ->count('id');
+
         return view('videos/showVideo', [
             'video' => $video,
             'yourtubeur' => $yourtubeur,
-            'comments' => $comments
+            'comments' => $comments,
+            'nb_likes' => $nb_likes,
+            'nb_dislikes' => $nb_dislikes
         ]);
     }
 
@@ -186,4 +198,5 @@ class VideosController extends Controller
             'tend_videos' => $tend_videos,
         ]);
     }
+
 }
