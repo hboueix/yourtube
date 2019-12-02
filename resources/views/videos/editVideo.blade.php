@@ -14,12 +14,15 @@
                         </div>
                         <div class="form-group">
                             <label for="last_name">Titre de la vidéo</label>
-                            <input type="text" class="form-control" id="last_name" placeholder="Titre de la vidéo" name="title"
+                            <input type="text" class="form-control" id="last_name" placeholder="Titre de la vidéo"
+                                   name="title"
                                    value="{{$video->title}}" required>
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea type="text" class="form-control" id="description" placeholder="Description de votre vidéo" name="description" required>{{$video->description}}</textarea>
+                            <textarea type="text" class="form-control" id="description"
+                                      placeholder="Description de votre vidéo" name="description"
+                                      required>{{$video->description}}</textarea>
                         </div>
                         <input type="hidden" name="id" value="">
                         @csrf

@@ -10,7 +10,8 @@ class Comments extends Model
 
     protected $fillable = ['user_id', 'video_id', 'content'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 }

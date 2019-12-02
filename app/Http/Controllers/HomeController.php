@@ -39,7 +39,7 @@ class HomeController extends Controller
             ->sum('dislikes');
         $nb_comments = DB::table('comments')
             ->join('videos', 'video_id', '=', 'videos.id')
-            ->join('users', 'videos.user_id','=', 'users.id')
+            ->join('users', 'videos.user_id', '=', 'users.id')
             ->count('comments.id');
         return view('dashboard', [
             'nb_videos' => $nb_videos,

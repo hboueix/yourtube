@@ -123,7 +123,8 @@
             @if(isset($comments))
                 @foreach($comments as $comment)
                     <li class="media">
-                        <img class="mr-3" src="{{asset('storage/'. $yourtubeur->avatar)}}" alt="Generic placeholder image" style="width: 100px; height: 100px">
+                        <img class="mr-3" src="{{asset('storage/'. $yourtubeur->avatar)}}"
+                             alt="Generic placeholder image" style="width: 100px; height: 100px">
                         <div class="media-body">
                             <h5 class="mt-0 mb-1">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h5>
                             {{$comment->content}}

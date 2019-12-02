@@ -10,7 +10,8 @@ class Reactions extends Model
 
     protected $fillable = ['user_id', 'video_id', 'is_liked'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 }

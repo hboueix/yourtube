@@ -48,7 +48,7 @@ class ReportingController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -59,18 +59,18 @@ class ReportingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Reporting  $reporting
+     * @param \App\Reporting $reporting
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Reporting $reporting)
     {
         $reports = DB::table('reportings')
-            ->join('users', 'reporter_id', '=','users.id')
-            ->join('videos', 'video_id', '=','videos.id')
+            ->join('users', 'reporter_id', '=', 'users.id')
+            ->join('videos', 'video_id', '=', 'videos.id')
             ->get()->all();
         $comments = DB::table('comments')
-            ->join('users', 'user_id', '=','users.id')
-            ->join('videos', 'video_id', '=','videos.id')
+            ->join('users', 'user_id', '=', 'users.id')
+            ->join('videos', 'video_id', '=', 'videos.id')
             ->get()->all();
         return view('admin/showReportings', [
             'reports' => $reports,
@@ -82,7 +82,7 @@ class ReportingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Reporting  $reporting
+     * @param \App\Reporting $reporting
      * @return Response
      */
     public function edit(Reporting $reporting)
@@ -93,8 +93,8 @@ class ReportingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Reporting  $reporting
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Reporting $reporting
      * @return Response
      */
     public function update(Request $request, Reporting $reporting)
@@ -105,7 +105,7 @@ class ReportingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Reporting  $reporting
+     * @param \App\Reporting $reporting
      * @return Response
      */
     public function destroy(Reporting $reporting)
@@ -113,7 +113,8 @@ class ReportingController extends Controller
         //
     }
 
-    public function v_destroy(Videos $videos, $id, Request $request) {
+    public function v_destroy(Videos $videos, $id, Request $request)
+    {
         DB::table('reportings')->where('video_id', $id)->delete();
         DB::table('videos')->where('id', $id)->delete();
         DB::table('comments')->where('video_id', $id)->delete();

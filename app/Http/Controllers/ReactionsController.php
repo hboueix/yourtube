@@ -101,8 +101,7 @@ class ReactionsController extends Controller
                 'updated_at' => date('y-m-d h:m:s')
             ]);
             return redirect()->route('video_show', $id)->with('video_liked', true);
-        }
-        elseif ($reaction->is_liked == 0) {
+        } elseif ($reaction->is_liked == 0) {
             DB::table('reactions')->where([
                 'user_id' => $auth_id,
                 'video_id' => $id
@@ -110,8 +109,7 @@ class ReactionsController extends Controller
                 'is_liked' => 1,
                 'updated_at' => date('y-m-d h:m:s')
             ]);
-        }
-        else {
+        } else {
             return redirect()->route('video_show', $id)->with('video_liked_error', true);
         }
     }
@@ -132,8 +130,7 @@ class ReactionsController extends Controller
                 'updated_at' => date('y-m-d h:m:s')
             ]);
             return redirect()->route('video_show', $id)->with('video_disliked', true);
-        }
-        elseif ($reaction->is_liked == 1) {
+        } elseif ($reaction->is_liked == 1) {
             DB::table('reactions')->where([
                 'user_id' => $auth_id,
                 'video_id' => $id
@@ -142,8 +139,7 @@ class ReactionsController extends Controller
                 'updated_at' => date('y-m-d h:m:s')
             ]);
             return redirect()->route('video_show', $id)->with('video_disliked', true);
-        }
-        else {
+        } else {
             return redirect()->route('video_show', $id)->with('video_disliked_error', true);
         }
     }

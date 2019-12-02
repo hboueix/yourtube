@@ -32,14 +32,20 @@
                         </thead>
                         <tbody>
                         @foreach($reports as $report)
-                        <tr>
-                            <td>{{$report->name}}</td>
-                            <td>{{$report->title}}</td>
-                            <td>{{$report->content}}</td>
-                            <td><a href="{{ route('video_show', $report->video_id) }}"><button type="button" class="btn btn-success btn-sm" style="margin-bottom: 5px">Voir le contenu</button></a>
-                                <a href="{{ route('reportings_destroy', $report->video_id) }}"><button type="button" class="btn btn-danger btn-sm">Supprimer</button></a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{$report->name}}</td>
+                                <td>{{$report->title}}</td>
+                                <td>{{$report->content}}</td>
+                                <td><a href="{{ route('video_show', $report->video_id) }}">
+                                        <button type="button" class="btn btn-success btn-sm" style="margin-bottom: 5px">
+                                            Voir le contenu
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('reportings_destroy', $report->video_id) }}">
+                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </a>
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -66,7 +72,9 @@
                                 <td>{{$comment->title}}</td>
                                 <td>{{$comment->content}}</td>
                                 <td>
-                                    <a href="{{ route('comments_destroy', $comment->id) }}"><button type="button" class="btn btn-danger btn-sm">Supprimer</button></a>
+                                    <a href="{{ route('comments_destroy', $comment->id) }}">
+                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

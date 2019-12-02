@@ -35,7 +35,7 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -68,7 +68,7 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Profile  $profile
+     * @param \App\Profile $profile
      * @return \Illuminate\Http\Response
      */
     public function edit()
@@ -98,8 +98,8 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Profile  $profile
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Profile $profile
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Profile $profile)
@@ -107,7 +107,7 @@ class ProfileController extends Controller
         $auth_id = Auth::id();
         $path = (string)$auth_id . '/images/';
         $parameters = $request->except('_token');
-        if(isset($parameters['email'])) {
+        if (isset($parameters['email'])) {
             DB::table('users')
                 ->where('id', $auth_id)
                 ->update([
@@ -148,7 +148,7 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Profile  $profile
+     * @param \App\Profile $profile
      * @return \Illuminate\Http\Response
      */
     public function destroy(Profile $profile)
@@ -167,7 +167,8 @@ class ProfileController extends Controller
         return redirect()->route('accueil')->with('account_deleted', true);
     }
 
-    public function showAll() {
+    public function showAll()
+    {
         $auth_id = Auth::id();
         $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
         return view('profile/showAllProfile', [

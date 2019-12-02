@@ -30,7 +30,9 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Yourtube') }}
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -54,21 +56,22 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('home') }}">
-                                   Dashboard
+                                    Dashboard
                                 </a>
                                 <a class="dropdown-item" href="{{ route('profile_show', Auth::user()->name ?? '') }}">
                                     Mon profil
                                 </a>
                                 @if(Auth::user()->hasRole('administrateur'))
-                                <a class="dropdown-item" href="{{ route('profile_all') }}">
-                                    Utilisateurs
-                                </a>
+                                    <a class="dropdown-item" href="{{ route('profile_all') }}">
+                                        Utilisateurs
+                                    </a>
                                 @endif
                                 @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
                                     <a class="dropdown-item" href="{{ route('reportings') }}">
@@ -80,7 +83,8 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Se déconnecter') }}
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
                                     @csrf
                                 </form>
                             </div>
