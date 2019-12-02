@@ -33,7 +33,7 @@
                 <div class="card text-white bg-dark mb-3">
                     <div class="card-header">Nombre de commentaires</div>
                     <div class="card-body">
-                        <h2 class="card-title">389</h2>
+                        <h2 class="card-title">{{ $nb_comments }}</h2>
                     </div>
                 </div>
             </div>
