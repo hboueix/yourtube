@@ -106,6 +106,10 @@ Route::middleware(['role:administrateur|moderateur'])->group(function () {
         'as' => 'reportings_destroy',
         'uses' => 'ReportingController@v_destroy'
     ]);
+    Route::get('admin/profile/destroy/{id}', [
+        'as' => 'admin_profile_destroy',
+        'uses' => 'ProfileController@m_destroy'
+    ]);
 });
 
 Route::middleware(['role:moderateur'])->group(function () {
