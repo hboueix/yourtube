@@ -65,9 +65,14 @@
                                 <a class="dropdown-item" href="{{ route('profile_show', Auth::user()->name ?? '') }}">
                                     Mon profil
                                 </a>
-                                @if(Auth::user()->hasRole('administrateur'))
-                                    <a class="dropdown-item" href="{{ route('profile_all') }}">
-                                        Utilisateurs
+                                @if(Auth::user()->hasRole('administateur'))
+                                <a class="dropdown-item" href="{{ route('profile_all') }}">
+                                    Utilisateurs
+                                </a>
+                                @endif
+                                @if(Auth::user()->hasAnyRole(['administateur', 'moderateur']))
+                                    <a class="dropdown-item" href="{{ route('reportings') }}">
+                                        Signalements
                                     </a>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
