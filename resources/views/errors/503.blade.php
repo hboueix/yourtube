@@ -35,7 +35,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">Coming soon.</div>
+        <div class="title">Arrête Steven (et Rémi).</div>
     </div>
 </div>
 </body>
