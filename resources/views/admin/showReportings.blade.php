@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row justify-content-center" style="margin-bottom: 20px">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card table-responsive">
                     <div class="card-header">Liste signalements</div>
                     <table class="table table-striped">
                         <thead>
@@ -36,13 +36,16 @@
                                 <td>{{$report->name}}</td>
                                 <td>{{$report->title}}</td>
                                 <td>{{$report->content}}</td>
-                                <td><a href="{{ route('video_show', $report->video_id) }}">
-                                        <button type="button" class="btn btn-success btn-sm" style="margin-bottom: 5px">
-                                            Voir le contenu
+                                <td class="text-center">
+                                    <a href="{{ route('video_show', $report->video_id) }}">
+                                        <button type="button" class="btn btn-success" style="margin-bottom: 5px">
+                                            <i class="fas fa-eye"></i>
                                         </button>
                                     </a>
                                     <a href="{{ route('reportings_destroy', $report->video_id) }}">
-                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
+                                        <button type="button" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </a>
                                 </td>
                             </tr>
@@ -54,7 +57,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card table-responsive">
                     <div class="card-header">Liste commentaires</div>
                     <table class="table table-striped">
                         <thead>
@@ -71,9 +74,9 @@
                                 <td>{{$comment->name}}</td>
                                 <td>{{$comment->title}}</td>
                                 <td>{{$comment->content}}</td>
-                                <td>
+                                <td class="text-center">
                                     <a href="{{ route('comments_destroy', $comment->id) }}">
-                                        <button type="button" class="btn btn-danger btn-sm">Supprimer</button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                     </a>
                                 </td>
                             </tr>

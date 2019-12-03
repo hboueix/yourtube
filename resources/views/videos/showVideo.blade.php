@@ -82,28 +82,31 @@
             <source src="{{asset('storage/'. $video->path) }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div style="margin-top: 20px">
+        <div style="margin-top: 20px;">
             <div class="d-flex justify-content-between">
                 <div>
                     <h2>{{$video->title}}</h2>
-                    <a href="{{route('video_like', $video->id)}}">
-                        <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
-                                                                         style="margin-right: 10px"></i>
-                            <span class="badge badge-light">{{$nb_likes ?? 0}}</span>
-                        </button>
-                    </a>
-                    <a href="{{route('video_dislike', $video->id)}}">
-                        <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
-                                                                        style="margin-right: 10px"></i>
-                            <span class="badge badge-light">{{$nb_dislikes ?? 0}}</span>
-                        </button>
-                    </a>
+                        <a href="{{route('video_like', $video->id)}}">
+                            <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
+                                                                             style="margin-right: 10px"></i>
+                                <span class="badge badge-light">{{$nb_likes ?? 0}}</span>
+                            </button>
+                        </a>
+                        <a href="{{route('video_dislike', $video->id)}}">
+                            <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
+                                                                            style="margin-right: 10px"></i>
+                                <span class="badge badge-light">{{$nb_dislikes ?? 0}}</span>
+                            </button>
+                        </a>
+                </div>
+                <div>
+                    <h3>{{$video->nbWatch}} vues</h3>
                     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
-                            class="fas fa-flag"
-                            style="margin-right: 10px"></i>Signaler
+                                class="fas fa-flag"
+                                style="margin-right: 10px"></i>Signaler
                     </button>
                 </div>
-                <div><h3>{{$video->nbWatch}} vues</h3></div>
+                <div></div>
             </div>
         </div>
         <hr>

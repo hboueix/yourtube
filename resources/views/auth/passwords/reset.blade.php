@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Changer son mot de passe') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('passwordupdate') }}">
+                    <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
