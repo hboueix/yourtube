@@ -30,14 +30,14 @@
                                     </p>
                                 </div>
                                 <div class="text-center" style="width: 25%;">
-                                    <a href="{{ route('profile_show', $profiler->id) }}">
+                                    <a href="{{ route('profile_show', $profiler->name) }}">
                                         <button type="button" class="btn btn-success" style=" margin-bottom: 14px">
-                                            Voir le profil
+                                            <i class="fas fa-user" style="margin-right: 5px"></i>Voir le profil
                                         </button>
                                     </a>
                                     <a href="{{ route('admin_profile_destroy', $profiler->id) }}">
                                         <button type="button" class="btn btn-danger">
-                                            Supprimer le profil
+                                            <i class="fas fa-trash-alt" style="margin-right: 5px"></i>Supprimer le profil
                                         </button>
                                     </a>
                                 </div>
