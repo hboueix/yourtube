@@ -1,6 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Modal -->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Supprimer son compte</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h6>Êtes-vous sûr de vouloir supprimer votre compte ?</h6>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ route('profile_destroy') }}">
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"
+                                                                        style="margin-right: 10px"></i>Supprimer !
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -27,11 +50,9 @@
                                 <i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Changer de mot de passe
                             </button>
                         </a>
-                        <a href="{{ route('profile_destroy') }}">
-                            <button type="submit" class="btn btn-danger">
-                                <i class="fas fa-trash" style="margin-right: 5px"></i>Supprimer le compte
-                            </button>
-                        </a>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
+                            <i class="fas fa-trash" style="margin-right: 5px"></i>Supprimer le compte
+                        </button>
                     </div>
                 </div>
                 <div class="card-group text-center mt-2">
