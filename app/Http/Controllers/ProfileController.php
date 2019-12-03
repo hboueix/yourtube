@@ -67,6 +67,21 @@ class ProfileController extends Controller
         }
     }
 
+    public function likes($id) {
+        $nb_likes = DB::table('reactions')
+            ->where('video_id', '=', $id)
+            ->where('is_liked', '=', 1)
+            ->count('id');
+        $nb_dislikes = DB::table('reactions')
+            ->where('video_id', '=', $id)
+            ->where('is_liked', '=', 0)
+            ->count('id');
+        return view('profile/showProfile', [
+            'nb_likes' => $nb_likes,
+            'nb_dislikes' => $nb_dislikes
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
