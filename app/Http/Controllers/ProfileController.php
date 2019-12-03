@@ -58,7 +58,7 @@ class ProfileController extends Controller
             return redirect()->route('verification.notice');
         } else {
             $profile = DB::table('profiles')->get()->where('user_id', $user->id)->first();
-            $videos = DB::table('videos')->get()->where('user_id', $user->id);
+            $videos = DB::table('videos')->orderBy('created_at', 'DESC')->get()->where('user_id', $user->id);
             return view('profile/showProfile', [
                 'user_id' => $auth_id,
                 'profile' => $profile,
