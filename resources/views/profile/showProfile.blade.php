@@ -42,8 +42,8 @@
                     <!-- SIDEBAR BUTTONS -->
                     @if($profile->id == \Illuminate\Support\Facades\Auth::id())
                         <div class="profile-userbuttons">
-                            <a href="{{ route('profile_edit') }}"><button type="submit" class="btn btn-success btn-sm">Éditer profil</button></a>
-                            <a href="{{ route('profile_destroy') }}"><button type="submit" class="btn btn-danger btn-sm">Supprimer le profil</button></a>
+                            <a href="{{ route('profile_edit') }}"><button type="submit" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Éditer profil</button></a>
+                            <a href="{{ route('profile_destroy') }}"><button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash" style="margin-right: 5px"></i>Supprimer le profil</button></a>
                         </div>
                     @endif
                     <!-- END SIDEBAR BUTTONS -->
@@ -69,18 +69,18 @@
                     </p>
                 </div>
                 <div class="text-center" style="width: 20%">
-                    <button type="button" class="btn btn-success" style=" margin-bottom: 14px">
-                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span class="badge badge-light">{{ $video->likes }}</span>
+                    <button type="button" class="btn btn-success" style=" margin-bottom: 5px">
+                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span class="badge badge-light">{{ $nb_likes ?? 0 }}</span>
                     </button>
-                    <button type="button" class="btn btn-danger" style=" margin-bottom: 14px">
-                        <i class="fas fa-thumbs-down" style="margin-right: 10px"></i><span class="badge badge-light">{{$video->dislikes}}</span>
+                    <button type="button" class="btn btn-danger" style=" margin-bottom: 5px">
+                        <i class="fas fa-thumbs-down" style="margin-right: 10px"></i><span class="badge badge-light">{{$nb_dislikes ?? 0}}</span>
                     </button>
                     <button type="button" class="btn btn-secondary" style="margin-bottom: 30px">
                         <i class="fas fa-eye" style="margin-right: 10px"></i><span class="badge badge-light">{{ $video->nbWatch }}</span>
                     </button>
                     @if($profile->id == \Illuminate\Support\Facades\Auth::id())
-                        <div class="profile-userbuttons">
-                            <a href="{{ route('video_edit', $video->id) }}"><button type="submit" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt" style="margin-right: 10px"></i>Modifier</button></a>
+                        <div class="profile-userbuttons" style="margin-bottom: 5px">
+                            <a href="{{ route('video_edit', $video->id) }}"><button type="submit" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Modifier</button></a>
                         </div>
                         <div class="profile-userbuttons">
                             <a href="{{ route('video_destroy', $video->id) }}"><button type="submit" class="btn btn-warning btn-sm" style="vertical-align: bottom"><i class="fas fa-trash-alt" style="margin-right: 10px"></i>Supprimer</button></a>
