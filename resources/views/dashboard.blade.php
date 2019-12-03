@@ -13,16 +13,24 @@
                             style="font-weight: 600">{{ucfirst($user->roles()->pluck('name')[0])}}</span>.
                         <hr/>
                         <a href="{{ route('video_form') }}">
-                            <button type="submit" class="btn btn-success">Upload une video</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-plus" style="margin-right: 5px"></i>Upload une video
+                            </button>
                         </a>
                         <a href="{{ route('profile_show', Auth::user()->name) }}">
-                            <button type="submit" class="btn btn-secondary">Mon profil</button>
+                            <button type="submit" class="btn btn-secondary">
+                                <i class="fas fa-user" style="margin-right: 5px"></i>Mon profil
+                            </button>
                         </a>
                         <a href="{{ route('password.request') }}">
-                            <button type="submit" class="btn btn-dark">Changer de mot de passe</button>
+                            <button type="submit" class="btn btn-dark">
+                                <i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Changer de mot de passe
+                            </button>
                         </a>
                         <a href="{{ route('profile_destroy') }}">
-                            <button type="submit" class="btn btn-danger">Supprimer le compte</button>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash" style="margin-right: 5px"></i>Supprimer le compte
+                            </button>
                         </a>
                     </div>
                 </div>
