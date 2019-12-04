@@ -84,7 +84,7 @@
         </video>
         <div style="margin-top: 20px;">
             <div class="d-flex justify-content-between">
-                <div>
+                <div style="width: 86%">
                     <h2>{{$video->title}}</h2>
                         <a href="{{route('video_like', $video->id)}}">
                             <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
@@ -99,7 +99,7 @@
                             </button>
                         </a>
                 </div>
-                <div>
+                <div  class="text-right">
                     <h3>{{$video->nbWatch}} vues</h3>
                     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
                                 class="fas fa-flag"
