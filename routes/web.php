@@ -73,7 +73,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'uses' => 'ReportingController@index'
     ]);
 
-    Route::post('/comments/video/{id}', [
+    Route::post('/comments/add/video/{id}', [
         'as' => 'comments_post',
         'uses' => 'CommentsController@create'
     ]);
@@ -106,6 +106,7 @@ Route::middleware(['role:administrateur|moderateur', 'verified'])->group(functio
         'as' => 'reportings',
         'uses' => 'ReportingController@show'
     ]);
+
     Route::get('/admin/video/destroy/{id}', [
         'as' => 'reportings_destroy',
         'uses' => 'ReportingController@v_destroy'
