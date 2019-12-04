@@ -84,7 +84,7 @@
         </video>
         <div style="margin-top: 20px;">
             <div class="d-flex justify-content-between">
-                <div style="width: 86%">
+                <div>
                     <h2>{{$video->title}}</h2>
                         <a href="{{route('video_like', $video->id)}}">
                             <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
