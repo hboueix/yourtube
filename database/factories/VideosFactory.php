@@ -11,7 +11,7 @@ $factory->define(Videos::class, function (Faker $faker) {
         'description' => $faker->text,
         'path' => $faker->text,
         'nbWatch' => $faker->numberBetween($min = 100000, $max = 300000),
-        'likes' => $faker->numberBetween($min = 0, $max = 50000),
+        //'likes' => $faker->numberBetween($min = 0, $max = 50000),
         'dislikes' => $faker->numberBetween($min = 0, $max = 50000),
         'miniature' => $faker->image('public/storage/',200,140,null,false),
     ];
