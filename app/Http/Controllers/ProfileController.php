@@ -59,27 +59,17 @@ class ProfileController extends Controller
         } else {
             $profile = DB::table('profiles')->get()->where('user_id', $user->id)->first();
             $videos = DB::table('videos')->orderBy('created_at', 'DESC')->get()->where('user_id', $user->id);
+            $nb_likes = DB::table('reactions')
+                ->join('videos', 'reactions.video_id', '=', 'videos.id')
+                ->where('is_liked', '=', 1)
+                ->count('reactions.id');
             return view('profile/showProfile', [
                 'user_id' => $auth_id,
                 'profile' => $profile,
-                'videos' => $videos
+                'videos' => $videos,
+                'nb_likes' => $nb_likes
             ]);
         }
-    }
-
-    public function likes($id) {
-        $nb_likes = DB::table('reactions')
-            ->where('video_id', '=', $id)
-            ->where('is_liked', '=', 1)
-            ->count('id');
-        $nb_dislikes = DB::table('reactions')
-            ->where('video_id', '=', $id)
-            ->where('is_liked', '=', 0)
-            ->count('id');
-        return view('profile/showProfile', [
-            'nb_likes' => $nb_likes,
-            'nb_dislikes' => $nb_dislikes
-        ]);
     }
 
     /**
