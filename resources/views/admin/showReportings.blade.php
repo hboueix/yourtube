@@ -71,8 +71,8 @@
                         <tbody>
                         @foreach($comments as $comment)
                             <tr>
-                                <td>{{$report->name}}</td>
-                                <td>{{$report->title}}</td>
+                                <td>{{$comment->name}}</td>
+                                <td>{{$comment->title}}</td>
                                 <td>{{$comment->content}}</td>
                                 <td class="text-center">
                                     <a href="{{ route('comments_destroy', $comment->id) }}">

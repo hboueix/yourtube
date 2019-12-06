@@ -70,7 +70,7 @@
                 </div>
                 <div class="text-center" style="width: 20%">
                     <button type="button" class="btn btn-success" style=" margin-bottom: 5px">
-                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span class="badge badge-light">{{ $nb_likes ?? 0 }}</span>
+                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span class="badge badge-light">{{ $nb_likes }}</span>
                     </button>
                     <button type="button" class="btn btn-danger" style=" margin-bottom: 5px">
                         <i class="fas fa-thumbs-down" style="margin-right: 10px"></i><span class="badge badge-light">{{$nb_dislikes ?? 0}}</span>
