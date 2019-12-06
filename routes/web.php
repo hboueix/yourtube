@@ -77,16 +77,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'as' => 'comments_post',
         'uses' => 'CommentsController@create'
     ]);
-
-    Route::get('/video/like/{id}', [
-        'as' => 'video_like',
-        'uses' => 'ReactionsController@like'
-    ]);
-
-    Route::get('/video/dislike/{id}', [
-        'as' => 'video_dislike',
-        'uses' => 'ReactionsController@dislike'
-    ]);
 });
 
 
