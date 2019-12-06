@@ -32,12 +32,16 @@ class HomeController extends Controller
         $nb_videos = DB::table('videos')
             ->where('user_id', '=', $auth_id)
             ->count('id');
-        $nb_likes = DB::table('videos')
-            ->where('user_id', '=', $auth_id)
-            ->sum('likes');
-        $nb_dislikes = DB::table('videos')
-            ->where('user_id', '=', $auth_id)
-            ->sum('dislikes');
+        $nb_likes = DB::table('reactions')
+            ->join('videos', 'reactions.video_id', '=', 'videos.id')
+            ->where('videos.user_id', '=', $auth_id)
+            ->where('is_liked', '=', 1)
+            ->count('reactions.id');
+        $nb_dislikes = DB::table('reactions')
+            ->join('videos', 'reactions.video_id', '=', 'videos.id')
+            ->where('videos.user_id', '=', $auth_id)
+            ->where('is_liked', '=', 0)
+            ->count('reactions.id');
         $nb_comments = DB::table('comments')
             ->join('videos', 'comments.video_id', '=', 'videos.id')
             ->where('videos.user_id', '=', $auth_id)
