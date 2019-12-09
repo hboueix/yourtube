@@ -18,67 +18,62 @@
         </div>
     @endif
     <div class="container">
-        <div class="card row">
-            <div class="card-header">
-                Fil d'actualité
+        <div class="card-body">
+            <h4>Récemments publiées</h4>
+            <hr/>
+            <div class="container" style="margin-bottom: 20px">
+                <div class="row">
+                    @foreach($videos as $video)
+                        <div class="card col-sm-4">
+                            <div
+                                style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
+                            </div>
+                            <div class="card-body">
+                                <a href="{{ route('video_show', $video->id) }}"
+                                   style="text-decoration: none; color: inherit"><h5
+                                        class="card-title">{{ $video->title }}</h5></a>
+                                <h6>{{$video->nbWatch}} vues</h6>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-            <div class="card-body">
-                <h4>Récemments publiées</h4>
-                <hr/>
-                <div class="container" style="margin-bottom: 20px">
-                    <div class="row">
-                        @foreach($videos as $video)
-                            <div class="card col-sm-4">
-                                <div
-                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
-                                </div>
-                                <div class="card-body">
-                                    <a href="{{ route('video_show', $video->id) }}"
-                                       style="text-decoration: none; color: inherit"><h5
-                                            class="card-title">{{ $video->title }}</h5></a>
-                                    <h6>{{$video->nbWatch}} vues</h6>
-                                </div>
+            <h4>Vidéos tendances</h4>
+            <hr/>
+            <div class="container" style="margin-bottom: 20px">
+                <div class="row">
+                    @foreach($tend_videos as $t_video)
+                        <div class="card col-sm-4">
+                            <div
+                                style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $t_video->miniature)}}'); background-position: center; background-size: cover">
                             </div>
-                        @endforeach
-                    </div>
+                            <div class="card-body">
+                                <a href="{{ route('video_show', $t_video->id) }}"
+                                   style="text-decoration: none; color: inherit"><h5
+                                        class="card-title">{{ $t_video->title }}</h5></a>
+                                <h6>{{$t_video->nbWatch}} vues</h6>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <h4>Vidéos tendances</h4>
-                <hr/>
-                <div class="container" style="margin-bottom: 20px">
-                    <div class="row">
-                        @foreach($tend_videos as $t_video)
-                            <div class="card col-sm-4">
-                                <div
-                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $t_video->miniature)}}'); background-position: center; background-size: cover">
-                                </div>
-                                <div class="card-body">
-                                    <a href="{{ route('video_show', $t_video->id) }}"
-                                       style="text-decoration: none; color: inherit"><h5
-                                            class="card-title">{{ $t_video->title }}</h5></a>
-                                    <h6>{{$t_video->nbWatch}} vues</h6>
-                                </div>
+            </div>
+            <h4>Toutes les vidéos</h4>
+            <hr/>
+            <div class="container" style="margin-bottom: 20px">
+                <div class="row">
+                    @foreach ($rand_videos as $r_video)
+                        <div class="card col-sm-4">
+                            <div
+                                style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $r_video->miniature)}}'); background-position: center; background-size: cover">
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-                <h4>Toutes les vidéos</h4>
-                <hr/>
-                <div class="container" style="margin-bottom: 20px">
-                    <div class="row">
-                        @foreach ($rand_videos as $r_video)
-                            <div class="card col-sm-4">
-                                <div
-                                    style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $r_video->miniature)}}'); background-position: center; background-size: cover">
-                                </div>
-                                <div class="card-body">
-                                    <a href="{{ route('video_show', $r_video->id) }}"
-                                       style="text-decoration: none; color: inherit"><h5
-                                            class="card-title">{{ $r_video->title }}</h5></a>
-                                    <h6>{{$r_video->nbWatch}} vues</h6>
-                                </div>
+                            <div class="card-body">
+                                <a href="{{ route('video_show', $r_video->id) }}"
+                                   style="text-decoration: none; color: inherit"><h5
+                                        class="card-title">{{ $r_video->title }}</h5></a>
+                                <h6>{{$r_video->nbWatch}} vues</h6>
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
