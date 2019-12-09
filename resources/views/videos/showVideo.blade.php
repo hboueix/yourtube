@@ -109,49 +109,63 @@
             </div>
         </div>
         <hr>
-        <img src="{{ asset('storage/' . $yourtubeur->avatar)}}" style="width: 80px; height: 80px; border-radius: 100%">
-        <h4>{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h4>
-        Partager sur :
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}" target="_blank">
-            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-facebook"
-                                                                    style="margin-right: 5px;"></i>Facebook
-            </button>
-        </a>
-        <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}}"
-           target="_blank">
-            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-twitter"
-                                                                    style="margin-right: 5px;"></i>Twitter
-            </button>
-        </a>
-        <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $video->id)}}" target="_blank">
-            <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-linkedin"
-                                                                    style="margin-right: 5px;"></i>Linkedin
-            </button>
-        </a>
-        <a href="mailto:?subject={{$video->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}} via Yourtube.fr"
-           target="_blank">
-            <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-envelope"
-                                                                    style="margin-right: 5px;"></i>Mail
-            </button>
-        </a>
-        <hr/>
-        <h4>Commentaires</h4>
-        @auth
-            <form method="post" action="{{ route('comments_post', $video->id) }}">
-                <div class="input-group mb-1">
-                    <input type="text" class="form-control" placeholder="Ecrivez votre commentaire" aria-label="Ecrivez votre commentaire" name="comment">
-                    @csrf
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit">Commenter</button>
-                    </div>
-                </div>
-            </form>
-        @endauth
-        @guest
-            <div class="alert alert-warning" role="alert">
-                Veuillez vous inscrire pour pouvoir commenter cette vidéo.
+        <div class="d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <img src="{{ asset('storage/' . $yourtubeur->avatar)}}" style="width: 80px; border-radius: 100%">
+                <h4 class="ml-2">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h4>
             </div>
-        @endguest
+            <div>
+                <button type="button" class="btn btn-primary">S'abonner</button>
+            </div>
+        </div>
+        <div class="mt-3">
+            <p>{{$video->description}}</p>
+        </div>
+       {{-- <div class="d-flex justify-content-around">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}" target="_blank">
+                <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-facebook"
+                                                                        style="margin-right: 5px;"></i>Facebook
+                </button>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}}"
+               target="_blank">
+                <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-twitter"
+                                                                        style="margin-right: 5px;"></i>Twitter
+                </button>
+            </a>
+            <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $video->id)}}" target="_blank">
+                <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-linkedin"
+                                                                        style="margin-right: 5px;"></i>Linkedin
+                </button>
+            </a>
+            <a href="mailto:?subject={{$video->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}} via Yourtube.fr"
+               target="_blank">
+                <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-envelope"
+                                                                        style="margin-right: 5px;"></i>Mail
+                </button>
+            </a>
+        </div>--}}
+        <hr/>
+        <div>
+            <h4>Commentaires</h4>
+            @auth
+                <form method="post" action="{{ route('comments_post', $video->id) }}">
+                    <div class="input-group mb-1">
+                        <input type="text" class="form-control" placeholder="Ecrivez votre commentaire"
+                               aria-label="Ecrivez votre commentaire" name="comment">
+                        @csrf
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Commenter</button>
+                        </div>
+                    </div>
+                </form>
+            @endauth
+            @guest
+                <div class="alert alert-warning" role="alert">
+                    Veuillez vous inscrire pour pouvoir commenter cette vidéo.
+                </div>
+            @endguest
+        </div>
         <ul class="list-unstyled mt-3">
             @if(isset($comments))
                 @foreach($comments as $comment)
