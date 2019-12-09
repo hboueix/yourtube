@@ -41,7 +41,7 @@
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     @if($profile->id == \Illuminate\Support\Facades\Auth::id())
-                        <div class="profile-userbuttons">
+                        <div class="d-flex justify-content-between">
                             <a href="{{ route('profile_edit') }}"><button type="submit" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Éditer profil</button></a>
                             <a href="{{ route('profile_destroy') }}"><button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash" style="margin-right: 5px"></i>Supprimer le profil</button></a>
                         </div>
@@ -70,13 +70,13 @@
                 </div>
                 <div class="text-center" style="width: 20%">
                     <button type="button" class="btn btn-success" style=" margin-bottom: 5px">
-                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span class="badge badge-light">{{ $nb_likes }}</span>
+                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span>{{ $nb_likes }}</span>
                     </button>
                     <button type="button" class="btn btn-danger" style=" margin-bottom: 5px">
-                        <i class="fas fa-thumbs-down" style="margin-right: 10px"></i><span class="badge badge-light">{{$nb_dislikes ?? 0}}</span>
+                        <i class="fas fa-thumbs-down" style="margin-right: 10px"></i><span>{{$nb_dislikes ?? 0}}</span>
                     </button>
                     <button type="button" class="btn btn-secondary" style="margin-bottom: 30px">
-                        <i class="fas fa-eye" style="margin-right: 10px"></i><span class="badge badge-light">{{ $video->nbWatch }}</span>
+                        <i class="fas fa-eye" style="margin-right: 10px"></i><span>{{ $video->nbWatch }}</span>
                     </button>
                     @if($profile->id == \Illuminate\Support\Facades\Auth::id())
                         <div class="profile-userbuttons" style="margin-bottom: 5px">
