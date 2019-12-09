@@ -82,31 +82,30 @@
             <source src="{{asset('storage/'. $video->path) }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div style="margin-top: 20px;">
+        <div class="mt-3">
+            <div class="d-flex justify-content-between">
+                <h2>{{$video->title}}</h2>
+                <h3>{{$video->nbWatch}} vues</h3>
+            </div>
             <div class="d-flex justify-content-between">
                 <div>
-                    <h2>{{$video->title}}</h2>
-                        <a href="{{route('video_like', $video->id)}}">
-                            <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
-                                                                             style="margin-right: 10px"></i>
-                                <span class="badge badge-light">{{$nb_likes ?? 0}}</span>
-                            </button>
-                        </a>
-                        <a href="{{route('video_dislike', $video->id)}}">
-                            <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
-                                                                            style="margin-right: 10px"></i>
-                                <span class="badge badge-light">{{$nb_dislikes ?? 0}}</span>
-                            </button>
-                        </a>
+                    <a href="{{route('video_like', $video->id)}}">
+                        <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
+                                                                         style="margin-right: 10px"></i>
+                            <span>{{$nb_likes ?? 0}}</span>
+                        </button>
+                    </a>
+                    <a href="{{route('video_dislike', $video->id)}}">
+                        <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
+                                                                        style="margin-right: 10px"></i>
+                            <span>{{$nb_dislikes ?? 0}}</span>
+                        </button>
+                    </a>
                 </div>
-                <div  class="text-right">
-                    <h3>{{$video->nbWatch}} vues</h3>
-                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
-                                class="fas fa-flag"
-                                style="margin-right: 10px"></i>Signaler
-                    </button>
-                </div>
-                <div></div>
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
+                        class="fas fa-flag"
+                        style="margin-right: 10px"></i>Signaler
+                </button>
             </div>
         </div>
         <hr>
@@ -140,12 +139,11 @@
         @auth
             <form method="post" action="{{ route('comments_post', $video->id) }}">
                 <div class="input-group mb-1">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">Rejoindre la conversation</span>
-                    </div>
-                    <textarea class="form-control" aria-label="With textarea" name="comment" required></textarea>
+                    <input type="text" class="form-control" placeholder="Ecrivez votre commentaire" aria-label="Ecrivez votre commentaire" name="comment">
                     @csrf
-                    <button type="submit" class="btn btn-success">Publier</button>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Commenter</button>
+                    </div>
                 </div>
             </form>
         @endauth
@@ -154,14 +152,14 @@
                 Veuillez vous inscrire pour pouvoir commenter cette vidéo.
             </div>
         @endguest
-        <ul class="list-unstyled">
+        <ul class="list-unstyled mt-3">
             @if(isset($comments))
                 @foreach($comments as $comment)
-                    <li class="media">
-                        <img class="mr-3" src="{{asset('storage/'. $yourtubeur->avatar)}}"
+                    <li class="media mb-2">
+                        <img class="mr-3" src="{{asset('storage/'. $comment->avatar)}}"
                              alt="Generic placeholder image" style="width: 100px; height: 100px">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-1">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h5>
+                            <h5 class="mt-0 mb-1">{{$comment->first_name . ' ' . $comment->last_name}}</h5>
                             {{$comment->content}}
                         </div>
                     </li>
