@@ -21,7 +21,6 @@
         <div class="card-body">
             <h4>Récemments publiées</h4>
             <hr/>
-            <div class="container" style="margin-bottom: 20px">
                 <div class="row">
                     @foreach($videos as $video)
                         <div class="card col-sm-4">
@@ -32,15 +31,13 @@
                                 <a href="{{ route('video_show', $video->id) }}"
                                    style="text-decoration: none; color: inherit"><h5
                                         class="card-title">{{ $video->title }}</h5></a>
-                                <h6>{{$video->nbWatch}} vues</h6>
+                                <span><i class="fas fa-eye" style="margin-right: 10px"></i>{{$video->nbWatch}}</span>
                             </div>
                         </div>
                     @endforeach
-                </div>
             </div>
             <h4>Vidéos tendances</h4>
             <hr/>
-            <div class="container" style="margin-bottom: 20px">
                 <div class="row">
                     @foreach($tend_videos as $t_video)
                         <div class="card col-sm-4">
@@ -56,10 +53,8 @@
                         </div>
                     @endforeach
                 </div>
-            </div>
             <h4>Toutes les vidéos</h4>
             <hr/>
-            <div class="container" style="margin-bottom: 20px">
                 <div class="row">
                     @foreach ($rand_videos as $r_video)
                         <div class="card col-sm-4">
@@ -75,7 +70,6 @@
                         </div>
                     @endforeach
                 </div>
-            </div>
         </div>
     </div>
 @endsection
