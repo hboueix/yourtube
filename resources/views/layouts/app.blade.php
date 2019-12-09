@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('storage/favicon.ico') }}" />
+    <link rel="icon" href="{{ asset('storage/favicon.ico') }}"/>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -40,8 +40,15 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
+                <ul class="navbar-nav" style="width: 100%;">
+                    <div class="mx-auto">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Faire une recherche" aria-label="Faire une recherche" aria-describedby="rechercher">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="rechercher"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -80,6 +87,7 @@
                                         Administration
                                     </a>
                                 @endif
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
