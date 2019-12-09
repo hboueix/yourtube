@@ -32,9 +32,13 @@ class CommentsController extends Controller
         $parameters = $request->except('_token');
         $video_id = $id;
         if (isset($parameters['comment']) && !empty($parameters['comment'])) {
+            $profile_data = DB::table('profiles')->select('last_name', 'first_name', 'avatar')->where('user_id', $auth_id)->first();
             DB::table('comments')->insert([
                 'user_id' => $auth_id,
                 'video_id' => $video_id,
+                'last_name' => $profile_data->last_name,
+                'first_name' => $profile_data->first_name,
+                'avatar' => $profile_data->avatar,
                 'content' => $parameters['comment'],
                 'created_at' => date('y-m-d h:m:s'),
                 'updated_at' => date('y-m-d h:m:s')

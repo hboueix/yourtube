@@ -17,6 +17,9 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('video_id');
+            $table->string('last_name');
+            $table->string('first_name');
+            $table->string('avatar');
             $table->string('content');
             $table->timestamps();
         });
