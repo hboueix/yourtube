@@ -16,6 +16,7 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('title');
             $table->string('miniature')->nullable();
             $table->string('description');
@@ -23,7 +24,7 @@ class CreateVideosTable extends Migration
             $table->string('nbWatch')->nullable();
             $table->integer('likes')->nullable();
             $table->integer('dislikes')->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('is_valid')->default(0);
             $table->timestamps();
         });
     }
