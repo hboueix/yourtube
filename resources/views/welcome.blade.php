@@ -23,7 +23,7 @@
             <hr/>
             <div class="row">
                 @foreach($videos as $video)
-                    <div class="card col-sm-4">
+                    <div class="col-sm-4">
                         <div
                             style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                         </div>
@@ -43,7 +43,7 @@
             <hr/>
             <div class="row">
                 @foreach($tend_videos as $t_video)
-                    <div class="card col-sm-4">
+                    <div class="col-sm-4">
                         <div
                             style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $t_video->miniature)}}'); background-position: center; background-size: cover">
                         </div>
