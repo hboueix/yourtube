@@ -72,9 +72,11 @@ class ReportingController extends Controller
             ->join('users', 'user_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
             ->get()->all();
+        $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
         return view('admin/showAdmin', [
             'reports' => $reports,
-            'comments' => $comments
+            'comments' => $comments,
+            'profile' => $profile
         ]);
 
     }
