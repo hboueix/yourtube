@@ -174,16 +174,6 @@ class ProfileController extends Controller
         return redirect()->route('accueil')->with('account_deleted', true);
     }
 
-    public function showAll()
-    {
-        $auth_id = Auth::id();
-        $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
-        return view('profile/showAllProfile', [
-            'user_id' => $auth_id,
-            'profile' => $profile
-        ])->with($auth_id);
-    }
-
     public function m_destroy(Profile $profile, $id)
     {
         DB::table('profiles')
