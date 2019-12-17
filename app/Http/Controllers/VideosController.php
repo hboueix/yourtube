@@ -95,7 +95,7 @@ class VideosController extends Controller
         $nb_likes = DB::table('reactions')
             ->where('video_id', '=', $id)
             ->where('is_liked', '=', 1)
-            ->count('id');
+            ->count('is_liked');
 
         $nb_dislikes = DB::table('reactions')
             ->where('video_id', '=', $id)
