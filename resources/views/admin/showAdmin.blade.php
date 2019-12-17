@@ -52,6 +52,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    @if (sizeof($reports) == 0)
+                        Rien à signaler
+                    @endif
                 </div>
             </div>
         </div>
@@ -83,6 +86,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                    @if (sizeof($comments) == 0)
+                        Rien à signaler
+                    @endif
                 </div>
             </div>
         </div>
