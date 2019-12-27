@@ -102,6 +102,13 @@ class VideosController extends Controller
             ->where('is_liked', '=', 0)
             ->count('id');
 
+        DB::table('videos')
+            ->where('id', $id)
+            ->update(['likes' => $nb_likes]);
+        DB::table('videos')
+            ->where('id', $id)
+            ->update(['dislikes' => $nb_dislikes]);
+
         return view('videos/showVideo', [
             'video' => $video,
             'yourtubeur' => $yourtubeur,
