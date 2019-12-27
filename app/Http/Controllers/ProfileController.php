@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
+use App\Videos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -46,7 +47,7 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($slug)
     {
@@ -59,15 +60,10 @@ class ProfileController extends Controller
         } else {
             $profile = DB::table('profiles')->get()->where('user_id', $user->id)->first();
             $videos = DB::table('videos')->orderBy('created_at', 'DESC')->get()->where('user_id', $user->id);
-            $nb_likes = DB::table('reactions')
-                ->join('videos', 'reactions.video_id', '=', 'videos.id')
-                ->where('is_liked', '=', 1)
-                ->count('reactions.id');
             return view('profile/showProfile', [
                 'user_id' => $auth_id,
                 'profile' => $profile,
                 'videos' => $videos,
-                'nb_likes' => $nb_likes
             ]);
         }
     }
