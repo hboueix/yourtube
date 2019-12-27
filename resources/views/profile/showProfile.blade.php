@@ -68,12 +68,13 @@
                         {{ $video->created_at }}
                     </p>
                 </div>
+                {{--@php(dd($video));--}}
                 <div class="text-center" style="width: 20%">
                     <button type="button" class="btn btn-success" style=" margin-bottom: 5px">
-                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span>{{ $nb_likes }}</span>
+                        <i class="fas fa-thumbs-up" style="margin-right: 10px"></i><span>{{ $video->likes }}</span>
                     </button>
                     <button type="button" class="btn btn-danger" style=" margin-bottom: 5px">
-                        <i class="fas fa-thumbs-down" style="margin-right: 10px"></i><span>{{$nb_dislikes ?? 0}}</span>
+                        <i class="fas fa-thumbs-down" style="margin-right: 10px"></i><span>{{ $video->dislikes }}</span>
                     </button>
                     <button type="button" class="btn btn-secondary" style="margin-bottom: 30px">
                         <i class="fas fa-eye" style="margin-right: 10px"></i><span>{{ $video->nbWatch }}</span>
