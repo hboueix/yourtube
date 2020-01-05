@@ -28,20 +28,19 @@
                             <img src="https://static.asianetnews.com/img/default-user-avatar.png" style="width: 250px; height: 250px">
                         @endif
                     </div>
+                    <br>
                     <!-- END SIDEBAR USERPIC -->
                     <!-- SIDEBAR USER TITLE -->
                     <div class="profile-usertitle">
                         <div class="profile-usertitle-name">
-                            {{ $profile ?? '' ? $profile->first_name : '' }} {{ $profile ?? '' ? $profile->last_name : '' }}
-                        </div>
-                        <div class="profile-usertitle-job">
-                            {{ $profile ?? '' ? substr($profile->dateOfBirth, 0, 10) : '' }}
+                            <h2>{{ $profile ?? '' ? $profile->first_name : '' }} {{ $profile ?? '' ? $profile->last_name : '' }}</h2>
                         </div>
                     </div>
+                    <br>
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     @if($profile->id == \Illuminate\Support\Facades\Auth::id())
-                        <div class="d-flex justify-content-between">
+                        <div>
                             <a href="{{ route('profile_edit') }}"><button type="submit" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Éditer profil</button></a>
                         </div>
                     @endif
