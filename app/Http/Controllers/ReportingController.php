@@ -64,6 +64,9 @@ class ReportingController extends Controller
      */
     public function show(Reporting $reporting)
     {
+        $videos = DB::table('videos')
+            ->where('is_valid', 0)
+            ->get()->all();
         $reports = DB::table('reportings')
             ->join('users', 'reporter_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
@@ -74,6 +77,7 @@ class ReportingController extends Controller
             ->get()->all();
         $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
         return view('admin/showAdmin', [
+            'videos' => $videos,
             'reports' => $reports,
             'comments' => $comments,
             'profile' => $profile
