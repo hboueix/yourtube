@@ -17,10 +17,45 @@
         </div>
     @endif
     <div class="container">
+        {{-- Videos block --}}
         <div class="row justify-content-center mb-3">
-            <div class="col-md-8">
                 <div class="card table-responsive">
-                    <div class="card-header">Liste signalements</div>
+                    <div class="card-header">Vidéos en attente</div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Miniature</th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($videos as $video)
+                            <tr>
+                                <td><img src="{{asset('storage/' . $video->miniature)}}" width="100"></td>
+                                <td>{{$video->title}}</td>
+                                <td>{{$video->description}}</td>
+                                <td class="text-center">
+                                    <a href="{{ route('video_approve', $video->id) }}">
+                                        <button type="button" class="btn btn-success"><i class="fas fa-check"></i>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('reportings_destroy', $video->id) }}">
+                                    <button type="button" class="btn btn-danger"><i class="fas fa-times"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+        {{-- Reports block --}}
+        <div class="row justify-content-center mb-3">
+                <div class="card table-responsive">
+                    <div class="card-header">Derniers signalements</div>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -52,16 +87,12 @@
                         @endforeach
                         </tbody>
                     </table>
-                    @if (sizeof($reports) == 0)
-                        Rien à signaler
-                    @endif
-                </div>
             </div>
         </div>
+        {{-- Comments block --}}
         <div class="row justify-content-center mb-3">
-            <div class="col-md-8">
                 <div class="card table-responsive">
-                    <div class="card-header">Liste commentaires</div>
+                    <div class="card-header">Derniers commentaires</div>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -79,19 +110,17 @@
                                 <td>{{$comment->content}}</td>
                                 <td class="text-center">
                                     <a href="{{ route('comments_destroy', $comment->id) }}">
-                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i>
+                                        </button>
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    @if (sizeof($comments) == 0)
-                        Rien à signaler
-                    @endif
-                </div>
             </div>
         </div>
+        {{-- Users block --}}
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card table-responsive">
