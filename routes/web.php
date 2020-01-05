@@ -115,6 +115,11 @@ Route::middleware(['role:administrateur|moderateur', 'verified'])->group(functio
         'as' => 'comments_destroy',
         'uses' => 'CommentsController@destroy'
     ]);
+
+    Route::get('/admin/video/approve/{id}', [
+        'as' => 'video_approve',
+        'uses' => 'VideosController@approveVideo'
+    ]);
 });
 
 Route::middleware(['role:moderateur'])->group(function () {
