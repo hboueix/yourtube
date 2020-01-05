@@ -43,7 +43,6 @@
                     @if($profile->id == \Illuminate\Support\Facades\Auth::id())
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('profile_edit') }}"><button type="submit" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Éditer profil</button></a>
-                            <a href="{{ route('profile_destroy') }}"><button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash" style="margin-right: 5px"></i>Supprimer le profil</button></a>
                         </div>
                     @endif
                     <!-- END SIDEBAR BUTTONS -->
