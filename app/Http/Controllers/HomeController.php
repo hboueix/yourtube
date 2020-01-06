@@ -48,7 +48,7 @@ class HomeController extends Controller
             ->count('comments.id');
         $nb_subscribers = DB::table('profiles')
             ->where('user_id', $auth_id)
-            ->count('suscribers');
+            ->sum('suscribers');
         return view('dashboard', [
             'nb_videos' => $nb_videos,
             'nb_likes' => $nb_likes,
