@@ -82,7 +82,7 @@
                             <a href="{{ route('video_edit', $video->id) }}"><button type="submit" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Modifier</button></a>
                         </div>
                         <div class="profile-userbuttons">
-                            <a href="{{ route('video_destroy', $video->id) }}"><button type="submit" class="btn btn-warning btn-sm" style="vertical-align: bottom"><i class="fas fa-trash-alt" style="margin-right: 10px"></i>Supprimer</button></a>
+                            <a href="{{ route('video_destroy', $video->id) }}"><button type="submit" class="btn btn-danger btn-sm" style="vertical-align: bottom"><i class="fas fa-trash-alt" style="margin-right: 10px"></i>Supprimer</button></a>
                         </div>
                     @endif
                 </div>
