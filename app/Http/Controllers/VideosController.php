@@ -83,11 +83,11 @@ class VideosController extends Controller
             ->first();
 
         $yourtubeur = DB::table('profiles')
-            ->where('id', $video->user_id)
+            ->join('users', 'user_id', '=', 'users.id')
+            ->where('users.id', $video->user_id)
             ->first();
 
         $comments = DB::table('comments')->where('video_id', $id)->orderByDesc('id')->get();
-
         DB::table('videos')
             ->where('id', $id)
             ->update(['nbWatch' => ((int)$video->nbWatch + 1)]);
