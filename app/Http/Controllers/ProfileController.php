@@ -52,6 +52,7 @@ class ProfileController extends Controller
     public function show($slug)
     {
         $auth_id = Auth::id();
+
         $user = DB::table('users')->where('name', $slug)->first();
         if ($user == null) {
             return abort(404);
