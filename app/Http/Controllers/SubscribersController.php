@@ -13,12 +13,12 @@ class SubscribersController extends Controller
         $auth_id = Auth::id();
 
         $video = DB::table('videos')
-            ->where('id', $id)
+            ->where('user_id', $id)
             ->first();
         $yourtubeur = DB::table('profiles')
-            ->where('id', $video->user_id)
+            ->join('users', 'user_id', '=', 'users.id')
+            ->where('users.id', $video->user_id)
             ->first();
-
         $subscribers = DB::table('subscribers')->where([
             'user_id' => $id,
             'subscriber_id' => $auth_id
