@@ -111,6 +111,7 @@ class SuscribersController extends Controller
 //                'video' => $video,
 //                'yourtubeur' => $yourtubeur
 //            ])->with('user_suscribed', true);
+            /* Pb de redirection */
             return redirect()->route('video_show', $video->id)->with('user_suscribed', true);
         } elseif($suscribers->is_suscribed == 0) {
             DB::table('suscribers')->where([
@@ -124,12 +125,14 @@ class SuscribersController extends Controller
 //                'video' => $video,
 //                'yourtubeur' => $yourtubeur
 //            ])->with('user_suscribed', true);
+            /* Pb de redirection */
             return redirect()->route('video_show', $video->id)->with('user_suscribed', true);
         } else {
 //            return view('videos/showVideo', [
 //                'video' => $video,
 //                'yourtubeur' => $yourtubeur
 //            ])->with('user_suscribed_error', true);
+            /* Pb de redirection */
             return redirect()->route('video_show', $video->id)->with('user_suscribed_error', true);
         }
     }
