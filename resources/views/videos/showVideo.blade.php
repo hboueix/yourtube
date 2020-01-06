@@ -133,8 +133,8 @@
                 </div>
             </a>
             <div>
-                <a href="{{route('profile_suscribe', $yourtubeur->id)}}">
-                    <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_suscribers ?? 0 }}</span></button>
+                <a href="{{route('profile_subscribe', $yourtubeur->id)}}">
+                    <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
                 </a>
             </div>
         </div>

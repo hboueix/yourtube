@@ -20,7 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->dateTime('dateOfBirth');
-            $table->bigInteger('suscribers')->nullable();
+            $table->bigInteger('subscribers')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
         });

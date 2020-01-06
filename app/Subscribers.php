@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Suscribers extends Model
+class Subscribers extends Model
 {
     public $timestamps = true;
 
-    protected $fillable = ['user_id', 'suscriber_id', 'is_suscribed'];
+    protected $fillable = ['user_id', 'subscriber_id', 'is_subscribed'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 }
-

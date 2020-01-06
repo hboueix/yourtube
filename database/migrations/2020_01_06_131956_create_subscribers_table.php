@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuscribersTable extends Migration
+class CreateSubscribersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateSuscribersTable extends Migration
      */
     public function up()
     {
-        Schema::create('suscribers', function (Blueprint $table) {
+        Schema::create('subscribers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('suscriber_id');
-            $table->unsignedBigInteger('is_suscribed');
+            $table->unsignedBigInteger('subscriber_id');
+            $table->boolean('is_subscribed');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateSuscribersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('suscribers');
+        Schema::dropIfExists('subscribers');
     }
 }
