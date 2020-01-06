@@ -49,6 +49,22 @@
             </button>
         </div>
     @endif
+    @if (session('user_suscribed'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Vous vous êtes abonné avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if (session('user_suscribed_error'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Vous êtes déjà abonné à ce profil !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <!-- Modal -->
     <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -115,7 +131,9 @@
                 <h4 class="ml-2">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h4>
             </div>
             <div>
-                <button type="button" class="btn btn-primary">S'abonner</button>
+                <a href="{{route('profile_suscribe', $yourtubeur->id)}}">
+                    <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_suscribers ?? 0 }}</span></button>
+                </a>
             </div>
         </div>
         <div class="mt-3">
