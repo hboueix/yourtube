@@ -86,7 +86,6 @@ class VideosController extends Controller
             ->join('users', 'user_id', '=', 'users.id')
             ->where('users.id', $video->user_id)
             ->first();
-
         $comments = DB::table('comments')->where('video_id', $id)->orderByDesc('id')->get();
         DB::table('videos')
             ->where('id', $id)
