@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header">Dashboard</div>
                     <div class="card-body">
                         Bonjour à vous, <span style="font-weight: 600">{{ $user->name  }}</span> !
@@ -53,6 +53,12 @@
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
                             <i class="fas fa-trash" style="margin-right: 5px"></i>Supprimer le compte
                         </button>
+                    </div>
+                </div>
+                <div class="card text-white text-center bg-info mb-3">
+                    <div class="card-header">Nombre d'abonnés</div>
+                    <div class="card-body">
+                        <h2 class="card-title">{{ $nb_subscribers }}</h2>
                     </div>
                 </div>
                 <div class="card-group text-center mt-2">
