@@ -49,7 +49,7 @@
             </button>
         </div>
     @endif
-    @if (session('user_suscribed'))
+    @if (session('user_subscribed'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             Vous vous êtes abonné avec succès !
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -57,7 +57,7 @@
             </button>
         </div>
     @endif
-    @if (session('user_suscribed_error'))
+    @if (session('user_subscribed_error'))
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             Vous êtes déjà abonné à ce profil !
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
