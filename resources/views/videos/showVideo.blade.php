@@ -126,10 +126,12 @@
         </div>
         <hr>
         <div class="d-flex justify-content-between">
-            <div class="d-flex align-items-center">
-                <img src="{{ asset('storage/' . $yourtubeur->avatar)}}" style="width: 80px; border-radius: 100%">
-                <h4 class="ml-2">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h4>
-            </div>
+            <a href="{{route('profile_show', $yourtubeur->name)}}" style="color: inherit">
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('storage/' . $yourtubeur->avatar)}}" style="width: 80px; border-radius: 100%">
+                    <h4 class="ml-2">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h4>
+                </div>
+            </a>
             <div>
                 <a href="{{route('profile_suscribe', $yourtubeur->id)}}">
                     <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_suscribers ?? 0 }}</span></button>
