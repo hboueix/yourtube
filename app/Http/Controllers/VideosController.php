@@ -102,19 +102,28 @@ class VideosController extends Controller
             ->where('is_liked', '=', 0)
             ->count('id');
 
+        $nb_suscribers = DB::table('suscribers')
+            ->where('user_id', $yourtubeur->id)
+            ->where('is_suscribed', '=', 1)
+            ->count('id');
+
         DB::table('videos')
             ->where('id', $id)
             ->update(['likes' => $nb_likes]);
         DB::table('videos')
             ->where('id', $id)
             ->update(['dislikes' => $nb_dislikes]);
+        DB::table('profiles')
+            ->where('id', $yourtubeur->id)
+            ->update(['suscribers' => $nb_suscribers]);
 
         return view('videos/showVideo', [
             'video' => $video,
             'yourtubeur' => $yourtubeur,
             'comments' => $comments,
             'nb_likes' => $nb_likes,
-            'nb_dislikes' => $nb_dislikes
+            'nb_dislikes' => $nb_dislikes,
+            'nb_suscribers' => $nb_suscribers
         ]);
     }
 
