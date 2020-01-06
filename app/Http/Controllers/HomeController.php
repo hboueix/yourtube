@@ -46,11 +46,15 @@ class HomeController extends Controller
             ->join('videos', 'comments.video_id', '=', 'videos.id')
             ->where('videos.user_id', '=', $auth_id)
             ->count('comments.id');
+        $nb_subscribers = DB::table('profiles')
+            ->where('user_id', $auth_id)
+            ->count('suscribers');
         return view('dashboard', [
             'nb_videos' => $nb_videos,
             'nb_likes' => $nb_likes,
             'nb_dislikes' => $nb_dislikes,
             'nb_comments' => $nb_comments,
+            'nb_subscribers' => $nb_subscribers,
             'user' => $user
         ]);
     }
