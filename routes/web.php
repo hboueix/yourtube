@@ -96,10 +96,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 Route::middleware(['role:administrateur', 'verified'])->group(function () {
-    Route::get('/profile/all', [
-        'as' => 'profile_all',
-        'uses' => 'ProfileController@showAll'
-    ]);
     Route::get('admin/profile/destroy/{id}', [
         'as' => 'admin_profile_destroy',
         'uses' => 'ProfileController@m_destroy'
