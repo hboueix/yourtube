@@ -19,105 +19,105 @@
     <div class="container">
         {{-- Videos block --}}
         <div class="row justify-content-center mb-3">
-                <div class="card table-responsive">
-                    <div class="card-header">Vidéos en attente</div>
-                    <table class="table table-striped">
-                        <thead>
+            <div class="card table-responsive">
+                <div class="card-header">Vidéos en attente</div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Miniature</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($videos as $video)
                         <tr>
-                            <th scope="col">Miniature</th>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($videos as $video)
-                            <tr>
-                                <td><img src="{{asset('storage/' . $video->miniature)}}" width="100"></td>
-                                <td>{{$video->title}}</td>
-                                <td>{{$video->description}}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('video_approve', $video->id) }}">
-                                        <button type="button" class="btn btn-success"><i class="fas fa-check"></i>
-                                        </button>
-                                    </a>
-                                    <a href="{{ route('reportings_destroy', $video->id) }}">
+                            <td><img src="{{asset('storage/' . $video->miniature)}}" width="100"></td>
+                            <td>{{$video->title}}</td>
+                            <td>{{$video->description}}</td>
+                            <td class="text-center">
+                                <a href="{{ route('video_approve', $video->id) }}">
+                                    <button type="button" class="btn btn-success"><i class="fas fa-check"></i>
+                                    </button>
+                                </a>
+                                <a href="{{ route('reportings_destroy', $video->id) }}">
                                     <button type="button" class="btn btn-danger"><i class="fas fa-times"></i>
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
         {{-- Reports block --}}
         <div class="row justify-content-center mb-3">
-                <div class="card table-responsive">
-                    <div class="card-header">Derniers signalements</div>
-                    <table class="table table-striped">
-                        <thead>
+            <div class="card table-responsive">
+                <div class="card-header">Derniers signalements</div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Utilisateur</th>
+                        <th scope="col">Vidéo</th>
+                        <th scope="col">Signalement</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($reports as $report)
                         <tr>
-                            <th scope="col">Utilisateur</th>
-                            <th scope="col">Vidéo</th>
-                            <th scope="col">Signalement</th>
-                            <th scope="col">Actions</th>
+                            <td>{{$report->name}}</td>
+                            <td>{{$report->title}}</td>
+                            <td>{{$report->content}}</td>
+                            <td class="text-center">
+                                <a href="{{ route('video_show', $report->video_id) }}">
+                                    <button type="button" class="btn btn-success" style="margin-bottom: 5px">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </a>
+                                <a href="{{ route('reportings_destroy', $report->video_id) }}">
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($reports as $report)
-                            <tr>
-                                <td>{{$report->name}}</td>
-                                <td>{{$report->title}}</td>
-                                <td>{{$report->content}}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('video_show', $report->video_id) }}">
-                                        <button type="button" class="btn btn-success" style="margin-bottom: 5px">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </a>
-                                    <a href="{{ route('reportings_destroy', $report->video_id) }}">
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
         {{-- Comments block --}}
         <div class="row justify-content-center mb-3">
-                <div class="card table-responsive">
-                    <div class="card-header">Derniers commentaires</div>
-                    <table class="table table-striped">
-                        <thead>
+            <div class="card table-responsive">
+                <div class="card-header">Derniers commentaires</div>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Utilisateur</th>
+                        <th scope="col">Vidéo</th>
+                        <th scope="col">Commentaire</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($comments as $comment)
                         <tr>
-                            <th scope="col">Utilisateur</th>
-                            <th scope="col">Vidéo</th>
-                            <th scope="col">Commentaire</th>
-                            <th scope="col">Actions</th>
+                            <td>{{$comment->name}}</td>
+                            <td>{{$comment->title}}</td>
+                            <td>{{$comment->content}}</td>
+                            <td class="text-center">
+                                <a href="{{ route('comments_destroy', $comment->id) }}">
+                                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i>
+                                    </button>
+                                </a>
+                            </td>
                         </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($comments as $comment)
-                            <tr>
-                                <td>{{$comment->name}}</td>
-                                <td>{{$comment->title}}</td>
-                                <td>{{$comment->content}}</td>
-                                <td class="text-center">
-                                    <a href="{{ route('comments_destroy', $comment->id) }}">
-                                        <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i>
-                                        </button>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
         {{-- Users block --}}
@@ -127,12 +127,18 @@
                     <div class="card-header">Liste utilisateurs</div>
                     <div class="card-body">
                         @foreach ($profile as $profiler)
-{{--                            @php(dd($profile));--}}
                             <div class="media">
-                                <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature"
-                                     style="height: 120px; width: 120px">
+                                @if(strlen($profiler->avatar) > 0)
+                                    <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature"
+                                         width="80">
+                                @else
+                                    <img src="https://static.asianetnews.com/img/default-user-avatar.png"
+                                         width="80" style="margin-right: 20px">
+                                @endif
                                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
-                                    <h5 class="mt-1"> <b style="text-transform: capitalize">{{ $profiler->role_name }}</b> | {{ $profiler->name }}</h5>
+                                    <h5 class="mt-1"><b
+                                            style="text-transform: capitalize">{{ $profiler->role_name }}</b>
+                                        | {{ $profiler->name }}</h5>
                                     <h6 class="mt-1">{{ $profiler->email }}</h6>
                                     <p>
                                         {{ $profiler->dateOfBirth }}
