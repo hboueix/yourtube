@@ -38,11 +38,11 @@
                             <td>{{$video->description}}</td>
                             <td class="text-center">
                                 <a href="{{ route('video_approve', $video->id) }}">
-                                    <button type="button" class="btn btn-success"><i class="fas fa-check"></i>
+                                    <button type="button" class="btn btn-success pull-right mb-1"><i class="fas fa-check"></i>
                                     </button>
                                 </a>
                                 <a href="{{ route('reportings_destroy', $video->id) }}">
-                                    <button type="button" class="btn btn-danger"><i class="fas fa-times"></i>
+                                    <button type="button" class="btn btn-danger pull-right pl-3"><i class="fas fa-times"></i>
                                     </button>
                                 </a>
                             </td>
@@ -73,12 +73,12 @@
                             <td>{{$report->content}}</td>
                             <td class="text-center">
                                 <a href="{{ route('video_show', $report->video_id) }}">
-                                    <button type="button" class="btn btn-success" style="margin-bottom: 5px">
+                                    <button type="button" class="btn btn-success pull-left mr-2">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </a>
                                 <a href="{{ route('reportings_destroy', $report->video_id) }}">
-                                    <button type="button" class="btn btn-danger">
+                                    <button type="button" class="btn btn-danger pull-left">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </a>
