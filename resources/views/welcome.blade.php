@@ -51,7 +51,10 @@
                             <a href="{{ route('video_show', $t_video->id) }}"
                                style="text-decoration: none; color: inherit"><h5
                                     class="card-title">{{ $t_video->title }}</h5></a>
-                            <h6>{{$t_video->nbWatch}} vues</h6>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge badge-pill badge-info">Catégorie</span>
+                                <span><i class="fas fa-eye mr-1"></i>{{$t_video->nbWatch}}</span>
+                            </div>
                         </div>
                     </div>
                 @endforeach

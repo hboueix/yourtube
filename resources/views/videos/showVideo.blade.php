@@ -128,7 +128,13 @@
         <div class="d-flex justify-content-between">
             <a href="{{route('profile_show', $yourtubeur->name)}}" style="color: inherit">
                 <div class="d-flex align-items-center">
-                    <img src="{{ asset('storage/' . $yourtubeur->avatar)}}" style="width: 80px; border-radius: 100%">
+                    @if(strlen($yourtubeur->avatar) > 0)
+                        <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature"
+                             style="width: 80px; border-radius: 100%">
+                    @else
+                        <img src="https://static.asianetnews.com/img/default-user-avatar.png"
+                             style="width: 80px; border-radius: 100%">
+                    @endif
                     <h4 class="ml-2">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h4>
                 </div>
             </a>
@@ -194,8 +200,13 @@
             @if(isset($comments))
                 @foreach($comments as $comment)
                     <li class="media mb-2">
-                        <img class="mr-3" src="{{asset('storage/'. $comment->avatar)}}"
-                             alt="Generic placeholder image" style="width: 100px; height: 100px">
+                        @if(strlen($comment->avatar) > 0)
+                            <img src="{{ asset('storage/' . $comment->avatar) }}" class="mr-3" alt="miniature"
+                                 style="width: 80px; border-radius: 100%; margin-right: 20px">
+                        @else
+                            <img src="https://static.asianetnews.com/img/default-user-avatar.png"
+                                 style="width: 80px; border-radius: 100%; margin-right: 20px">
+                        @endif
                         <div class="media-body">
                             <h5 class="mt-0 mb-1">{{$comment->first_name . ' ' . $comment->last_name}}</h5>
                             {{$comment->content}}
