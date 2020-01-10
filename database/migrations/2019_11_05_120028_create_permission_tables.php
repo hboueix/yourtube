@@ -70,7 +70,6 @@ class CreatePermissionTables extends Migration
                 ->references('id')
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
-
             $table->foreign('role_id')
                 ->references('id')
                 ->on($tableNames['roles'])
