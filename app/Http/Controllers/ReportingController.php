@@ -75,7 +75,11 @@ class ReportingController extends Controller
             ->join('users', 'user_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
             ->get()->all();
-        $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')->get()->all();
+        $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')
+            ->join('model_has_roles', 'users.id', '=', 'model_id')
+            ->join('roles', 'roles.id', '=', 'role_id')
+            ->get(['roles.name AS role_name', 'users.*', 'profiles.*'])
+            ->toArray();
         return view('admin/showAdmin', [
             'videos' => $videos,
             'reports' => $reports,
