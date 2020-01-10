@@ -129,7 +129,7 @@
             <a href="{{route('profile_show', $yourtubeur->name)}}" style="color: inherit">
                 <div class="d-flex align-items-center">
                     @if(strlen($yourtubeur->avatar) > 0)
-                        <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature"
+                        <img src="{{ asset('storage/' . $yourtubeur->avatar) }}" class="mr-3" alt="miniature"
                              style="width: 80px; border-radius: 100%">
                     @else
                         <img src="https://static.asianetnews.com/img/default-user-avatar.png"
