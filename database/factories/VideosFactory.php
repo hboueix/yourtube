@@ -6,13 +6,13 @@ use App\Videos;
 use Faker\Generator as Faker;
 
 $factory->define(Videos::class, function (Faker $faker) {
-    return [
+    return [/*
         'title' => $faker->sentence,
         'description' => $faker->text,
         'path' => $faker->text,
         'nbWatch' => $faker->numberBetween($min = 100000, $max = 300000),
         'likes' => 0,
         'dislikes' => 0,
-        'miniature' => ''
+        'miniature' => ''*/
     ];
 });

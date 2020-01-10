@@ -9,8 +9,8 @@ use Illuminate\Http\File;
 
 $factory->define(Profile::class, function (Faker $faker) {
     return [
-        'last_name' => $faker->lastName,
-        'first_name' => $faker->firstName,
+        'last_name' => 'Administrateur',
+        'first_name' => 'Yourtube',
         'dateOfBirth' => $faker->dateTime,
         'avatar' => ''
     ];
