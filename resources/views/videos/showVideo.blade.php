@@ -101,7 +101,7 @@
         <div class="mt-3">
             <div class="d-flex justify-content-between">
                 <h2>{{$video->title}}</h2>
-                <h3>{{$video->nbWatch}} vues</h3>
+                <h3>{{($video->nbWatch <= 1 ? $video->nbWatch . ' vue' : $video->nbWatch . ' vues')}}</h3>
             </div>
             <div class="d-flex justify-content-between">
                 <div>
@@ -151,7 +151,7 @@
         <div class="mt-3">
             <p>{{$video->description}}</p>
         </div>
-       {{-- <div class="d-flex justify-content-around">
+        <div class="d-flex">
             <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}" target="_blank">
                 <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-facebook"
                                                                         style="margin-right: 5px;"></i>Facebook
@@ -174,7 +174,7 @@
                                                                         style="margin-right: 5px;"></i>Mail
                 </button>
             </a>
-        </div>--}}
+        </div>
         <hr/>
         <div>
             <h4>Commentaires</h4>
