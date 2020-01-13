@@ -40,6 +40,7 @@ class CommentsController extends Controller
                 'first_name' => $profile_data->first_name,
                 'avatar' => $profile_data->avatar,
                 'content' => $parameters['comment'],
+                'is_seen' => 0,
                 'created_at' => date('y-m-d h:m:s'),
                 'updated_at' => date('y-m-d h:m:s')
             ]);

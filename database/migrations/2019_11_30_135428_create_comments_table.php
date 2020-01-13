@@ -21,6 +21,7 @@ class CreateCommentsTable extends Migration
             $table->string('first_name');
             $table->string('avatar');
             $table->string('content');
+            $table->boolean('is_seen');
             $table->timestamps();
         });
     }
