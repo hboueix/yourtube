@@ -42,7 +42,7 @@
                         </a>
                         <a href="{{ route('password.request') }}">
                             <button type="submit" class="btn btn-dark">
-                                <i class="fas fa-pencil-alt" style="margin-right: 5px"></i>Changer de mot de passe
+                                <i class="fas fa-key" style="margin-right: 5px"></i>Changer de mot de passe
                             </button>
                         </a>
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
@@ -58,13 +58,13 @@
                 </div>
                 <div class="card-group text-center mt-2">
                     <div class="card text-white bg-dark mb-3">
-                        <div class="card-header">Nombre de vidéos</div>
+                        <div class="card-header"><i class="fas fa-video"></i></div>
                         <div class="card-body">
                             <h2 class="card-title">{{ $nb_videos }}</h2>
                         </div>
                     </div>
                     <div class="card text-white bg-dark mb-3">
-                        <div class="card-header">Nombre de commentaires</div>
+                        <div class="card-header"><i class="fas fa-comments"></i></div>
                         <div class="card-body">
                             <h2 class="card-title">{{ $nb_comments }}</h2>
                         </div>
@@ -72,13 +72,13 @@
                 </div>
                 <div class="card-group text-center">
                     <div class="card text-white bg-success mb-3">
-                        <div class="card-header">Nombre de likes</div>
+                        <div class="card-header"><i class="fas fa-thumbs-up"></i></div>
                         <div class="card-body">
                             <h2 class="card-title">{{ $nb_likes }}</h2>
                         </div>
                     </div>
                     <div class="card text-white bg-danger mb-3">
-                        <div class="card-header">Nombre de dislikes</div>
+                        <div class="card-header"><i class="fas fa-thumbs-down"></i></div>
                         <div class="card-body">
                             <h2 class="card-title">{{$nb_dislikes}}</h2>
                         </div>
