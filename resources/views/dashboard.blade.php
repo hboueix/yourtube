@@ -35,11 +35,6 @@
                         Félicitations pour votre rôle : <span
                             style="font-weight: 600">{{ucfirst($user->roles()->pluck('name')[0])}}</span>.
                         <hr/>
-                        <a href="{{ route('video_form') }}">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-plus" style="margin-right: 5px"></i>Upload une video
-                            </button>
-                        </a>
                         <a href="{{ route('profile_show', Auth::user()->name) }}">
                             <button type="submit" class="btn btn-secondary">
                                 <i class="fas fa-user" style="margin-right: 5px"></i>Mon profil
