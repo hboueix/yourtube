@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
 {
@@ -22,9 +23,15 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $parameter = $request->except('_token');
+        DB::table('categories')->insert([
+            'title' => $parameter['category'],
+            'created_at' => date('y-m-d h:m:s'),
+            'updated_at' => date('y-m-d h:m:s')
+        ]);
+        return redirect(route('reportings'));
     }
 
     /**

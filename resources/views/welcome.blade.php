@@ -33,7 +33,7 @@
                             <h5
                                     class="card-title">{{ $video->title }}</h5></a>
                             <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge badge-pill badge-info">Catégorie</span>
+                                <span class="badge badge-pill badge-info">{{$video->category_name}}</span>
                                 <span><i class="fas fa-eye mr-1"></i>{{$video->nbWatch}}</span>
                             </div>
                         </div>

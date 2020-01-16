@@ -37,6 +37,14 @@
                             <input type="text" class="form-control" id="title" placeholder="Titre de la vidéo" name="title" value="{{ $profile ?? '' ? $profile->title : '' }}" required>
                         </div>
                         <div class="form-group">
+                            <label for="inputState">Catégorie</label>
+                            <select id="inputState" class="form-control" name="category">
+                                @foreach($categories as $categorie)
+                                <option value="{{$categorie->id}}">{{$categorie->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="description">Description</label>
                             <textarea type="text" class="form-control" id="description" placeholder="Description de votre vidéo" name="description" value="{{ $videos ?? '' ? $videos->description : '' }}" required></textarea>
                         </div>

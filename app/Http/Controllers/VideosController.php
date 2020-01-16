@@ -16,7 +16,10 @@ class VideosController extends Controller
      */
     public function index(Videos $videos)
     {
-        return view('videos/uploadVideo');
+        $categories = DB::table('categories')->get()->all();
+        return view('videos/uploadVideo', [
+            'categories' => $categories
+            ]);
     }
 
     /**
@@ -45,6 +48,7 @@ class VideosController extends Controller
                         'nbWatch' => 0,
                         'likes' => 0,
                         'dislikes' => 0,
+                        'category_id' => $parameters['category'],
                         'description' => $parameters['description'],
                         'created_at' => date('y-m-d h:m:s'),
                         'updated_at' => date('y-m-d h:m:s')
@@ -203,7 +207,7 @@ class VideosController extends Controller
     function showAllVideos(Videos $videos)
     {
         $auth_id = Auth::id();
-        $nb_videos = DB::table('videos')->where('is_valid', 1)->orderBy('created_at', 'DESC')->take(6)->get();
+        $nb_videos = DB::table('videos')->where('is_valid', 1)->join('categories', 'category_id', '=', 'categories.id')->orderBy('videos.created_at', 'DESC')->take(6)->get(['categories.title AS category_name', 'videos.*']);
         $rand_videos = DB::table('videos')->where('is_valid', 1)->inRandomOrder('id')->take(6)->get();
         $tend_videos = DB::table('videos')->where('is_valid', 1)->orderBy('nbWatch', 'DESC')->take(6)->get();
         return view('welcome', [

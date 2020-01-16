@@ -38,11 +38,13 @@
                             <td>{{$video->description}}</td>
                             <td class="text-center">
                                 <a href="{{ route('video_approve', $video->id) }}">
-                                    <button type="button" class="btn btn-success pull-right mb-1"><i class="fas fa-check"></i>
+                                    <button type="button" class="btn btn-success pull-right mb-1"><i
+                                            class="fas fa-check"></i>
                                     </button>
                                 </a>
                                 <a href="{{ route('reportings_destroy', $video->id) }}">
-                                    <button type="button" class="btn btn-danger pull-right pl-3"><i class="fas fa-times"></i>
+                                    <button type="button" class="btn btn-danger pull-right pl-3"><i
+                                            class="fas fa-times"></i>
                                     </button>
                                 </a>
                             </td>
@@ -165,6 +167,56 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8 mt-3">
+                <div class="card table-responsive">
+                    <div class="card-header">
+                        Catégories
+                        <div class="float-lg-right">
+                            <button type="button" class="btn" data-toggle="modal"
+                                    data-target="#addCategorie">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                        @foreach($categories as $categorie)
+                            <li>{{$categorie->title}}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addCategorie" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="{{route('category_create')}}" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajouter une catégorie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon3">Nom de la catégorie</span>
+                            </div>
+                            <input type="text" class="form-control" name="category" id="basic-url" aria-describedby="basic-addon3">
+                        </div>
+                    </div>
+                    @csrf
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success">Ajouter</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

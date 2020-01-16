@@ -80,11 +80,13 @@ class ReportingController extends Controller
             ->join('roles', 'roles.id', '=', 'role_id')
             ->get(['roles.name AS role_name', 'users.*', 'profiles.*'])
             ->toArray();
+        $categories = DB::table('categories')->get()->all();
         return view('admin/showAdmin', [
             'videos' => $videos,
             'reports' => $reports,
             'comments' => $comments,
-            'profile' => $profile
+            'profile' => $profile,
+            'categories' => $categories
         ]);
 
     }
