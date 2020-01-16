@@ -105,6 +105,11 @@ Route::middleware(['role:administrateur', 'verified'])->group(function () {
         'as' => 'admin_profile_destroy',
         'uses' => 'ProfileController@m_destroy'
     ]);
+
+    Route::post('/category/add/', [
+        'as' => 'category_create',
+        'uses' => 'CategoriesController@create'
+    ]);
 });
 
 Route::middleware(['role:administrateur|moderateur', 'verified'])->group(function () {
