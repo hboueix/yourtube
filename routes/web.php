@@ -26,6 +26,11 @@ Route::get('/profile/user/{slug}', [
     'uses' => 'ProfileController@show'
 ]);
 
+Route::get('/search', [
+    'as' => 'search',
+    'uses' => 'SearchController@search'
+]);
+
 Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'verified'])->group(function () {
