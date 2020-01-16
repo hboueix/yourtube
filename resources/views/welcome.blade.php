@@ -24,12 +24,13 @@
             <div class="row">
                 @foreach($videos as $video)
                     <div class="col-sm-4">
+                        <a href="{{ route('video_show', $video->id) }}"
+                           style="text-decoration: none; color: inherit">
                         <div
                             style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('video_show', $video->id) }}"
-                               style="text-decoration: none; color: inherit"><h5
+                            <h5
                                     class="card-title">{{ $video->title }}</h5></a>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="badge badge-pill badge-info">Catégorie</span>
@@ -44,12 +45,13 @@
             <div class="row">
                 @foreach($tend_videos as $t_video)
                     <div class="col-sm-4">
-                        <div
+                        <a href="{{ route('video_show', $t_video->id) }}"
+                           style="text-decoration: none; color: inherit">
+                            <div
                             style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $t_video->miniature)}}'); background-position: center; background-size: cover">
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('video_show', $t_video->id) }}"
-                               style="text-decoration: none; color: inherit"><h5
+                            <h5
                                     class="card-title">{{ $t_video->title }}</h5></a>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="badge badge-pill badge-info">Catégorie</span>
@@ -64,12 +66,13 @@
             <div class="row">
                 @foreach ($rand_videos as $r_video)
                     <div class="col-sm-4">
+                        <a href="{{ route('video_show', $r_video->id) }}"
+                           style="text-decoration: none; color: inherit">
                         <div
                             style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('video_show', $r_video->id) }}"
-                               style="text-decoration: none; color: inherit"><h5
+                            <h5
                                     class="card-title">{{ $r_video->title }}</h5></a>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="badge badge-pill badge-info">Catégorie</span>

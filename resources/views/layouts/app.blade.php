@@ -94,10 +94,11 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item dropdown">
+                        <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40" height="40">
+                        <li class="nav-item dropdown mr-1">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ ucfirst(Auth::user()->name) }} <span class="caret"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -124,6 +125,11 @@
                                 </form>
                             </div>
                         </li>
+                        <a href="{{ route('video_form') }}">
+                            <button type="submit" class="btn btn-light">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                        </a>
                     @endguest
                 </ul>
             </div>
