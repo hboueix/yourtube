@@ -81,12 +81,14 @@ class ReportingController extends Controller
             ->get(['roles.name AS role_name', 'users.*', 'profiles.*'])
             ->toArray();
         $categories = DB::table('categories')->get()->all();
+        $roles = DB::table('roles')->get()->all();
         return view('admin/showAdmin', [
             'videos' => $videos,
             'reports' => $reports,
             'comments' => $comments,
             'profile' => $profile,
-            'categories' => $categories
+            'categories' => $categories,
+            'roles' => $roles
         ]);
 
     }
@@ -97,9 +99,17 @@ class ReportingController extends Controller
      * @param \App\Reporting $reporting
      * @return Response
      */
-    public function edit(Reporting $reporting)
+    public function edit(Reporting $reporting, Request $request, $id)
     {
-        //
+        $selectValue = $request->input('roles');
+
+        DB::table('profiles')->join('users', 'user_id', '=', 'users.id')
+            ->join('model_has_roles', 'users.id', '=', 'model_id')
+            ->join('roles', 'roles.id', '=', 'role_id')
+            ->where('user_id', $id)
+            ->update(['role_id' => $selectValue]);
+        //->get(['roles.name AS role_name', 'users.*', 'profiles.*'])
+        return redirect()->route('reportings')->with('role_updated', true);
     }
 
     /**
