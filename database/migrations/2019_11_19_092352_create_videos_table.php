@@ -20,6 +20,8 @@ class CreateVideosTable extends Migration
             $table->string('title');
             $table->string('miniature')->nullable();
             $table->string('description');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('path')->nullable();
             $table->string('nbWatch')->nullable();
             $table->integer('likes')->nullable();
