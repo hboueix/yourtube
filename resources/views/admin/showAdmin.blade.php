@@ -17,6 +17,14 @@
             </button>
         </div>
     @endif
+    @if (session('role_update'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Role de l'utilisateur mis à jour avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
 {{--    <div class="modal fade" id="role" tabindex="-1" role="dialog" aria-labelledby="role" aria-hidden="true">--}}
 {{--        <div class="modal-dialog" role="document">--}}
 {{--            <div class="modal-content">--}}
