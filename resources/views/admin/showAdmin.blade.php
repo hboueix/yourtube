@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <!-- Modal -->
     @if (session('video_deleted'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             Vidéo supprimée avec succès !
@@ -16,6 +17,25 @@
             </button>
         </div>
     @endif
+{{--    <div class="modal fade" id="role" tabindex="-1" role="dialog" aria-labelledby="role" aria-hidden="true">--}}
+{{--        <div class="modal-dialog" role="document">--}}
+{{--            <div class="modal-content">--}}
+{{--                <div class="modal-header">--}}
+{{--                    <h5 class="modal-title" id="exampleModalLabel">Changer le rôle de l'utilisateur</h5>--}}
+{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                        <span aria-hidden="true">&times;</span>--}}
+{{--                    </button>--}}
+{{--                </div>--}}
+{{--                <div class="modal-body">--}}
+{{--                    ALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO--}}
+{{--                </div>--}}
+{{--                <div class="modal-footer">--}}
+{{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>--}}
+{{--                    <button type="button" class="btn btn-primary">Valider</button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <div class="container">
         {{-- Videos block --}}
         <div class="row justify-content-center mb-3">
@@ -141,6 +161,7 @@
                                     <h5 class="mt-1"><b
                                             style="text-transform: capitalize">{{ $profiler->role_name }}</b>
                                         | {{ $profiler->name }}</h5>
+
                                     <h6 class="mt-1">{{ $profiler->email }}</h6>
                                     <p>
                                         {{ $profiler->dateOfBirth }}
@@ -149,7 +170,22 @@
                                         Crée le : {{ $profiler->created_at }}
                                     </p>
                                 </div>
-                                <div class="text-center" style="width: 15%;">
+                                <div class="text-center" style="width: 30%;">
+                                    <form method="post" action="{{route('role_update', $profiler->id)}}">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlSelect1">Éditer le rôle</label>
+                                            <select class="form-control d-inline" id="exampleFormControlSelect1" style="width: 70%" name="roles">
+                                            @foreach($roles as $role)
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <input type="hidden" name="id" value="">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary float-right d-inline" >
+                                                <i class="fas fa-pen"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                     <a href="{{ route('profile_show', $profiler->name) }}">
                                         <button type="button" class="btn btn-success" style=" margin: 5px">
                                             <i class="fas fa-user"></i>
