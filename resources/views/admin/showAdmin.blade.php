@@ -25,35 +25,35 @@
             </button>
         </div>
     @endif
-    <!-- Reports Modal -->
-    <div class="modal fade" id="reporting_verif" tabindex="-1" role="dialog" aria-labelledby="reporting_verif" aria-hidden="false">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Supprimer le signalement</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form method="post" action="{{--{{ route('reportings_destroy', $reports->id) }}--}}">
-                    <div class="modal-body">
-                        <h6>{{--{{ $reports->reporter_id }}--}}</h6>
-                        <label for="content"></label><textarea type="text" class="form-control" id="content"
-                                                               placeholder="Le signalement..."
-                                                               name="content">{{--{{ $reports->content }}--}}</textarea>
-                    </div>
-                    <input type="hidden" name="id" value="">
-                    @csrf
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
-                                                                        style="margin-right: 10px"></i>Supprimer !
+    <div class="container">
+        <!-- Reports Modal -->
+        <div class="modal fade" id="reporting_verif" tabindex="-1" role="dialog" aria-labelledby="reporting_verif" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer le signalement</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                </form>
+                    <form method="post" action="{{--{{ route('reportings_destroy', $reports->id) }}--}}">
+                        <div class="modal-body">
+                            <h6>{{--{{ $reports->reporter_id }}--}}</h6>
+                            <label for="content"></label><textarea type="text" class="form-control" id="content"
+                                                                   placeholder="Le signalement..."
+                                                                   name="content">{{--{{ $reports->content }}--}}</textarea>
+                        </div>
+                        <input type="hidden" name="id" value="">
+                        @csrf
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
+                                                                            style="margin-right: 10px"></i>Supprimer !
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container">
         {{-- Videos block --}}
         <div class="row justify-content-center mb-3">
             <div class="card table-responsive">
