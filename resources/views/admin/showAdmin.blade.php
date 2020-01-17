@@ -25,25 +25,6 @@
             </button>
         </div>
     @endif
-{{--    <div class="modal fade" id="role" tabindex="-1" role="dialog" aria-labelledby="role" aria-hidden="true">--}}
-{{--        <div class="modal-dialog" role="document">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <h5 class="modal-title" id="exampleModalLabel">Changer le rôle de l'utilisateur</h5>--}}
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <div class="modal-body">--}}
-{{--                    ALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO--}}
-{{--                </div>--}}
-{{--                <div class="modal-footer">--}}
-{{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>--}}
-{{--                    <button type="button" class="btn btn-primary">Valider</button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
     <div class="container">
         {{-- Videos block --}}
         <div class="row justify-content-center mb-3">
@@ -70,8 +51,9 @@
                                             class="fas fa-check"></i>
                                     </button>
                                 </a>
-                                <a href="{{ route('reportings_destroy', $video->id) }}">
-                                    <button type="button" class="btn btn-danger pull-right pl-3"><i
+                                <a href="">
+                                    <button type="button" class="btn btn-danger pull-right pl-3" data-toggle="modal"
+                                            data-target="#reporting"><i
                                             class="fas fa-times"></i>
                                     </button>
                                 </a>
@@ -97,6 +79,32 @@
                     </thead>
                     <tbody>
                     @foreach($reports as $report)
+                        <div class="modal fade" id="delete_report" tabindex="-1" role="dialog"
+                             aria-labelledby="delete_report" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Supprimer le signalement</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" action="{{ route('reportings_destroy', $report->id) }}">
+                                        <div class="modal-body">
+                                            <h6>Êtes-vous sûrs de vouloir supprimer ce signalement ?</h6>
+                                        </div>
+                                        <input type="hidden" name="id" value="">
+                                        @csrf
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
+                                                                                            style="margin-right: 10px"></i>Supprimer
+                                                !
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <tr>
                             <td>{{$report->name}}</td>
                             <td>{{$report->title}}</td>
@@ -107,11 +115,10 @@
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </a>
-                                <a href="{{ route('reportings_destroy', $report->video_id) }}">
-                                    <button type="button" class="btn btn-danger pull-left">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </a>
+                                <button type="button" class="btn btn-danger pull-left" data-toggle="modal"
+                                        data-target="#delete_report">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -134,15 +141,40 @@
                     </thead>
                     <tbody>
                     @foreach($comments as $comment)
+                        <div class="modal fade" id="delete_comment" tabindex="-1" role="dialog"
+                             aria-labelledby="delete_comment" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Supprimer le commentaire</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" action="{{ route('comments_destroy', $comment->id) }}">
+                                        <div class="modal-body">
+                                            <h6>Êtes-vous sûrs de vouloir supprimer ce commentaire ?</h6>
+                                        </div>
+                                        <input type="hidden" name="id" value="">
+                                        @csrf
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
+                                                                                            style="margin-right: 10px"></i>Supprimer
+                                                !
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <tr>
                             <td>{{$comment->name}}</td>
                             <td>{{$comment->title}}</td>
                             <td>{{$comment->content}}</td>
                             <td class="text-center">
-                                <a href="{{ route('comments_destroy', $comment->id) }}">
-                                    <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i>
-                                    </button>
-                                </a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#delete_comment"><i class="fas fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -157,6 +189,33 @@
                     <div class="card-header">Liste utilisateurs</div>
                     <div class="card-body">
                         @foreach ($profile as $profiler)
+                            <div class="modal fade" id="delete_user" tabindex="-1" role="dialog"
+                                 aria-labelledby="delete_user" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Supprimer l'utilisateur</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form method="post"
+                                              action="{{ route('admin_profile_destroy', $profiler->id) }}">
+                                            <div class="modal-body">
+                                                <h6>Êtes-vous sûrs de vouloir supprimer cet utilisateur ?</h6>
+                                            </div>
+                                            <input type="hidden" name="id" value="">
+                                            @csrf
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
+                                                                                                style="margin-right: 10px"></i>Supprimer
+                                                    !
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="media">
                                 @if(strlen($profiler->avatar) > 0)
                                     <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature"
@@ -182,14 +241,15 @@
                                     <form method="post" action="{{route('role_update', $profiler->id)}}">
                                         <div class="form-group">
                                             <label for="exampleFormControlSelect1">Éditer le rôle</label>
-                                            <select class="form-control d-inline" id="exampleFormControlSelect1" style="width: 70%" name="roles">
-                                            @foreach($roles as $role)
+                                            <select class="form-control d-inline" id="exampleFormControlSelect1"
+                                                    style="width: 70%" name="roles">
+                                                @foreach($roles as $role)
                                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                 @endforeach
                                             </select>
                                             <input type="hidden" name="id" value="">
                                             @csrf
-                                            <button type="submit" class="btn btn-primary float-right d-inline" >
+                                            <button type="submit" class="btn btn-primary float-right d-inline">
                                                 <i class="fas fa-pen"></i>
                                             </button>
                                         </div>
@@ -199,11 +259,10 @@
                                             <i class="fas fa-user"></i>
                                         </button>
                                     </a>
-                                    <a href="{{ route('admin_profile_destroy', $profiler->id) }}">
-                                        <button type="button" class="btn btn-danger">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                            data-target="#delete_user">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
                                 </div>
                             </div>
                             <hr/>
@@ -226,9 +285,9 @@
                     </div>
                     <div class="card-body">
                         <ul>
-                        @foreach($categories as $categorie)
-                            <li>{{$categorie->title}}</li>
-                        @endforeach
+                            @foreach($categories as $categorie)
+                                <li>{{$categorie->title}}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -252,7 +311,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon3">Nom de la catégorie</span>
                             </div>
-                            <input type="text" class="form-control" name="category" id="basic-url" aria-describedby="basic-addon3">
+                            <input type="text" class="form-control" name="category" id="basic-url"
+                                   aria-describedby="basic-addon3">
                         </div>
                     </div>
                     @csrf
