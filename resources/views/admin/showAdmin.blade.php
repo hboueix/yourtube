@@ -25,25 +25,34 @@
             </button>
         </div>
     @endif
-{{--    <div class="modal fade" id="role" tabindex="-1" role="dialog" aria-labelledby="role" aria-hidden="true">--}}
-{{--        <div class="modal-dialog" role="document">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header">--}}
-{{--                    <h5 class="modal-title" id="exampleModalLabel">Changer le rôle de l'utilisateur</h5>--}}
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <div class="modal-body">--}}
-{{--                    ALOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO--}}
-{{--                </div>--}}
-{{--                <div class="modal-footer">--}}
-{{--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>--}}
-{{--                    <button type="button" class="btn btn-primary">Valider</button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    <!-- Reports Modal -->
+    <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Supprimer le signalement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{--{{ route('reportings_destroy', $reports->id) }}--}}">
+                    <div class="modal-body">
+                        <h6>{{--{{ $reports->reporter_id }}--}}</h6>
+                        <label for="content"></label><textarea type="text" class="form-control" id="content"
+                                                               placeholder="Le signalement..."
+                                                               name="content">{{--{{ $reports->content }}--}}</textarea>
+                    </div>
+                    <input type="hidden" name="id" value="">
+                    @csrf
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
+                                                                        style="margin-right: 10px"></i>Supprimer !
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="container">
         {{-- Videos block --}}
         <div class="row justify-content-center mb-3">
@@ -70,8 +79,8 @@
                                             class="fas fa-check"></i>
                                     </button>
                                 </a>
-                                <a href="{{ route('reportings_destroy', $video->id) }}">
-                                    <button type="button" class="btn btn-danger pull-right pl-3"><i
+                                <a href="">
+                                    <button type="button" class="btn btn-danger pull-right pl-3" data-toggle="modal" data-target="#reporting"><i
                                             class="fas fa-times"></i>
                                     </button>
                                 </a>
