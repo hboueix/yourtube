@@ -45,7 +45,7 @@
                         <div class="input-group">
                             <input type="text" id="myInput" class="form-control" placeholder="Rechercher..."
                                    aria-label="rechercher" aria-describedby="rechercher"
-                                   onfocus="myFunction()" onblur="myFunction()" oninput="getContent()">
+                                   onfocus="myFunction()" oninput="getContent()">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button" id="rechercher"><i
                                         class="fas fa-search"></i></button>
