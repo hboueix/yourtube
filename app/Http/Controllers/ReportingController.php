@@ -108,7 +108,6 @@ class ReportingController extends Controller
             ->join('roles', 'roles.id', '=', 'role_id')
             ->where('user_id', $id)
             ->update(['role_id' => $selectValue]);
-        //->get(['roles.name AS role_name', 'users.*', 'profiles.*'])
         return redirect()->route('reportings')->with('role_updated', true);
     }
 
