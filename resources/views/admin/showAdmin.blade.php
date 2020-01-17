@@ -26,7 +26,7 @@
         </div>
     @endif
     <!-- Reports Modal -->
-    <div class="modal fade" id="reporting_verif" tabindex="-1" role="dialog" aria-labelledby="reporting_verif" aria-hidden="true">
+    <div class="modal fade" id="reporting_verif" tabindex="-1" role="dialog" aria-labelledby="reporting_verif" aria-hidden="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
