@@ -183,6 +183,6 @@ class ProfileController extends Controller
             ->where('id', $id)
             ->delete();
 
-        return redirect()->route('profile_all')->with('account_deleted', true);
+        return redirect()->route('reportings')->with('account_deleted', true);
     }
 }
