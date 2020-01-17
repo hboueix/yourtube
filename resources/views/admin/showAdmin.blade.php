@@ -26,7 +26,7 @@
         </div>
     @endif
     <!-- Reports Modal -->
-    <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
+    <div class="modal fade" id="reporting_verif" tabindex="-1" role="dialog" aria-labelledby="reporting_verif" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -117,7 +117,7 @@
                                     </button>
                                 </a>
                                 <a href="{{--{{ route('reportings_destroy', $report->video_id) }}--}}">
-                                    <button type="button" class="btn btn-danger pull-left" data-toggle="modal" data-target="#reporting">
+                                    <button type="button" class="btn btn-danger pull-left" data-toggle="modal" data-target="#reporting_verif">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </a>
