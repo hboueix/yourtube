@@ -17,7 +17,7 @@
             </button>
         </div>
     @endif
-    @if (session('role_update'))
+    @if (session('role_updated'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             Role de l'utilisateur mis à jour avec succès !
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -184,7 +184,7 @@
                                             <label for="exampleFormControlSelect1">Éditer le rôle</label>
                                             <select class="form-control d-inline" id="exampleFormControlSelect1" style="width: 70%" name="roles">
                                             @foreach($roles as $role)
-                                                    <option value="{{ $role->id }}" selected="{{ $profiler->role_name }}">{{ $role->name }}</option>
+                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                 @endforeach
                                             </select>
                                             <input type="hidden" name="id" value="">
