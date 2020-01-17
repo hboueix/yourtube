@@ -131,6 +131,11 @@ Route::middleware(['role:administrateur|moderateur', 'verified'])->group(functio
         'as' => 'video_approve',
         'uses' => 'VideosController@approveVideo'
     ]);
+
+    Route::post('/admin/role/update/{id}', [
+        'as' => 'role_update',
+        'uses' => 'ReportingController@edit'
+    ]);
 });
 
 Route::middleware(['role:moderateur'])->group(function () {
