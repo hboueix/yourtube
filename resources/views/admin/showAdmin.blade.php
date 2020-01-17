@@ -116,8 +116,8 @@
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </a>
-                                <a href="{{ route('reportings_destroy', $report->video_id) }}">
-                                    <button type="button" class="btn btn-danger pull-left">
+                                <a href="{{--{{ route('reportings_destroy', $report->video_id) }}--}}">
+                                    <button type="button" class="btn btn-danger pull-left" data-toggle="modal" data-target="#reporting">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </a>
