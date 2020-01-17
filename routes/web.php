@@ -120,7 +120,7 @@ Route::middleware(['role:administrateur|moderateur', 'verified'])->group(functio
 
     Route::get('/admin/video/destroy/{id}', [
         'as' => 'reportings_destroy',
-        'uses' => 'ReportingController@v_destroy'
+        'uses' => 'ReportingController@r_destroy'
     ]);
     Route::get('/admin/comments/destroy/{id}', [
         'as' => 'comments_destroy',
