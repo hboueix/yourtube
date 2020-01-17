@@ -24,33 +24,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            width: 100%;
-            background-color: #f6f6f6;
-            overflow: auto;
-            border: 1px solid #ddd;
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown a:hover {background-color: #ddd;}
-
-        .show {display: block;}
-    </style>
 </head>
 <body>
 <div id="app">
@@ -68,12 +41,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav" style="width: 100%;">
-                    <div class="mx-auto dropdown">
+                    <div class="mx-auto search-dropdown">
                         <div class="input-group">
-                            <input type="text" id="myInput" class="form-control" placeholder="Rechercher..." aria-label="rechercher" aria-describedby="rechercher"
-                                onfocus="myFunction()" onblur="myFunction()" oninput="getContent()">
+                            <input type="text" id="myInput" class="form-control" placeholder="Rechercher..."
+                                   aria-label="rechercher" aria-describedby="rechercher"
+                                   onfocus="myFunction()" onblur="myFunction()" oninput="getContent()">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="rechercher"><i class="fas fa-search"></i></button>
+                                <button class="btn btn-outline-secondary" type="button" id="rechercher"><i
+                                        class="fas fa-search"></i></button>
                             </div>
                         </div>
                         <div id='myDropdown' class='dropdown-content'>
@@ -125,6 +100,13 @@
                                 </form>
                             </div>
                         </li>
+                        @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
+                            <div class="d-flex align-items-center">
+                                <a href="{{route('reportings')}}"><span class="badge badge-danger"><i class="far fa-bell mr-1"></i>{{$notifications}}</span>
+                                </a>
+                            </div>
+                        @endif
+
                         <a href="{{ route('video_form') }}">
                             <button type="submit" class="btn btn-light">
                                 <i class="fas fa-upload"></i>
@@ -141,25 +123,24 @@
     </main>
 </div>
 
-<script  type="text/javascript">
+<script type="text/javascript">
 
     function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    function getContent(){
+    function getContent() {
         const search = document.getElementById('myInput');
         const myDropdown = document.getElementById('myDropdown');
         const searchValue = search.value;
         if (searchValue != "") {
             const xhr = new XMLHttpRequest();
 
-            xhr.open('GET','{{route('search')}}/?search=' + searchValue ,true);
+            xhr.open('GET', '{{route('search')}}/?search=' + searchValue, true);
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            xhr.onreadystatechange = function() {
-                
-                if(xhr.readyState == 4 && xhr.status == 200)
-                {
+            xhr.onreadystatechange = function () {
+
+                if (xhr.readyState == 4 && xhr.status == 200) {
                     myDropdown.innerHTML = xhr.responseText;
                 }
             }
