@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Profile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;

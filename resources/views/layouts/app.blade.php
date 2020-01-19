@@ -69,9 +69,9 @@
                             </li>
                         @endif
                     @else
-                        <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40" height="40">
+                        <img src="{{ asset('storage/' . Auth::user()->profile->) }}" width="40" height="40">
                         <li class="nav-item dropdown mr-1">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggleavatar" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ ucfirst(Auth::user()->name) }} <span class="caret"></span>
                             </a>

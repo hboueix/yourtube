@@ -21,7 +21,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => 'administrateur',
         'email' => 'admin@yourtube.fr',
         'email_verified_at' => now(),
-        'password' => '$2y$10$gPeKXGCeTMPZ7w7/c7jV0.lwZ.0xvmEUfDBcxq.iZyF5gTIOBlEUG', // motdepasse
+        'password' => '$2y$10$vKK1hyK7C6DiQAtkxA4qB.Z8AcC4ANl4jImFIJ8O1iJ1ES/MwtqRW', // motdepasse
         'remember_token' => Str::random(10),
     ];
 });
