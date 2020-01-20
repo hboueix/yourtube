@@ -45,14 +45,14 @@
                             <td><img src="{{asset('storage/' . $video->miniature)}}" width="100"></td>
                             <td>{{$video->title}}</td>
                             <td>{{$video->description}}</td>
-                            <td class="text-center">
+                            <td>
                                 <a href="{{ route('video_approve', $video->id) }}">
-                                    <button type="button" class="btn btn-success pull-right mb-1"><i
+                                    <button type="button" class="btn btn-success"><i
                                             class="fas fa-check"></i>
                                     </button>
                                 </a>
                                 <a href="">
-                                    <button type="button" class="btn btn-danger pull-right pl-3" data-toggle="modal"
+                                    <button type="button" class="btn btn-danger" data-toggle="modal"
                                             data-target="#reporting"><i
                                             class="fas fa-times"></i>
                                     </button>
@@ -91,7 +91,7 @@
                                     </div>
                                     <form method="post" action="{{ route('reportings_destroy', $report->id) }}">
                                         <div class="modal-body">
-                                            <h6>Êtes-vous sûrs de vouloir supprimer ce signalement ?</h6>
+                                            <h6>Êtes-vous sûr de vouloir supprimer ce signalement ?</h6>
                                         </div>
                                         <input type="hidden" name="id" value="">
                                         @csrf
@@ -153,7 +153,7 @@
                                     </div>
                                     <form method="post" action="{{ route('comments_destroy', $comment->id) }}">
                                         <div class="modal-body">
-                                            <h6>Êtes-vous sûrs de vouloir supprimer ce commentaire ?</h6>
+                                            <h6>Êtes-vous sûr de vouloir supprimer ce commentaire ?</h6>
                                         </div>
                                         <input type="hidden" name="id" value="">
                                         @csrf
@@ -202,7 +202,7 @@
                                         <form method="post"
                                               action="{{ route('admin_profile_destroy', $profiler->id) }}">
                                             <div class="modal-body">
-                                                <h6>Êtes-vous sûrs de vouloir supprimer cet utilisateur ?</h6>
+                                                <h6>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</h6>
                                             </div>
                                             <input type="hidden" name="id" value="">
                                             @csrf

@@ -70,20 +70,22 @@
                         @endif
                     @else
                         <a href="{{route('profile_show', Auth::user()->name ?? '')}}">
-                        @if(strlen(Auth::user()->profile->avatar) > 0)
-                        <img src="{{ asset('storage/' . Auth::user()->profile->avatar) }}" width="40" height="40" style="border-radius: 100%">
-                        @else
-                        <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40" height="40" style="border-radius: 100%">
-                        @endif
+                            @if(isset(Auth::user()->profile->avatar))
+                                <img src="{{ asset('storage/' . Auth::user()->profile->avatar) }}" width="40"
+                                     height="40" style="border-radius: 100%">
+                            @else
+                                <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40"
+                                     height="40" style="border-radius: 100%">
+                            @endif
                         </a>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ ucfirst(Auth::user()->name) }} <span class="caret"></span>
-                                </a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ ucfirst(Auth::user()->name) }} <span class="caret"></span>
+                            </a>
 
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('home') }}">
                                     Dashboard
                                 </a>
@@ -109,7 +111,8 @@
                         </li>
                         @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
                             <div class="d-flex align-items-center">
-                                <a href="{{route('reportings')}}"><span class="badge badge-danger"><i class="far fa-bell mr-1"></i>{{$notifications}}</span>
+                                <a href="{{route('reportings')}}"><span class="badge badge-danger"><i
+                                            class="far fa-bell mr-1"></i>{{$notifications}}</span>
                                 </a>
                             </div>
                         @endif

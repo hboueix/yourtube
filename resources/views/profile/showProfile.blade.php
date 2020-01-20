@@ -70,7 +70,10 @@
                         </div>
                     </a>
                     <div class="media-body">
-                        <a href="{{route('video_show', $video->id)}}"><h5 class="mt-1">{{ $video->title }}</h5></a>
+                        <a href="{{route('video_show', $video->id)}}"><h5
+                                class="mt-1">{{ $video->title }}@if($video->is_valid == 0)
+                                    <span class="badge badge-warning">En attente</span>
+                                @endif</h5></a>
                         <p>
                             {{ $video->description }}
                         </p>
