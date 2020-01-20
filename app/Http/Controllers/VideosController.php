@@ -110,6 +110,14 @@ class VideosController extends Controller
             ->where('is_subscribed', '=', 1)
             ->count('id');
 
+        $related_videos = DB::table('videos')
+            ->where([
+                ['category_id', $video->category_id],
+                ['id', '!=', $video->id]
+            ])
+            ->get()
+            ->random(3);
+
         DB::table('videos')
             ->where('id', $id)
             ->update(['likes' => $nb_likes]);
@@ -126,7 +134,8 @@ class VideosController extends Controller
             'comments' => $comments,
             'nb_likes' => $nb_likes,
             'nb_dislikes' => $nb_dislikes,
-            'nb_subscribers' => $nb_subscribers
+            'nb_subscribers' => $nb_subscribers,
+            'related_videos' => $related_videos
         ]);
     }
 
