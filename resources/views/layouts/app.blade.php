@@ -45,13 +45,15 @@
                         <div class="input-group">
                             <input type="text" id="myInput" class="form-control" placeholder="Rechercher..."
                                    aria-label="rechercher" aria-describedby="rechercher"
-                                   onfocus="myFunction()" oninput="getContent()">
+                                   onfocus="myFunction()" onblur="myFunction()" oninput="getContent()">
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button" id="rechercher"><i
                                         class="fas fa-search"></i></button>
                             </div>
                         </div>
-                        <div id='myDropdown' class='dropdown-content'>
+                        <div id='myDropdown' class='dropdown-content' 
+                            onmouseover="document.getElementById('myInput').removeAttribute('onblur')" 
+                            onmouseleave="document.getElementById('myInput').setAttribute('onblur', 'myFunction()')">
                         </div>
                     </div>
                 </ul>

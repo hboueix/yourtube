@@ -24,12 +24,13 @@ class SearchController extends Controller
                 ['is_valid', '>', '0']
             ])->get();
             $users = User::where([
-                ['name','LIKE','%'.$request->search."%"]
+                ['name','LIKE','%'.$request->search."%"],
+                ['email_verified_at', '<>', 'NULL']
             ])->get();
             
             if ($users){
                 foreach ($users as $user) {
-                    $output.="<a href='" . route('profile_show', $user->id) . "'>" . $user->name . "</a>";
+                    $output.="<a href='" . route('profile_show', $user->name) . "'>" . $user->name . "</a>";
                 }  
             }
             if ($videos){
