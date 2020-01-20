@@ -71,8 +71,13 @@
                     @else
                         <a href="{{route('profile_show', Auth::user()->name ?? '')}}">
                             @if(isset(Auth::user()->profile->avatar))
+                                @if(strlen(Auth::user()->profile->avatar)))
                                 <img src="{{ asset('storage/' . Auth::user()->profile->avatar) }}" width="40"
                                      height="40" style="border-radius: 100%">
+                                @else
+                                    <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40"
+                                         height="40" style="border-radius: 100%">
+                                @endif
                             @else
                                 <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40"
                                      height="40" style="border-radius: 100%">
