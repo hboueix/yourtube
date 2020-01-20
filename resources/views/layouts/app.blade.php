@@ -69,15 +69,17 @@
                             </li>
                         @endif
                     @else
+                        <a href="{{route('profile_show', Auth::user()->name ?? '')}}">
                         @if(strlen(Auth::user()->profile->avatar) > 0)
                         <img src="{{ asset('storage/' . Auth::user()->profile->avatar) }}" width="40" height="40" style="border-radius: 100%">
                         @else
                         <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40" height="40" style="border-radius: 100%">
                         @endif
+                        </a>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ ucfirst(Auth::user()->name) }} <span class="caret"></span>
                                 </a>
 
 
