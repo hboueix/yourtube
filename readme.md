@@ -1,67 +1,53 @@
 # YourTube
 
-Description du projet
+## Procédure de mise en place du projet
 
-## Première séance, le 22 octobre 2019
+- Cloner le projet
+- Configurer le .env en accord avec votre configuration
+- Créer une base de donnée nommée : yourtube
+- Effectuer la commande : `composer install` puis `npm run dev`
+- Réaliser la commande : `php artisan migrate:refresh --seed`
+- Lancer le serveur avec la commande : `php artisan serve`
+- Yourtube est accessible sur l'adresse 127.0.0.1:800 !
 
-- Validation du projet à l'oral par John et envoi via mail pour officialiser le projet.
-- Un trello avec toutes les tâches nécessaires à la bonne réalisation de projet et l'attribution des tâches.
-- Achat du nom de domaine et mise en place du serveur virtuel privé (VPS)
-- Installation d'apache2 et du certificat SSL https://www.yourtube.fr
-- Mise en place du repo Gitlab
+### Informations utiles
 
-## Deuxième séance, le 5 novembre 2019
+Un compte par défaut est créé. Vous pouvez donc vous connecter sans avoir à vous inscrire. 
 
-### Ajout de l'authentification
+Le compte créé est :
 
-```shell
-composer require laravel/ui --dev
+- mail : admin@yourtube.fr
+- mdp : M0td3p4ss3
 
-php artisan ui vue --auth
+## Fonctionnalités
 
-npm installl
+### Authentification
 
-npm run dev
-```
+- Connexion au compte
+- Inscription du compte
+- Réinitialisation du mot de passe
+- Suppression du compte
 
-## Ajout des seeders
+### Vidéo
 
-On va générer un seeder avec la commande `make:seeder` de artisan
-```shell
-php artisan make:seeder UsersTableSeeder
-```
+- Upload d'une vidéo
+- Modification d'une vidéo
+- Suppression d'une vidéo
+- Partage d'une vidéo
+- Like / Dislike d'une vidéo
+- Signalement d'une vidéo
+- Commenter une vidéo
 
-Dans la fonction *run()* de notre `UserTableSeer.php` :
-```php
-public function run()
-{
-    factory(App\User::class, 50)->create();
-}
-```
+### Administration
 
-Rajouter dans la fonction *run()* de notre `DatabaseSeeder.php` :
-```php
-$this->call([UsersTableSeeder::class]);
-```
+- Modération des vidéos
+- Modération des utilisateurs (rôles / suppression)
+- Modération des signalements
+- Modération des commentaires
 
-# Créer un profil
+### Utilisation
 
-Création du modèle profil avec un controller, une factory et une migration :
-```shell
-php artisan make:model Profile -a
-```
-
-On procède à une relation `One-to-One` pour assigner un profil à un user :
-
-```php
-// App\User
-public function profile() {
-    return $this->hasOne('App\Profile');
-}
-
-// App\Profile
-public function user() {
-     return $this->belongsTo('App\User');
-}
-```
-
+- Visionnage d'une vidéo
+- Recherche d'une vidéo
+- Recherche d'un profil
+- Visionnage public d'un profil
