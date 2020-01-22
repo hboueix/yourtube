@@ -115,9 +115,9 @@ class VideosController extends Controller
                 ['category_id', $video->category_id],
                 ['id', '!=', $video->id]
             ])
-            ->get()
-            ->random(3);
-
+            ->inRandomOrder()
+            ->get();
+        
         DB::table('videos')
             ->where('id', $id)
             ->update(['likes' => $nb_likes]);
