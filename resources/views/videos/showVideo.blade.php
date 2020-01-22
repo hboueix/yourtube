@@ -176,6 +176,18 @@
             </a>
         </div>
         <hr/>
+        <h2>Vidéos similaires</h2>
+        <div class="d-flex justify-content-around flex-nowrap">
+            @foreach($related_videos as $related_video)
+                <div class="text-center" style="background-image: url('{{asset('storage/' . $related_video->miniature)}}'); width: 32%; height: 200px; background-position: center; background-repeat: no-repeat; background-size: cover">
+                    <a href="{{route('video_show', $related_video->id)}}">
+                    <br>
+                    <h3 class="font-weight-bold" style="color: white;">{{$related_video->title}}</h3>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+        <hr/>
         <div>
             <h4>Commentaires</h4>
             @auth

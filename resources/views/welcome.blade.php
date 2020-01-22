@@ -76,7 +76,7 @@
                     <div class="card-body">
                         <h5
                             class="card-title">{{ $r_video->title }}</h5>
-                </a>
+                </a></div>
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="badge badge-pill badge-info">{{$video->category_name}}</span>
                     <span><i class="fas fa-eye mr-1"></i>{{$r_video->nbWatch}}</span>

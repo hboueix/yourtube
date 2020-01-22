@@ -52,9 +52,9 @@
                                         class="fas fa-search"></i></a>
                             </div>
                         </div>
-                        <div id='myDropdown' class='dropdown-content' 
-                            onmouseover="document.getElementById('myInput').removeAttribute('onblur')" 
-                            onmouseleave="document.getElementById('myInput').setAttribute('onblur', 'myFunction()')">
+                        <div id='myDropdown' class='dropdown-content'
+                             onmouseover="document.getElementById('myInput').removeAttribute('onblur')"
+                             onmouseleave="document.getElementById('myInput').setAttribute('onblur', 'myFunction()')">
                         </div>
                     </div>
                 </ul>
@@ -74,7 +74,7 @@
                     @else
                         <a href="{{route('profile_show', Auth::user()->name ?? '')}}">
                             @if(isset(Auth::user()->profile->avatar))
-                                @if(strlen(Auth::user()->profile->avatar)))
+                                @if(strlen(Auth::user()->profile->avatar))
                                 <img src="{{ asset('storage/' . Auth::user()->profile->avatar) }}" width="40"
                                      height="40" style="border-radius: 100%">
                                 @else
