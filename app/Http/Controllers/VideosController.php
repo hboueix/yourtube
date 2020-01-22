@@ -113,7 +113,8 @@ class VideosController extends Controller
         $related_videos = DB::table('videos')
             ->where([
                 ['category_id', $video->category_id],
-                ['id', '!=', $video->id]
+                ['id', '!=', $video->id],
+                ['is_valid', '>', '0']
             ])
             ->inRandomOrder()
             ->get();
