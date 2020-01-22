@@ -31,6 +31,11 @@ Route::get('/search', [
     'uses' => 'SearchController@search'
 ]);
 
+Route::get('/results', [
+    'as' => 'results',
+    'uses' => 'SearchController@index'
+]);
+
 Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'verified'])->group(function () {

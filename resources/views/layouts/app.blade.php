@@ -45,10 +45,11 @@
                         <div class="input-group">
                             <input type="text" id="myInput" class="form-control" placeholder="Rechercher..."
                                    aria-label="rechercher" aria-describedby="rechercher"
-                                   onfocus="myFunction()" onblur="myFunction()" oninput="getContent()">
+                                   onfocus="myFunction()" onblur="myFunction()" oninput="getContent()"
+                                   onkeyup="handle(event)">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button" id="rechercher"><i
-                                        class="fas fa-search"></i></button>
+                                <a class="btn btn-outline-secondary" type="button" id="rechercher" onclick="route_results()"><i
+                                        class="fas fa-search"></i></a>
                             </div>
                         </div>
                         <div id='myDropdown' class='dropdown-content' 
@@ -153,7 +154,7 @@
         if (searchValue != "") {
             const xhr = new XMLHttpRequest();
 
-            xhr.open('GET', '{{route('search')}}/?search=' + searchValue, true);
+            xhr.open('GET', '{{route("search")}}/?search=' + searchValue, true);
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
             xhr.onreadystatechange = function () {
 
@@ -165,6 +166,20 @@
         } else {
             myDropdown.innerHTML = "";
         }
+    }
+
+    function handle(e) {
+        const searchValue = document.getElementById("myInput").value;
+        if(e.keyCode === 13){
+            event.preventDefault();
+            route_results();
+        }
+    }
+
+    function route_results() {
+        const searchValue = document.getElementById("myInput").value;
+        const url = "{{route('results')}}/?search=" + searchValue;
+        document.location.href = url;
     }
 </script>
 </body>
