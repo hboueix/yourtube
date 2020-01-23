@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (DB::table('videos') == NULL) {
+        if (DB::table('videos') != NULL) {
             Schema::defaultStringLength(191);
             $notification = DB::table('videos')->where('is_valid', 0)->count();
             view()->share('notifications', $notification);
