@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Categories::class, function (Faker $faker) {
     return [
-        //
+        'title' => 'Non classé'
     ];
 });
