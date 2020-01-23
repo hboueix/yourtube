@@ -56,8 +56,6 @@ class ProfileController extends Controller
         $user = DB::table('users')->where('name', $slug)->first();
         if ($user == null) {
             return abort(404);
-        } elseif (Auth::user()->hasVerifiedEmail() == false){
-            return redirect()->route('verification.notice');
         } else {
             $profile = DB::table('profiles')->get()->where('user_id', $user->id)->first();
             $videos = DB::table('videos')->orderBy('created_at', 'DESC')->get()->where('user_id', $user->id);

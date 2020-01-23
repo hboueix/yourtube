@@ -5,8 +5,11 @@
 - Cloner le projet
 - Configurer le .env en accord avec votre configuration
 - Créer une base de donnée nommée : yourtube
-- Effectuer la commande : `composer install` puis `npm run dev`
+- Effectuer la commande : `composer install` puis `npm install`
+- Enfin `npm run dev`
 - Réaliser la commande : `php artisan migrate:refresh --seed`
+- Générer sa clé : `php artisan key generate`
+- Créer le lien symbolique : `php artisan storage:link`
 - Lancer le serveur avec la commande : `php artisan serve`
 - Yourtube est accessible sur l'adresse 127.0.0.1:800 !
 

@@ -120,7 +120,7 @@
                         @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
                             <div class="d-flex align-items-center">
                                 <a href="{{route('reportings')}}"><span class="badge badge-danger"><i
-                                            class="far fa-bell mr-1"></i>{{$notifications}}</span>
+                                            class="far fa-bell mr-1"></i>{{$notifications ?? '0'}}</span>
                                 </a>
                             </div>
                         @endif
