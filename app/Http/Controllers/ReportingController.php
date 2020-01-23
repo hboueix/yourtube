@@ -139,7 +139,7 @@ class ReportingController extends Controller
     public function r_destroy(Videos $videos, $id, Request $request)
     {
         DB::table('reportings')->where('video_id', $id)->delete();
-        return redirect()->route('reportings')->with('video_deleted', true);
+        return redirect()->route('reportings')->with('report_deleted', true);
     }
 
 }
