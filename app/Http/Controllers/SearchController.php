@@ -21,11 +21,15 @@ class SearchController extends Controller
             ->orderBy('videos.created_at', 'DESC')
             ->take(6)
             ->get(['categories.title AS category_name', 'videos.*']);
-        $profiles = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')
+        $profiles = DB::table('profiles')
+            ->join('users', 'user_id', '=', 'users.id')
             ->join('model_has_roles', 'users.id', '=', 'model_id')
-            ->join('roles', 'roles.id', '=', 'role_id')
-            ->get(['roles.name AS role_name', 'users.*', 'profiles.*'])
-            ->toArray();
+            ->where([
+                ['name','LIKE','%'.$request->search."%"],
+                ['email_verified_at', '<>', 'NULL'],
+                ['name', '<>', 'administrateur']
+            ])
+            ->get(['users.*', 'profiles.*']);
         return view('results', [
             'search' => $search,
             'videos' => $videos,
@@ -45,7 +49,8 @@ class SearchController extends Controller
             ])->get();
             $users = User::where([
                 ['name','LIKE','%'.$request->search."%"],
-                ['email_verified_at', '<>', 'NULL']
+                ['email_verified_at', '<>', 'NULL'],
+                ['name', '<>', 'administrateur']
             ])->get();
             
             if ($users){
