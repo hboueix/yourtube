@@ -11,7 +11,7 @@
 - Générer sa clé : `php artisan key generate`
 - Créer le lien symbolique : `php artisan storage:link`
 - Lancer le serveur avec la commande : `php artisan serve`
-- Yourtube est accessible sur l'adresse 127.0.0.1:800 !
+- Yourtube est accessible sur l'adresse 127.0.0.1:8000 !
 
 ### Informations utiles
 
@@ -47,6 +47,8 @@ Le compte créé est :
 - Modération des utilisateurs (rôles / suppression)
 - Modération des signalements
 - Modération des commentaires
+- Création / suppression des catégories
+- Notifications
 
 ### Utilisation
 
@@ -54,3 +56,5 @@ Le compte créé est :
 - Recherche d'une vidéo
 - Recherche d'un profil
 - Visionnage public d'un profil
+- Suivi du profil sur dashboard
+
