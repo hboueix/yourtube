@@ -18,6 +18,7 @@ class CreateReportingsTable extends Migration
             $table->unsignedBigInteger('video_id');
             $table->unsignedBigInteger('reporter_id');
             $table->text('content');
+            $table->integer('is_seen')->default(0);
             $table->timestamps();
             $table->foreign('video_id')->references('id')->on('videos');
             $table->foreign('reporter_id')->references('id')->on('users');
