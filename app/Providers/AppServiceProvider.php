@@ -28,8 +28,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
-        $notification = DB::table('videos')->where('is_valid', 0)->count();
-        view()->share('notifications', $notification);
+        if (DB::table('videos') == NULL) {
+            Schema::defaultStringLength(191);
+            $notification = DB::table('videos')->where('is_valid', 0)->count();
+            view()->share('notifications', $notification);
+        }
     }
 }
