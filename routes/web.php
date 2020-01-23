@@ -11,6 +11,15 @@
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+|
+| Route accessible par le public (inscrit ou non inscrit)
+|
+*/
+
 Route::get('/', [
     'as' => 'accueil',
     'uses' => 'VideosController@showAllVideos'
