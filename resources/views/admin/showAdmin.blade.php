@@ -105,16 +105,16 @@
                             </div>
                         </div>
                         <tr>
-                            <td>{{$report->name}}</td>
-                            <td>{{$report->title}}</td>
+                            <td><a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
+                            <td><a href="{{route('video_show', $report->video_id)}}" target="_blank">{{$report->title}}</a></td>
                             <td>{{$report->content}}</td>
-                            <td class="text-center">
+                            <td>
                                 <a href="{{ route('video_show', $report->video_id) }}">
-                                    <button type="button" class="btn btn-success pull-left mr-2">
+                                    <button type="button" class="btn btn-success">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-danger pull-left" data-toggle="modal"
+                                <button type="button" class="btn btn-danger" data-toggle="modal"
                                         data-target="#delete_report">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -167,10 +167,10 @@
                             </div>
                         </div>
                         <tr>
-                            <td>{{$comment->name}}</td>
-                            <td>{{$comment->title}}</td>
+                            <td><a href="{{route('profile_show', $comment->name)}}" target="_blank">{{$comment->name}}</a></td>
+                            <td><a href="{{route('video_show', $comment->id)}}" target="_blank">{{$comment->title}}</a></td>
                             <td>{{$comment->content}}</td>
-                            <td class="text-center">
+                            <td>
                                 <a href="{{route('comment_approve', $comment->comment_id)}}">
                                     <button type="button" class="btn btn-success"><i
                                             class="fas fa-check"></i>

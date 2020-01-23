@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
             Schema::defaultStringLength(191);
             $notifications_videos = DB::table('videos')->where('is_valid', 0)->count();
             $notifications_comments = DB::table('comments')->where('is_seen', 0)->count();
-            $notifications_reportings = DB::table('reportings')->where('is_seen')->count();
+            $notifications_reportings = DB::table('reportings')->where('is_seen', 0)->count();
             $notifications = $notifications_videos + $notifications_comments + $notifications_reportings;
             view()->share('notifications', $notifications);
         }
