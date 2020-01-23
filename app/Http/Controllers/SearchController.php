@@ -21,9 +21,15 @@ class SearchController extends Controller
             ->orderBy('videos.created_at', 'DESC')
             ->take(6)
             ->get(['categories.title AS category_name', 'videos.*']);
+        $profiles = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')
+            ->join('model_has_roles', 'users.id', '=', 'model_id')
+            ->join('roles', 'roles.id', '=', 'role_id')
+            ->get(['roles.name AS role_name', 'users.*', 'profiles.*'])
+            ->toArray();
         return view('results', [
             'search' => $search,
-            'videos' => $videos
+            'videos' => $videos,
+            'profiles' => $profiles
         ]); 
     }
 
