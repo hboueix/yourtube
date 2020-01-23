@@ -78,32 +78,6 @@
                     </thead>
                     <tbody>
                     @foreach($reports as $report)
-                        <div class="modal fade" id="delete_report" tabindex="-1" role="dialog"
-                             aria-labelledby="delete_report" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Supprimer le signalement</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form method="post" action="{{ route('reportings_destroy', $report->id) }}">
-                                        <div class="modal-body">
-                                            <h6>Êtes-vous sûr de vouloir supprimer ce signalement ?</h6>
-                                        </div>
-                                        <input type="hidden" name="id" value="">
-                                        @csrf
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
-                                                                                            style="margin-right: 10px"></i>Supprimer
-                                                !
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                         <tr>
                             <td><a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
                             <td><a href="{{route('video_show', $report->video_id)}}" target="_blank">{{$report->title}}</a></td>
@@ -114,10 +88,11 @@
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#delete_report">
-                                    <i class="fas fa-trash"></i>
-                                </button>
+                                <a href="{{ route('report_destroy', $report->id) }}">
+                                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Supprimer le signalement">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -140,32 +115,6 @@
                     </thead>
                     <tbody>
                     @foreach($comments as $comment)
-                        <div class="modal fade" id="delete_comment-{{$comment->id}}" tabindex="-1" role="dialog"
-                             aria-labelledby="delete_comment" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Supprimer le commentaire</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form method="post" action="{{ route('comments_destroy', $comment->id) }}">
-                                        <div class="modal-body">
-                                            <h6>Êtes-vous sûr de vouloir supprimer ce commentaire ?</h6>
-                                        </div>
-                                        <input type="hidden" name="id" value="">
-                                        @csrf
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
-                                                                                            style="margin-right: 10px"></i>Supprimer
-                                                !
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                         <tr>
                             <td><a href="{{route('profile_show', $comment->name)}}" target="_blank">{{$comment->name}}</a></td>
                             <td><a href="{{route('video_show', $comment->id)}}" target="_blank">{{$comment->title}}</a></td>
@@ -176,9 +125,11 @@
                                             class="fas fa-check"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#delete_comment-{{$comment->id}}"><i class="fas fa-trash"></i>
-                                </button>
+                                <a href="{{route('comment_destroy', $comment->comment_id)}}">
+                                    <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer le commentaire">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
