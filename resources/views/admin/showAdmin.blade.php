@@ -29,7 +29,7 @@
         {{-- Videos block --}}
         <div class="row justify-content-center mb-3">
             <div class="card table-responsive">
-                <div class="card-header">Vidéos en attente</div>
+                <div class="card-header"><i class="fas fa-video"></i> Vidéos en attente</div>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -42,8 +42,8 @@
                     <tbody>
                     @foreach($videos as $video)
                         <tr>
-                            <td><img src="{{asset('storage/' . $video->miniature)}}" width="100"></td>
-                            <td>{{$video->title}}</td>
+                            <td><a href="{{route('video_show', $video->id)}}" target="_blank"><img src="{{asset('storage/' . $video->miniature)}}" width="100"></a></td>
+                            <td><a href="{{route('video_show', $video->id)}}" target="_blank">{{ucfirst($video->title)}}</a></td>
                             <td>{{$video->description}}</td>
                             <td>
                                 <a href="{{ route('video_approve', $video->id) }}">
@@ -51,9 +51,8 @@
                                             class="fas fa-check"></i>
                                     </button>
                                 </a>
-                                <a href="">
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#reporting"><i
+                                <a href="{{route('video_destroy', $video->id)}}">
+                                    <button type="button" class="btn btn-danger"><i
                                             class="fas fa-times"></i>
                                     </button>
                                 </a>
@@ -67,7 +66,7 @@
         {{-- Reports block --}}
         <div class="row justify-content-center mb-3">
             <div class="card table-responsive">
-                <div class="card-header">Derniers signalements</div>
+                <div class="card-header"><i class="fas fa-flag"></i> Derniers signalements</div>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -129,7 +128,7 @@
         {{-- Comments block --}}
         <div class="row justify-content-center mb-3">
             <div class="card table-responsive">
-                <div class="card-header">Derniers commentaires</div>
+                <div class="card-header"><i class="fas fa-comments"></i> Derniers commentaires</div>
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -141,7 +140,7 @@
                     </thead>
                     <tbody>
                     @foreach($comments as $comment)
-                        <div class="modal fade" id="delete_comment" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="delete_comment-{{$comment->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="delete_comment" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -172,8 +171,13 @@
                             <td>{{$comment->title}}</td>
                             <td>{{$comment->content}}</td>
                             <td class="text-center">
+                                <a href="{{route('comment_approve', $comment->comment_id)}}">
+                                    <button type="button" class="btn btn-success"><i
+                                            class="fas fa-check"></i>
+                                    </button>
+                                </a>
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
-                                        data-target="#delete_comment"><i class="fas fa-trash"></i>
+                                        data-target="#delete_comment-{{$comment->id}}"><i class="fas fa-trash"></i>
                                 </button>
                             </td>
                         </tr>
@@ -186,7 +190,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card table-responsive">
-                    <div class="card-header">Liste utilisateurs</div>
+                    <div class="card-header"><i class="fas fa-users"></i> Liste utilisateurs</div>
                     <div class="card-body">
                         @foreach ($profile as $profiler)
                             <div class="modal fade" id="delete_user" tabindex="-1" role="dialog"
@@ -275,7 +279,7 @@
             <div class="col-md-8 mt-3">
                 <div class="card table-responsive">
                     <div class="card-header">
-                        Catégories
+                        <i class="fas fa-tags"></i> Catégories
                         <div class="float-lg-right">
                             <button type="button" class="btn" data-toggle="modal"
                                     data-target="#addCategorie">

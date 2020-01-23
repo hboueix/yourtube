@@ -104,4 +104,11 @@ class CommentsController extends Controller
         DB::table('comments')->where('id', $id)->delete();
         return redirect()->route('reportings')->with('comments_deleted', true);
     }
+
+    public function approve(Comments $comments, $id) {
+        DB::table('comments')->where('id', $id)->update([
+            'is_seen' => 1
+        ]);
+        return redirect()->route('reportings');
+    }
 }

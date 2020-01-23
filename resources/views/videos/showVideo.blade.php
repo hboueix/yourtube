@@ -77,7 +77,6 @@
                 </div>
                 <form method="post" action="{{route('video_report', $video->id)}}">
                     <div class="modal-body">
-                        <h6>{{ $video->title }}</h6>
                         <label for="content"></label><textarea type="text" class="form-control" id="content"
                                                                placeholder="Votre signalement..."
                                                                name="content"></textarea>

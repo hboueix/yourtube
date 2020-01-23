@@ -118,7 +118,7 @@ class VideosController extends Controller
             ])
             ->inRandomOrder()
             ->get();
-        
+
         DB::table('videos')
             ->where('id', $id)
             ->update(['likes' => $nb_likes]);
@@ -206,7 +206,7 @@ class VideosController extends Controller
     {
         $auth_id = Auth::id();
         $videos = DB::table('videos')->select('id', 'user_id')->where('id', $id)->first();
-        if ($auth_id == $videos->user_id) {
+        if ($auth_id == $videos->user_id || Auth::user()->hasRole('administrateur')) {
             DB::table('videos')->where('id', '=', $id)->delete();
             return redirect()->route('profile_show', Auth::user()->name)->with('video_deleted', true);
         }

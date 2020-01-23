@@ -131,12 +131,17 @@ Route::middleware(['role:administrateur', 'verified'])->group(function () {
 });
 
 Route::middleware(['role:administrateur|moderateur', 'verified'])->group(function () {
-    Route::get('/admin/reportings', [
+    Route::get('/admin/', [
         'as' => 'reportings',
         'uses' => 'ReportingController@show'
     ]);
 
-    Route::post('/admin/video/destroy/{id}', [
+    Route::get('/admin/comments/approve/{id}', [
+        'as' => 'comment_approve',
+        'uses' => 'CommentsController@approve'
+    ]);
+
+    Route::post('/admin/destroy/{id}', [
         'as' => 'reportings_destroy',
         'uses' => 'ReportingController@r_destroy'
     ]);
