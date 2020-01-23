@@ -175,6 +175,7 @@
             </a>
         </div>
         <hr/>
+        @if(count($related_videos) > 0)
         <h2>Vidéos similaires</h2>
         <div class="d-flex justify-content-around flex-nowrap">
             @foreach($related_videos as $related_video)
@@ -187,6 +188,7 @@
             @endforeach
         </div>
         <hr/>
+        @endif
         <div>
             <h4>Commentaires</h4>
             @auth
