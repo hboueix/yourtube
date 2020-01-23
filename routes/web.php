@@ -141,12 +141,12 @@ Route::middleware(['role:administrateur|moderateur', 'verified'])->group(functio
         'uses' => 'CommentsController@approve'
     ]);
 
-    Route::post('/admin/destroy/{id}', [
-        'as' => 'reportings_destroy',
+    Route::get('/admin/report/destroy/{id}', [
+        'as' => 'report_destroy',
         'uses' => 'ReportingController@r_destroy'
     ]);
-    Route::post('/admin/comments/destroy/{id}', [
-        'as' => 'comments_destroy',
+    Route::get('/admin/comment/destroy/{id}', [
+        'as' => 'comment_destroy',
         'uses' => 'CommentsController@destroy'
     ]);
 
