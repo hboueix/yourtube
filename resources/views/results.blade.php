@@ -6,6 +6,31 @@
         <h4>Résultats pour : {{$search}}</h4>
         <hr/>
         <div class="row">
+            @foreach ($profiles as $profiler)
+                <div class="media">
+                    @if(strlen($profiler->avatar) > 0)
+                        <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature"
+                                width="80">
+                    @else
+                        <img src="https://static.asianetnews.com/img/default-user-avatar.png"
+                                width="80" style="margin-right: 20px">
+                    @endif
+                    <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
+                        <h5 class="mt-1"><b
+                                style="text-transform: capitalize">{{ $profiler->role_name }}</b>
+                            | {{ $profiler->name }}</h5>
+
+                        <h6 class="mt-1">{{ $profiler->email }}</h6>
+                        <p>
+                            {{ $profiler->dateOfBirth }}
+                        </p>
+                        <p>
+                            Crée le : {{ $profiler->created_at }}
+                        </p>
+                    </div>
+                </div>
+                <hr/>
+            @endforeach
             @foreach($videos as $video)
             <div class="col-sm-12">
                 <div class="col-sm-4">
