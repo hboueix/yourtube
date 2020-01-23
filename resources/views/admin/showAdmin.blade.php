@@ -286,7 +286,7 @@
                     <div class="card-body">
                         <ul>
                             @foreach($categories as $categorie)
-                                <li>{{$categorie->title}}</li>
+                                <li>{{$categorie->title}} <a href="{{route('category_delete', $categorie->id)}}"><i class="fas fa-times"></i></a> </li>
                             @endforeach
                         </ul>
                     </div>

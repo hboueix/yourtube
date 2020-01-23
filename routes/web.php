@@ -115,6 +115,10 @@ Route::middleware(['role:administrateur', 'verified'])->group(function () {
         'as' => 'category_create',
         'uses' => 'CategoriesController@create'
     ]);
+    Route::get('/category/delete/{id}', [
+        'as' => 'category_delete',
+        'uses' => 'CategoriesController@destroy'
+    ]);
 });
 
 Route::middleware(['role:administrateur|moderateur', 'verified'])->group(function () {
