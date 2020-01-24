@@ -71,7 +71,7 @@
                 <a href="{{ route('video_show', $r_video->id) }}"
                    style="text-decoration: none; color: inherit">
                     <div
-                        style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
+                        style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $r_video->miniature)}}'); background-position: center; background-size: cover">
                     </div>
                     <div class="card-body">
                         <h5
