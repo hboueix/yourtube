@@ -1,6 +1,14 @@
 @extends('layouts.app')
 @section('content')
     <!-- Modal -->
+    @if (session('report_approved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Signalement appouvé avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     @if (session('report_deleted'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             Signalement supprimé avec succès !
@@ -9,7 +17,15 @@
             </button>
         </div>
     @endif
-    @if (session('comments_deleted'))
+    @if (session('comment_approved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Commentaire approuvé avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if (session('comment_deleted'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             Commentaire supprimé avec succès !
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -78,14 +94,15 @@
                     </thead>
                     <tbody>
                     @foreach($reports as $report)
+{{--                        @php(dd($reports))--}}
                         <tr>
                             <td><a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
                             <td><a href="{{route('video_show', $report->video_id)}}" target="_blank">{{$report->title}}</a></td>
                             <td>{{$report->content}}</td>
                             <td>
-                                <a href="{{ route('video_show', $report->video_id) }}">
+                                <a href="{{ route('report_approve', $report->report_id) }}">
                                     <button type="button" class="btn btn-success">
-                                        <i class="fas fa-eye"></i>
+                                        <i class="fas fa-check"></i>
                                     </button>
                                 </a>
                                 <a href="{{ route('report_destroy', $report->report_id) }}">
@@ -121,8 +138,8 @@
                             <td>{{$comment->content}}</td>
                             <td>
                                 <a href="{{route('comment_approve', $comment->comment_id)}}">
-                                    <button type="button" class="btn btn-success"><i
-                                            class="fas fa-check"></i>
+                                    <button type="button" class="btn btn-success">
+                                        <i class="fas fa-check"></i>
                                     </button>
                                 </a>
                                 <a href="{{route('comment_destroy', $comment->comment_id)}}">
