@@ -7,7 +7,7 @@
         <hr/>
         <div class="row">
             @foreach ($profiles as $profiler)
-                <div class="card col align-self-center align-items-center mb-3">
+                <div class="card w-50 align-self-center align-items-center">
                     <a href="{{ route('profile_show', $profiler->name) }}" style="text-decoration: none; color: inherit;">
                     @if(strlen($profiler->avatar) > 0)
                         <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mt-3" alt="miniature" style="border-radius: 100%;"
@@ -30,11 +30,11 @@
                         @endif
                     </div>
                 </div>
-                <hr/>
             @endforeach
+            <div class="col-sm-12 mb-3"></div>
             @foreach($videos as $video)
             <div class="col-sm-12">
-                <div class="card w-100 row" style="display: inline-block;">
+                <div class="card w-100" style="display: inline-block;">
                     <a href="{{ route('video_show', $video->id) }}"
                         style="text-decoration: none; color: inherit">
                             <img class="card-img-left mr-3" style="float:left; width: 25%;" src="{{asset('storage/'. $video->miniature)}}"></img>
