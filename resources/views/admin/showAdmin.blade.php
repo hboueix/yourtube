@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     <!-- Modal -->
-    @if (session('video_deleted'))
+    @if (session('report_deleted'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Vidéo supprimée avec succès !
+            Signalement supprimé avec succès !
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -52,8 +52,8 @@
                                     </button>
                                 </a>
                                 <a href="{{route('video_destroy', $video->id)}}">
-                                    <button type="button" class="btn btn-danger"><i
-                                            class="fas fa-times"></i>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fas fa-times"></i>
                                     </button>
                                 </a>
                             </td>
@@ -79,7 +79,7 @@
                     <tbody>
                     @foreach($reports as $report)
                         <tr>
-                            <td><a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
+                            <td>{{$report->report_id}}<a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
                             <td><a href="{{route('video_show', $report->video_id)}}" target="_blank">{{$report->title}}</a></td>
                             <td>{{$report->content}}</td>
                             <td>
@@ -88,8 +88,8 @@
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </a>
-                                <a href="{{ route('report_destroy', $report->id) }}">
-                                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Supprimer le signalement">
+                                <a href="{{ route('report_destroy', $report->report_id) }}">
+                                    <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer le signalement">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </a>
@@ -278,4 +278,9 @@
             </form>
         </div>
     </div>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 @endsection
