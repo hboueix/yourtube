@@ -54,7 +54,9 @@ class ProfileController extends Controller
         $auth_id = Auth::id();
 
         $user = DB::table('users')->where('name', $slug)->first();
-        if ($user == null) {
+        if ($user->id == $auth->id) {
+            $this->middleware('auth');
+        } else if ($user == null) {
             return abort(404);
         } else {
             $profile = DB::table('profiles')->get()->where('user_id', $user->id)->first();
