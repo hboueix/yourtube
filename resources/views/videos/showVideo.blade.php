@@ -140,15 +140,17 @@
                         </button>
                     </a>
                 </div>
-                @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_video">
-                    <i class="fas fa-times" style="margin-right: 10px"></i>Supprimer
-                </button>
-                @else
-                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
-                        class="fas fa-flag"
-                        style="margin-right: 10px"></i>Signaler
-                </button>
+                @if(Auth::user())
+                    @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_video">
+                        <i class="fas fa-times" style="margin-right: 10px"></i>Supprimer
+                    </button>
+                    @else
+                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
+                            class="fas fa-flag"
+                            style="margin-right: 10px"></i>Signaler
+                    </button>
+                    @endif
                 @endif
             </div>
         </div>
