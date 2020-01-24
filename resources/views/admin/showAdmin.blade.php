@@ -78,8 +78,9 @@
                     </thead>
                     <tbody>
                     @foreach($reports as $report)
+{{--                        @php(dd($report));--}}
                         <tr>
-                            <td><a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
+                            <td>{{$report->report_id}}<a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
                             <td><a href="{{route('video_show', $report->video_id)}}" target="_blank">{{$report->title}}</a></td>
                             <td>{{$report->content}}</td>
                             <td>
@@ -88,7 +89,7 @@
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </a>
-                                <a href="{{ route('report_destroy', $report->id) }}">
+                                <a href="{{ route('report_destroy', $report->report_id) }}">
                                     <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer le signalement">
                                         <i class="fas fa-trash"></i>
                                     </button>
