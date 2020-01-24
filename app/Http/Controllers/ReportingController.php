@@ -71,12 +71,16 @@ class ReportingController extends Controller
         $reports = DB::table('reportings')
             ->join('users', 'reporter_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
-            ->get()->all();
+            ->get(['reports.id AS report_id', 'users.id AS user_id', 'videos.id AS video_id', 'users.*', 'videos.*'])
+            ->all();
+//        ->get()->all();
+        //dd($reports);
         $comments = DB::table('comments')
             ->where('is_seen', 0)
             ->join('users', 'user_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
-            ->get(['comments.id AS comment_id', 'users.id AS user_id', 'videos.id AS video_id', 'comments.*', 'users.*', 'videos.*'])->all();
+            ->get(['comments.id AS comment_id', 'users.id AS user_id', 'videos.id AS video_id', 'comments.*', 'users.*', 'videos.*'])
+            ->all();
         $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')
             ->join('model_has_roles', 'users.id', '=', 'model_id')
             ->join('roles', 'roles.id', '=', 'role_id')
