@@ -8,7 +8,7 @@
         <div class="row">
             @foreach ($profiles as $profiler)
                 <div class="card col align-self-center align-items-center mb-3">
-                    <a href="{{ route('profile_show', $profiler->name) }}" style="text-decoration: none; color: inherit">
+                    <a href="{{ route('profile_show', $profiler->name) }}" style="text-decoration: none; color: inherit;">
                     @if(strlen($profiler->avatar) > 0)
                         <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mt-3" alt="miniature" style="border-radius: 100%;"
                                 width="80">
@@ -37,7 +37,7 @@
                 <div class="card w-100 row" style="display: inline-block;">
                     <a href="{{ route('video_show', $video->id) }}"
                         style="text-decoration: none; color: inherit">
-                            <img class="card-img-left" style="float:left;" src="{{asset('storage/'. $video->miniature)}}"></img>
+                            <img class="card-img-left mr-3" style="float:left; width: 25%;" src="{{asset('storage/'. $video->miniature)}}"></img>
                         <div class="card-body">
                             <h5 class="card-title">{{ $video->title }}</h5>
                             <span><i class="fas fa-eye mr-1"></i>{{$video->nbWatch}}</span>
