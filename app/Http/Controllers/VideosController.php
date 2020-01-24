@@ -206,7 +206,11 @@ class VideosController extends Controller
     {
         $auth_id = Auth::id();
         $videos = DB::table('videos')->select('id', 'user_id')->where('id', $id)->first();
-        if ($auth_id == $videos->user_id || Auth::user()->hasRole('administrateur')) {
+        $reporting = DB::table('reportings')->select('id')->where("video_id", '=', $id)->first();
+        if ($auth_id == $videos->user_id || Auth::user()->hasAnyRole(['administrateur', 'moderateur'])) {
+            if ($reporting != null) {
+                DB::table('reportings')->where("video_id", '=', $id)->delete();
+            }
             DB::table('videos')->where('id', '=', $id)->delete();
             return redirect()->route('profile_show', Auth::user()->name)->with('video_deleted', true);
         }
