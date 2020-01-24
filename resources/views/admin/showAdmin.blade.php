@@ -174,10 +174,10 @@
                             <div class="media">
                                 @if(strlen($profiler->avatar) > 0)
                                     <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature"
-                                         width="80">
+                                         width="80" height="80">
                                 @else
                                     <img src="https://static.asianetnews.com/img/default-user-avatar.png"
-                                         width="80" style="margin-right: 20px">
+                                         class="mr-3" width="80" height="80">
                                 @endif
                                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
                                     <h5 class="mt-1"><b
