@@ -10,10 +10,10 @@
                 <div class="card w-50 align-self-center align-items-center">
                     <a href="{{ route('profile_show', $profiler->name) }}" style="text-decoration: none; color: inherit;">
                     @if(strlen($profiler->avatar) > 0)
-                        <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mt-3" alt="miniature" style="border-radius: 100%;height: 80%;"
+                        <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mt-3" alt="miniature" style="border-radius: 100%;max-height: 80px;"
                                 width="80">
                     @else
-                        <img src="https://static.asianetnews.com/img/default-user-avatar.png" class="mt-3" alt="miniature" style="border-radius: 100%;height: 80%;"
+                        <img src="https://static.asianetnews.com/img/default-user-avatar.png" class="mt-3" alt="miniature" style="border-radius: 100%;max-height: 80px;"
                                 width="80">
                     @endif
                     <div style="text-align:center; text-overflow:  ellipsis;  overflow: hidden !important;">
