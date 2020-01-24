@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comments;
 use App\Reporting;
 use App\Videos;
 use Illuminate\Http\RedirectResponse;
@@ -69,6 +70,7 @@ class ReportingController extends Controller
             ->where('is_valid', 0)
             ->get()->all();
         $reports = DB::table('reportings')
+            ->where('is_seen', 0)
             ->join('users', 'reporter_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
             ->get(['reportings.id AS report_id', 'users.id AS user_id', 'videos.id AS video_id', 'reportings.*', 'users.*', 'videos.*'])
@@ -139,4 +141,10 @@ class ReportingController extends Controller
         return redirect()->route('reportings')->with('report_deleted', true);
     }
 
+    public function approve(Reporting $reporting, $id) {
+        DB::table('reportings')->where('id', $id)->update([
+            'is_seen' => 1
+        ]);
+        return redirect()->route('reportings')->with('report_approved', true);
+    }
 }
