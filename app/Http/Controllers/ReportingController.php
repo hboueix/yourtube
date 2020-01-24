@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Comment;
 
 class ReportingController extends Controller
 {
@@ -127,18 +128,12 @@ class ReportingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Reporting $reporting
-     * @return RedirectResponse
+     * @param Reporting $reporting
+     * @return \Illuminate\Http\Response
      */
-    public function c_destroy(Reporting $reporting, $id, Request $request)
+    public function destroy(Reporting $reporting, $id)
     {
-        DB::table('comments')->where('id', $id)->delete();
-        return redirect()->route('reportings')->with('comments_deleted', true);
-    }
-
-    public function r_destroy(Videos $videos, $id, Request $request)
-    {
-        DB::table('reportings')->where('video_id', $id)->delete();
+        DB::table('reportings')->where('id', $id)->delete();
         return redirect()->route('reportings')->with('report_deleted', true);
     }
 
