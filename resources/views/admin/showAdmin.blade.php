@@ -177,7 +177,7 @@
                                          width="80" height="80">
                                 @else
                                     <img src="https://static.asianetnews.com/img/default-user-avatar.png"
-                                         class="mr-3" width="80" height="80">
+                                         class="mr-3" width="80" height="80" style="border-radius: 100%">
                                 @endif
                                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
                                     <h5 class="mt-1"><b

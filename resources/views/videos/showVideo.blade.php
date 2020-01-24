@@ -129,10 +129,10 @@
                 <div class="d-flex align-items-center">
                     @if(strlen($yourtubeur->avatar) > 0)
                         <img src="{{ asset('storage/' . $yourtubeur->avatar) }}" class="mr-3" alt="miniature"
-                             style="width: 80px; border-radius: 100%">
+                             style="width: 80px; height: 80px; border-radius: 100%">
                     @else
                         <img src="https://static.asianetnews.com/img/default-user-avatar.png"
-                             style="width: 80px; border-radius: 100%">
+                             style="width: 80px; height: 80px; border-radius: 100%">
                     @endif
                     <h4 class="ml-2">{{$yourtubeur->first_name . ' ' . $yourtubeur->last_name}}</h4>
                 </div>
