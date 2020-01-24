@@ -71,10 +71,8 @@ class ReportingController extends Controller
         $reports = DB::table('reportings')
             ->join('users', 'reporter_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
-            ->get(['reportings.id AS report_id', 'users.id AS user_id', 'videos.id AS video_id', 'users.*', 'videos.*'])
+            ->get(['reportings.id AS report_id', 'users.id AS user_id', 'videos.id AS video_id', 'reportings.*', 'users.*', 'videos.*'])
             ->toArray();
-//        ->get()->all();
-        dd($reports);
         $comments = DB::table('comments')
             ->where('is_seen', 0)
             ->join('users', 'user_id', '=', 'users.id')
