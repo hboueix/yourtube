@@ -143,7 +143,7 @@ Route::middleware(['role:administrateur|moderateur', 'verified'])->group(functio
 
     Route::get('/admin/report/destroy/{id}', [
         'as' => 'report_destroy',
-        'uses' => 'ReportingController@r_destroy'
+        'uses' => 'ReportingController@destroy'
     ]);
     Route::get('/admin/comment/destroy/{id}', [
         'as' => 'comment_destroy',
