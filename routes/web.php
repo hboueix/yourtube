@@ -79,6 +79,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'as' => 'video_destroy',
         'uses' => 'VideosController@destroy'
     ]);
+    Route::post('/video/destroy/{id}', [
+        'as' => 'video_destroy',
+        'uses' => 'VideosController@destroy'
+    ]);
     Route::get('/video/edit/{id}', [
         'as' => 'video_edit',
         'uses' => 'VideosController@edit'
