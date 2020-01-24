@@ -92,6 +92,29 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="delete_video" tabindex="-1" role="dialog" aria-labelledby="delete_video" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Supprimer cette vidéo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{route('video_destroy', $video->id)}}">
+                    <div class="modal-body">
+                        <p>Voulez -vous vraiment supprimer cette vidéo ?</p>
+                    </div>
+                    @csrf
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
+                                                                        style="margin-right: 10px"></i>Supprimer !
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <video width="100%" controls>
             <source src="{{asset('storage/'. $video->path) }}" type="video/mp4">
@@ -117,10 +140,16 @@
                         </button>
                     </a>
                 </div>
+                @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_video">
+                    <i class="fas fa-times" style="margin-right: 10px"></i>Supprimer
+                </button>
+                @else
                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
                         class="fas fa-flag"
                         style="margin-right: 10px"></i>Signaler
                 </button>
+                @endif
             </div>
         </div>
         <hr>
