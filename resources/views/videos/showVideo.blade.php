@@ -218,10 +218,10 @@
                     <li class="media mb-2">
                         @if(strlen($comment->avatar) > 0)
                             <img src="{{ asset('storage/' . $comment->avatar) }}" class="mr-3" alt="miniature"
-                                 style="width: 80px; border-radius: 100%; margin-right: 20px">
+                                 style="width: 80px; height: 80px; border-radius: 100%; margin-right: 20px">
                         @else
                             <img src="https://static.asianetnews.com/img/default-user-avatar.png"
-                                 style="width: 80px; border-radius: 100%; margin-right: 20px">
+                                 style="width: 80px; height: 80px; border-radius: 100%; margin-right: 20px">
                         @endif
                         <div class="media-body">
                             <h5 class="mt-0 mb-1">{{$comment->first_name . ' ' . $comment->last_name}}</h5>
