@@ -179,10 +179,13 @@
         <h2>Vidéos similaires</h2>
         <div class="d-flex justify-content-around flex-nowrap">
             @foreach($related_videos as $related_video)
-                <div class="text-center" style="background-image: url('{{asset('storage/' . $related_video->miniature)}}'); width: 32%; height: 200px; background-position: center; background-repeat: no-repeat; background-size: cover">
-                    <a href="{{route('video_show', $related_video->id)}}">
-                    <br>
-                    <h3 class="font-weight-bold" style="color: white;">{{$related_video->title}}</h3>
+                <div class="card w-25 text-center">
+                    <a href="{{route('video_show', $related_video->id)}}" style="text-decoration: none; color: inherit;">
+                        <img class="card-img-top" src="{{asset('storage/' . $related_video->miniature)}}" style="width: 100%;" />
+                        <div class="card-body">
+                            <h3 class="font-weight-bold">{{$related_video->title}}</h3>
+                            <span><i class="fas fa-eye mr-1"></i>{{$related_video->nbWatch}}</span>
+                        </div>
                     </a>
                 </div>
             @endforeach
