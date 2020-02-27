@@ -37,9 +37,9 @@ Le compte créé est :
 - Modification d'une vidéo
 - Suppression d'une vidéo
 - Partage d'une vidéo
-- Like / Dislike d'une vidéo
+- Like / Dislike d'une vidéo (ajax)
 - Signalement d'une vidéo
-- Commenter une vidéo
+- Commenter une vidéo (ajax)
 
 ### Administration
 
@@ -48,7 +48,8 @@ Le compte créé est :
 - Modération des signalements
 - Modération des commentaires
 - Création / suppression des catégories
-- Notifications
+- Notifications sur l'ensemble du site
+- Suivi graphiques de nombreuses statistiques
 
 ### Utilisation
 
@@ -57,4 +58,12 @@ Le compte créé est :
 - Recherche d'un profil
 - Visionnage public d'un profil
 - Suivi du profil sur dashboard
+- Abonnement à un profil
+- Notifications (mail, web notif api, toasters, etc.)
+
+### Premium
+
+- Espace de stockage contrôlé et limité
+- Paiement pour compte premium et espace illimité
+- Personnalisations supplémentaire
 
