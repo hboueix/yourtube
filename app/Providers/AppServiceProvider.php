@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+/*        Schema::defaultStringLength(191);*/
         if (Schema::hasTable('videos') && Schema::hasTable('comments') && Schema::hasTable('reportings')) {
             $notifications_videos = DB::table('videos')->where('is_valid', 0)->count();
             $notifications_comments = DB::table('comments')->where('is_seen', 0)->count();

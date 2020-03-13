@@ -69,25 +69,31 @@ class ReportingController extends Controller
         $videos = DB::table('videos')
             ->where('is_valid', 0)
             ->get()->all();
+
         $reports = DB::table('reportings')
             ->where('is_seen', 0)
             ->join('users', 'reporter_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
             ->get(['reportings.id AS report_id', 'users.id AS user_id', 'videos.id AS video_id', 'reportings.*', 'users.*', 'videos.*'])
             ->toArray();
+
         $comments = DB::table('comments')
             ->where('is_seen', 0)
             ->join('users', 'user_id', '=', 'users.id')
             ->join('videos', 'video_id', '=', 'videos.id')
             ->get(['comments.id AS comment_id', 'users.id AS user_id', 'videos.id AS video_id', 'comments.*', 'users.*', 'videos.*'])
             ->all();
+
         $profile = DB::table('profiles')->join('users', 'user_id', '=', 'users.id')
             ->join('model_has_roles', 'users.id', '=', 'model_id')
             ->join('roles', 'roles.id', '=', 'role_id')
             ->get(['roles.name AS role_name', 'users.*', 'profiles.*'])
             ->toArray();
+
         $categories = DB::table('categories')->get()->all();
+
         $roles = DB::table('roles')->get()->all();
+
         return view('admin/showAdmin', [
             'videos' => $videos,
             'reports' => $reports,
@@ -141,7 +147,8 @@ class ReportingController extends Controller
         return redirect()->route('reportings')->with('report_deleted', true);
     }
 
-    public function approve(Reporting $reporting, $id) {
+    public function approve(Reporting $reporting, $id)
+    {
         DB::table('reportings')->where('id', $id)->update([
             'is_seen' => 1
         ]);

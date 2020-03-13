@@ -94,7 +94,6 @@
                     </thead>
                     <tbody>
                     @foreach($reports as $report)
-{{--                        @php(dd($reports))--}}
                         <tr>
                             <td><a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
                             <td><a href="{{route('video_show', $report->video_id)}}" target="_blank">{{$report->title}}</a></td>

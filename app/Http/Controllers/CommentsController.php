@@ -107,9 +107,7 @@ class CommentsController extends Controller
     }
 
     public function approve(Comments $comments, $id) {
-        DB::table('comments')->where('id', $id)->update([
-            'is_seen' => 1
-        ]);
+        DB::table('comments')->where('id', $id)->update(['is_seen' => 1]);
         return redirect()->route('reportings')->with('comment_approved', true);
     }
 }
