@@ -1,19 +1,23 @@
 @extends('layouts.app')
 @section('content')
     @if (session('video_updated'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Vidéo mise en ligne avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Vidéo mise en ligne avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('video_deleted'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Vidéo supprimée avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Vidéo supprimée avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     <div class="container align-items-center">
