@@ -2,67 +2,93 @@
 
 @section('content')
     @if (session('video_reported'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Vidéo signalée avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Vidéo signalée avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('comment_created'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Commentaire publié avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Commentaire publié avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('video_disliked_error'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            Vous ne pouvez pas disliker une vidéo que vous avez déjà disliké !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Vous ne pouvez pas disliker une vidéo que vous avez déjà disliké !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('video_disliked'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Vidéo disliked avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Vidéo disliked avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('video_liked_error'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            Vous ne pouvez pas liker une vidéo que vous avez déjà liké !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Vous ne pouvez pas liker une vidéo que vous avez déjà liké !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('video_liked'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Vidéo liked avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Vidéo liked avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('user_subscribed'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Vous vous êtes abonné avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Vous vous êtes abonné avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    @endif
+    @if (session('user_unsubscribed'))
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Vous vous êtes désabonné avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('user_subscribed_error'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            Vous êtes déjà abonné à ce profil !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Vous êtes déjà abonné à ce profil !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     <!-- Modal -->
@@ -92,7 +118,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="delete_video" tabindex="-1" role="dialog" aria-labelledby="delete_video" aria-hidden="true">
+    <div class="modal fade" id="delete_video" tabindex="-1" role="dialog" aria-labelledby="delete_video"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -108,7 +135,7 @@
                     @csrf
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
-                                                                        style="margin-right: 10px"></i>Supprimer !
+                                                                        style="margin-right: 10px"></i>Supprimer
                         </button>
                     </div>
                 </form>
@@ -142,14 +169,15 @@
                 </div>
                 @if(Auth::user())
                     @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_video">
-                        <i class="fas fa-times" style="margin-right: 10px"></i>Supprimer
-                    </button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_video">
+                            <i class="fas fa-times" style="margin-right: 10px"></i>Supprimer
+                        </button>
                     @else
-                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#reporting"><i
-                            class="fas fa-flag"
-                            style="margin-right: 10px"></i>Signaler
-                    </button>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                                data-target="#reporting"><i
+                                class="fas fa-flag"
+                                style="margin-right: 10px"></i>Signaler
+                        </button>
                     @endif
                 @endif
             </div>
@@ -170,11 +198,29 @@
             </a>
             <div>
                 @if($yourtubeur->user_id == \Illuminate\Support\Facades\Auth::id())
-                    <button type="button" class="btn btn-outline-primary">S'abonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
+                    <span class="btn btn-primary ml-2">{{$nb_subscribers ?? 0 }}
+                        @if($nb_subscribers <= 1)
+                            abonné
+                        @else
+                            abonnés
+                        @endif
+                    </span>
+                @else
+                    @if($subscriber != null)
+                        @if($subscriber->is_subscribed === 1)
+                            <a href="{{route('profile_unsubscribe', [$yourtubeur->id, $video->id])}}">
+                                <button type="button" class="btn btn-danger">Se désabonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
+                            </a>
+                        @else
+                            <a href="{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}">
+                                <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
+                            </a>
+                        @endif
                     @else
-                    <a href="{{route('profile_subscribe', $yourtubeur->id)}}">
-                        <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
-                    </a>
+                        <a href="{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}">
+                            <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
+                        </a>
+                    @endif
                 @endif
             </div>
         </div>
@@ -207,21 +253,23 @@
         </div>
         <hr/>
         @if(count($related_videos) > 0)
-        <h2>Vidéos similaires</h2>
-        <div class="d-flex justify-content-around flex-nowrap">
-            @foreach($related_videos as $related_video)
-                <div class="card w-25 text-center">
-                    <a href="{{route('video_show', $related_video->id)}}" style="text-decoration: none; color: inherit;">
-                        <img class="card-img-top" src="{{asset('storage/' . $related_video->miniature)}}" style="width: 100%;" />
-                        <div class="card-body">
-                            <h3 class="font-weight-bold">{{$related_video->title}}</h3>
-                            <span><i class="fas fa-eye mr-1"></i>{{$related_video->nbWatch}}</span>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-        <hr/>
+            <h2>Vidéos similaires</h2>
+            <div class="d-flex justify-content-around flex-nowrap">
+                @foreach($related_videos as $related_video)
+                    <div class="card w-25 text-center">
+                        <a href="{{route('video_show', $related_video->id)}}"
+                           style="text-decoration: none; color: inherit;">
+                            <img class="card-img-top" src="{{asset('storage/' . $related_video->miniature)}}"
+                                 style="width: 100%;"/>
+                            <div class="card-body">
+                                <h3 class="font-weight-bold">{{$related_video->title}}</h3>
+                                <span><i class="fas fa-eye mr-1"></i>{{$related_video->nbWatch}}</span>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+            <hr/>
         @endif
         <div>
             <h4>Commentaires</h4>

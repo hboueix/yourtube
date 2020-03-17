@@ -19,7 +19,7 @@ class VideosController extends Controller
         $categories = DB::table('categories')->get()->all();
         return view('videos/uploadVideo', [
             'categories' => $categories
-            ]);
+        ]);
     }
 
     /**
@@ -90,7 +90,16 @@ class VideosController extends Controller
             ->join('users', 'user_id', '=', 'users.id')
             ->where('users.id', $video->user_id)
             ->first();
+
         $comments = DB::table('comments')->where('video_id', $id)->orderByDesc('id')->get();
+
+        $subscriber = DB::table('subscribers')
+            ->where([
+                ['user_id', $yourtubeur->user_id],
+                ['subscriber_id', $auth_id]
+            ])
+            ->first();
+
         DB::table('videos')
             ->where('id', $id)
             ->update(['nbWatch' => ((int)$video->nbWatch + 1)]);
@@ -132,6 +141,7 @@ class VideosController extends Controller
         return view('videos/showVideo', [
             'video' => $video,
             'yourtubeur' => $yourtubeur,
+            'subscriber' => $subscriber,
             'comments' => $comments,
             'nb_likes' => $nb_likes,
             'nb_dislikes' => $nb_dislikes,
@@ -232,7 +242,8 @@ class VideosController extends Controller
         ]);
     }
 
-    public function approveVideo(Videos $videos, $id) {
+    public function approveVideo(Videos $videos, $id)
+    {
         DB::table('videos')->where('id', $id)->update(['is_valid' => 1]);
         return redirect()->route('reportings');
     }

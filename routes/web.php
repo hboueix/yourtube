@@ -91,9 +91,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'uses' => 'ReactionsController@dislike'
     ]);
 
-    Route::get('/profile/subscribe/{id}', [
+    Route::get('/profile/subscribe/{id}/{video_id}', [
         'as' => 'profile_subscribe',
         'uses' => 'SubscribersController@subscribe'
+    ]);
+
+    Route::get('/profile/unsubscribe/{id}/{video_id}', [
+        'as' => 'profile_unsubscribe',
+        'uses' => 'SubscribersController@unsubscribe'
     ]);
 });
 

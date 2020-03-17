@@ -9,20 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class SubscribersController extends Controller
 {
-    public function subscribe($id) {
+    public function subscribe($id, $video_id) {
         $auth_id = Auth::id();
 
-        $video = DB::table('videos')
-            ->where('user_id', $id)
-            ->first();
-        $yourtubeur = DB::table('profiles')
-            ->join('users', 'user_id', '=', 'users.id')
-            ->where('users.id', $video->user_id)
-            ->first();
         $subscribers = DB::table('subscribers')->where([
             'user_id' => $id,
             'subscriber_id' => $auth_id
         ])->first();
+
         if ($subscribers == null) {
             DB::table('subscribers')->insert([
                 'user_id' => $id,
@@ -31,8 +25,9 @@ class SubscribersController extends Controller
                 'created_at' => date('y-m-d h:m:s'),
                 'updated_at' => date('y-m-d h:m:s')
             ]);
-            /* Pb de redirection */
-            return redirect()->route('video_show', $video->id)->with('user_subscribed', true);
+
+            return redirect()->route('video_show', $video_id)->with('user_subscribed', true);
+
         } elseif($subscribers->is_subscribed == 0) {
             DB::table('subscribers')->where([
                 'user_id' => $id,
@@ -41,13 +36,30 @@ class SubscribersController extends Controller
                 'is_subscribed' => 1,
                 'updated_at' => date('y-m-d h:m:s')
             ]);
-            /* Pb de redirection */
-            return redirect()->route('video_show', $video->id)->with('user_subscribed', true);
+
+            return redirect()->route('video_show', $video_id)->with('user_subscribed', true);
+
         } else {
-            /* Pb de redirection */
-            return redirect()->route('video_show', $video->id)->with('user_subscribed_error', true);
+
+            return redirect()->route('video_show', $video_id)->with('user_subscribed_error', true);
+
         }
     }
+
+    public function unsubscribe($id, $video_id) {
+        $auth_id = Auth::id();
+
+        DB::table('subscribers')->where([
+            'user_id' => $id,
+            'subscriber_id' => $auth_id
+        ])->update([
+            'is_subscribed' => 0,
+            'updated_at' => date('y-m-d h:m:s')
+        ]);
+
+        return redirect()->route('video_show', $video_id)->with('user_unsubscribed', true);
+    }
+
     /**
      * Display a listing of the resource.
      *
