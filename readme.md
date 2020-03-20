@@ -1,5 +1,8 @@
 # YourTube
 
+Avant de commencer, assurez-vous d'avoir Docker et d'avoir copié `docker-compose.override.yml.dist` en `docker-compose.override.yml` afin de 
+pouvoir redéfinir les services que vous souhaitez utiliser et les ports attribués.
+
 ## Procédure de mise en place du projet
 
 - Cloner le projet
