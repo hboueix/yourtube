@@ -25,15 +25,7 @@ Route::get('/results', [
     'uses' => 'SearchController@index'
 ]);
 
-Auth::routes(['verify' => true]);
-
-Route::middleware(['auth', 'verified'])->group(function () {
-
-    Route::get('/dashboard/', [
-        'as' => 'home',
-        'uses' => 'HomeController@index'
-    ]);
-
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile/edit/', [
         'as' => 'profile_edit',
         'uses' => 'ProfileController@edit'
@@ -46,7 +38,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'as' => 'profile_destroy',
         'uses' => 'ProfileController@destroy'
     ]);
+});
 
+Auth::routes(['verify' => true]);
+
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/video/', [
         'as' => 'video_form',
         'uses' => 'VideosController@index'
@@ -75,12 +71,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'as' => 'video_report',
         'uses' => 'ReportingController@index'
     ]);
-
-    Route::post('/comments/add/video/{id}', [
-        'as' => 'comments_post',
-        'uses' => 'CommentsController@create'
-    ]);
-
     Route::get('/video/like/{id}', [
         'as' => 'video_like',
         'uses' => 'ReactionsController@like'
@@ -89,6 +79,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/video/dislike/{id}', [
         'as' => 'video_dislike',
         'uses' => 'ReactionsController@dislike'
+    ]);
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
+    Route::get('/dashboard/', [
+        'as' => 'home',
+        'uses' => 'HomeController@index'
+    ]);
+
+    Route::post('/comments/add/video/{id}', [
+        'as' => 'comments_post',
+        'uses' => 'CommentsController@create'
     ]);
 
     Route::get('/profile/subscribe/{id}/{video_id}', [
@@ -156,10 +159,10 @@ Route::middleware(['role:administrateur|moderateur', 'verified'])->group(functio
     ]);
 });
 
-Route::middleware(['role:moderateur'])->group(function () {
+/*Route::middleware(['role:moderateur'])->group(function () {
 
 });
 
 Route::middleware(['role:yourtubeur'])->group(function () {
 
-});
+});*/
