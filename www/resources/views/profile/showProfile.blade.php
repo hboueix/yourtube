@@ -89,22 +89,22 @@
                     {{--@php(dd($video));--}}
                     <div class="text-center">
                         <div style="font-size: 20px;">
-                            <span class="badge badge-secondary"> <i class="fas fa-thumbs-up"
+                            <span title="Nombre de likes" class="badge badge-secondary"> <i class="fas fa-thumbs-up"
                                                                     style="margin-right: 10px"></i><span>{{ $video->likes }}</span></span>
-                            <span class="badge badge-secondary"> <i class="fas fa-thumbs-down"
+                            <span title="Nom de dislikes" class="badge badge-secondary"> <i class="fas fa-thumbs-down"
                                                                     style="margin-right: 10px"></i><span>{{ $video->dislikes }}</span></span>
-                            <span class="badge badge-secondary">  <i class="fas fa-eye"
+                            <span title="Nombre de vues" class="badge badge-secondary">  <i class="fas fa-eye"
                                                                      style="margin-right: 10px"></i><span>{{ $video->nbWatch }}</span></span>
                         </div>
                         <br>
                         @if($profile->id == \Illuminate\Support\Facades\Auth::id())
                             <a href="{{ route('video_edit', $video->id) }}">
-                                <button type="submit" class="btn btn-outline-dark btn-sm"><i
+                                <button type="submit" title="Modifier la vidéo" class="btn btn-outline-dark btn-sm"><i
                                         class="fas fa-pencil-alt"></i>
                                 </button>
                             </a>
                             <a href="{{ route('video_destroy', $video->id) }}">
-                                <button type="submit" class="btn btn-danger btn-sm">
+                                <button type="submit" title="Supprimer la vidéo" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </a>
