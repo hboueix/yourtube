@@ -211,11 +211,10 @@
                                 <div class="text-center" style="width: 30%;">
                                     <form method="post" action="{{route('role_update', $profiler->id)}}">
                                         <div class="form-group">
-                                            <label for="exampleFormControlSelect1">Éditer le rôle</label>
                                             <select class="form-control d-inline" id="exampleFormControlSelect1"
                                                     style="width: 70%" name="roles">
                                                 @foreach($roles as $role)
-                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                    <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
                                                 @endforeach
                                             </select>
                                             <input type="hidden" name="id" value="">
