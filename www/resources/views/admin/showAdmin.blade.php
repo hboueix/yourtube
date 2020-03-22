@@ -1,9 +1,17 @@
 @extends('layouts.app')
 @section('content')
     <!-- Modal -->
+    @if (session('video_approved'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Vidéo approuvée avec succès !
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     @if (session('report_approved'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Signalement appouvé avec succès !
+            Signalement approuvé avec succès !
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
