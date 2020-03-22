@@ -66,30 +66,31 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
                         </li>
+{{--
                         @if (Route::has('register'))
+--}}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
                             </li>
+{{--
                         @endif
+--}}
                     @else
-                        <a href="{{route('profile_show', Auth::user()->name ?? '')}}">
-                            @if(isset(Auth::user()->profile->avatar))
-                                @if(strlen(Auth::user()->profile->avatar))
-                                <img src="{{ asset('storage/' . Auth::user()->profile->avatar) }}" width="40"
-                                     height="40" style="border-radius: 100%">
-                                @else
-                                    <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40"
-                                         height="40" style="border-radius: 100%">
-                                @endif
-                            @else
-                                <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40"
-                                     height="40" style="border-radius: 100%">
-                            @endif
-                        </a>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ ucfirst(Auth::user()->name) }} <span class="caret"></span>
+                                @if(isset(Auth::user()->profile->avatar))
+                                    @if(strlen(Auth::user()->profile->avatar))
+                                        <img src="{{ asset('storage/' . Auth::user()->profile->avatar) }}" width="40"
+                                             height="40" style="border-radius: 100%">
+                                    @else
+                                        <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40"
+                                             height="40" style="border-radius: 100%">
+                                    @endif
+                                @else
+                                    <img src="https://static.asianetnews.com/img/default-user-avatar.png" width="40"
+                                         height="40" style="border-radius: 100%">
+                                @endif {{ ucfirst(Auth::user()->name) }} <span class="caret"></span>
                             </a>
 
 
@@ -119,13 +120,19 @@
                         </li>
                         @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
                             <div class="d-flex align-items-center">
-                                <a href="{{route('reportings')}}"><span class="badge badge-danger"><i
-                                            class="far fa-bell mr-1"></i>{{$notifications ?? '0'}}</span>
-                                </a>
+                                @if($notifications === 0)
+                                    <a href="{{route('reportings')}}"><span class="badge badge-success"><i
+                                                class="far fa-bell mr-1"></i>{{$notifications ?? '0'}}</span>
+                                    </a>
+                                @else
+                                    <a href="{{route('reportings')}}"><span class="badge badge-danger"><i
+                                                class="far fa-bell mr-1"></i>{{$notifications ?? '0'}}</span>
+                                    </a>
+                                @endif
                             </div>
                         @endif
 
-                        <a href="{{ route('video_form') }}">
+                        <a class="d-flex" href="{{ route('video_form') }}">
                             <button type="submit" class="btn btn-light">
                                 <i class="fas fa-upload"></i>
                             </button>
