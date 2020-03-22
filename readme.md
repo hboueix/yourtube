@@ -11,7 +11,7 @@ pouvoir redéfinir les services que vous souhaitez utiliser et les ports attribu
 - Effectuer la commande : `composer install` puis `npm install`
 - Enfin `npm run dev`
 - Réaliser la commande : `php artisan migrate:refresh --seed`
-- Générer sa clé : `php artisan key generate`
+- Générer sa clé : `php artisan key:generate`
 - Créer le lien symbolique : `php artisan storage:link`
 - Lancer le serveur avec la commande : `php artisan serve`
 - Yourtube est accessible sur l'adresse 127.0.0.1:8000 !
