@@ -30,7 +30,21 @@ class ProfileController extends Controller
      */
     public function create(Request $request)
     {
-
+        if (null == Auth::id()) {
+            DB::table('profiles')
+                ->insert([
+                    'id' => Auth::id(),
+                    'user_id' => Auth::id(),
+                    'avatar' => '',
+                    'last_name' => '',
+                    'first_name' => '',
+                    'subscribers' => 0,
+                    'dateOfBirth' => date('y-m-d'),
+                    'created_at' => date('y-m-d h:m:s'),
+                    'updated_at' => date('y-m-d h:m:s')
+                ]);
+        }
+        return redirect()->route('profile_edit');
     }
 
     /**
@@ -54,8 +68,8 @@ class ProfileController extends Controller
         $auth_id = Auth::id();
 
         $user = DB::table('users')->where('name', $slug)->first();
-	    if ($user->id == $auth_id && $user->email_verified_at == null) {
-	        return redirect()->route('verification.notice');
+        if ($user->id == $auth_id && $user->email_verified_at == null) {
+            return redirect()->route('verification.notice');
         } else if ($user == null) {
             return abort(404);
         } else {
@@ -77,24 +91,9 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        $auth_id = Auth::id();
-        $profile_id = DB::table('profiles')->select('id')->where('user_id', $auth_id)->get();
-        if (sizeof($profile_id) == 0) {
-            DB::table('profiles')
-                ->insert([
-                    'id' => $auth_id,
-                    'user_id' => $auth_id,
-                    'avatar' => '',
-                    'last_name' => '',
-                    'first_name' => '',
-                    'dateOfBirth' => date('y-m-d'),
-                    'created_at' => date('y-m-d h:m:s'),
-                    'updated_at' => date('y-m-d h:m:s')
-                ]);
-        }
-        $profile = DB::table('profiles')->get()->where('user_id', $auth_id)->first();
+        $profile = DB::table('profiles')->get()->where('user_id', Auth::id())->first();
         return view('profile/editProfile', [
-            'user_id' => $auth_id,
+            'user_id' => Auth::id(),
             'profile' => $profile
         ]);
     }

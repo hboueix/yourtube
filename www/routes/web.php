@@ -25,7 +25,16 @@ Route::get('/results', [
     'uses' => 'SearchController@index'
 ]);
 
+Auth::routes(['verify' => true]);
+
 Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/create/', [
+        'as' => 'profile_create',
+        'uses' => 'ProfileController@create'
+    ]);
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile/edit/', [
         'as' => 'profile_edit',
         'uses' => 'ProfileController@edit'
@@ -39,8 +48,6 @@ Route::middleware(['auth'])->group(function () {
         'uses' => 'ProfileController@destroy'
     ]);
 });
-
-Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/video/', [
