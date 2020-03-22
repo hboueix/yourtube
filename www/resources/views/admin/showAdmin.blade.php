@@ -206,14 +206,14 @@
                                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
                                     <h5 class="mt-1"><b
                                             style="text-transform: capitalize">{{ $profiler->role_name }}</b>
-                                        | {{ $profiler->name }}</h5>
+                                        | {{ ucfirst($profiler->name) }}</h5>
 
                                     <h6 class="mt-1">{{ $profiler->email }}</h6>
                                     <p>
                                         {{ $profiler->dateOfBirth }}
                                     </p>
                                     <p>
-                                        Crée le : {{ $profiler->created_at }}
+                                        <span class="font-weight-bold">Crée le</span> : {{ $profiler->created_at }}
                                     </p>
                                 </div>
                                 <div class="text-center" style="width: 30%;">
