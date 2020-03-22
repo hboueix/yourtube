@@ -245,7 +245,7 @@ class VideosController extends Controller
     public function approveVideo(Videos $videos, $id)
     {
         DB::table('videos')->where('id', $id)->update(['is_valid' => 1]);
-        return redirect()->route('reportings');
+        return redirect()->route('reportings')->with('video_approved', true);
     }
 
 }
