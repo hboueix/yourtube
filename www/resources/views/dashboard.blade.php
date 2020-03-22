@@ -30,7 +30,7 @@
                 <div class="card mb-3">
                     <div class="card-header">Dashboard</div>
                     <div class="card-body">
-                        Bonjour à vous, <span style="font-weight: 600">{{ $user->name  }}</span> !
+                        Bonjour à vous, <span style="font-weight: 600">{{ ucfirst($user->name)  }}</span> !
                         <br>
                         Félicitations pour votre rôle : <span
                             style="font-weight: 600">{{ucfirst($user->roles()->pluck('name')[0])}}</span>.
@@ -45,8 +45,8 @@
                                 <i class="fas fa-key" style="margin-right: 5px"></i>Changer de mot de passe
                             </button>
                         </a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete">
-                            <i class="fas fa-trash" style="margin-right: 5px"></i>Supprimer le compte
+                        <button type="button" title="Supprimer mon compte" class="pull-right btn btn-danger" data-toggle="modal" data-target="#delete">
+                            <i class="fas fa-trash"></i>
                         </button>
                     </div>
                 </div>
