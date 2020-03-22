@@ -1,24 +1,28 @@
 @extends('layouts.app')
 @section('content')
     @if (session('profile_updated'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Profil mis à jour avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Profil mis à jour avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('profile_avatar_error'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            L'avatar doit être une image en png ou jpg !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                L'avatar doit être une image en png ou jpg !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-header">{{ __('Editer son profil') }}</div>
                     <form method="post" action="{{ route('profile_update') }}" enctype="multipart/form-data"
