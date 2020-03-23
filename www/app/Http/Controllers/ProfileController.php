@@ -30,12 +30,14 @@ class ProfileController extends Controller
      */
     public function create(Request $request)
     {
-        if (null == Auth::id()) {
+        $profile = DB::table('profiles')->get()->where('user_id', Auth::id())->first();
+
+        if (null == $profile) {
             DB::table('profiles')
                 ->insert([
                     'id' => Auth::id(),
                     'user_id' => Auth::id(),
-                    'avatar' => '',
+                    'avatar' => 'default-user-avatar.png',
                     'last_name' => '',
                     'first_name' => '',
                     'subscribers' => 0,
@@ -65,22 +67,33 @@ class ProfileController extends Controller
      */
     public function show($slug)
     {
-        $auth_id = Auth::id();
+        $user = DB::table('users')
+            ->where('name', $slug)
+            ->first();
 
-        $user = DB::table('users')->where('name', $slug)->first();
-        if ($user->id == $auth_id && $user->email_verified_at == null) {
-            return redirect()->route('verification.notice');
-        } else if ($user == null) {
-            return abort(404);
+        $profile = DB::table('profiles')
+            ->where('user_id', $user->id)
+            ->first();
+
+        if (Auth::id() == $user->id) {
+            $videos = DB::table('videos')
+                ->orderBy('created_at', 'DESC')
+                ->where('user_id', $user->id)
+                ->get();
         } else {
-            $profile = DB::table('profiles')->get()->where('user_id', $user->id)->first();
-            $videos = DB::table('videos')->orderBy('created_at', 'DESC')->get()->where('user_id', $user->id);
-            return view('profile/showProfile', [
-                'user_id' => $auth_id,
-                'profile' => $profile,
-                'videos' => $videos,
-            ]);
+            $videos = DB::table('videos')
+                ->orderBy('created_at', 'DESC')
+                ->where([
+                    ['user_id', $user->id],
+                    ['is_valid', 1]
+                ])
+                ->get();
         }
+
+        return view('profile/showProfile', [
+            'profile' => $profile,
+            'videos' => $videos,
+        ]);
     }
 
     /**
