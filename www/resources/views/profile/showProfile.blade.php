@@ -60,7 +60,7 @@
             </div>
             <h3>Vidéos publiées</h3>
             <hr/>
-            @if(sizeof($videos) == 0)
+            @if(sizeof($videos) == 0 && $profile->id == \Illuminate\Support\Facades\Auth::id())
                 <div class="alert alert-warning" role="alert">
                     Vous n'avez pas publié de vidéo, <a href="{{ route('video_form') }}">publiez votre permière
                         vidéo</a> !
