@@ -209,16 +209,19 @@
                     @if($subscriber != null)
                         @if($subscriber->is_subscribed === 1)
                             <a href="{{route('profile_unsubscribe', [$yourtubeur->id, $video->id])}}">
-                                <button type="button" class="btn btn-danger">Se désabonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
+                                <button type="button" class="btn btn-danger">Se désabonner<span
+                                        class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
                             </a>
                         @else
                             <a href="{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}">
-                                <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
+                                <button type="button" class="btn btn-primary">S'abonner<span
+                                        class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
                             </a>
                         @endif
                     @else
                         <a href="{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}">
-                            <button type="button" class="btn btn-primary">S'abonner<span class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
+                            <button type="button" class="btn btn-primary">S'abonner<span
+                                    class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
                         </a>
                     @endif
                 @endif
@@ -250,6 +253,18 @@
                                                                         style="margin-right: 5px;"></i>Mail
                 </button>
             </a>
+            <p>
+                <a data-toggle="collapse" href="#iframe" role="button" aria-expanded="false"
+                   aria-controls="collapseExample">
+                    <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-code" style="margin-right: 5px;"></i>Intégrer
+                    </button>
+                </a>
+            </p>
+        </div>
+        <div class="collapse" id="iframe">
+            <div class="card card-body">
+                &lt;iframe width="560" height="315" src="{{asset('storage/'. $video->path)}}"&gt;&lt;/iframe&gt;
+            </div>
         </div>
         <hr/>
         @if(count($related_videos) > 0)
