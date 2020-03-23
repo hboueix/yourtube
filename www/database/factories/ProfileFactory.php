@@ -12,6 +12,6 @@ $factory->define(Profile::class, function (Faker $faker) {
         'last_name' => 'Yourtube',
         'first_name' => 'Administrateur',
         'dateOfBirth' => $faker->dateTime,
-        'avatar' => ''
+        'avatar' => 'default-user-avatar.png'
     ];
 });
