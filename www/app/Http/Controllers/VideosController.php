@@ -86,68 +86,72 @@ class VideosController extends Controller
             ->where('id', $id)
             ->first();
 
-        $yourtubeur = DB::table('profiles')
-            ->join('users', 'user_id', '=', 'users.id')
-            ->where('users.id', $video->user_id)
-            ->first();
+        if ($video->is_valid == 1 || $video->is_valid == 0 && Auth::id() == $video->user_id) {
+            $yourtubeur = DB::table('profiles')
+                ->join('users', 'user_id', '=', 'users.id')
+                ->where('users.id', $video->user_id)
+                ->first();
 
-        $comments = DB::table('comments')->where('video_id', $id)->orderByDesc('id')->get();
+            $comments = DB::table('comments')->where('video_id', $id)->orderByDesc('id')->get();
 
-        $subscriber = DB::table('subscribers')
-            ->where([
-                ['user_id', $yourtubeur->user_id],
-                ['subscriber_id', $auth_id]
-            ])
-            ->first();
+            $subscriber = DB::table('subscribers')
+                ->where([
+                    ['user_id', $yourtubeur->user_id],
+                    ['subscriber_id', $auth_id]
+                ])
+                ->first();
 
-        DB::table('videos')
-            ->where('id', $id)
-            ->update(['nbWatch' => ((int)$video->nbWatch + 1)]);
+            DB::table('videos')
+                ->where('id', $id)
+                ->update(['nbWatch' => ((int)$video->nbWatch + 1)]);
 
-        $nb_likes = DB::table('reactions')
-            ->where('video_id', '=', $id)
-            ->where('is_liked', '=', 1)
-            ->count('is_liked');
+            $nb_likes = DB::table('reactions')
+                ->where('video_id', '=', $id)
+                ->where('is_liked', '=', 1)
+                ->count('is_liked');
 
-        $nb_dislikes = DB::table('reactions')
-            ->where('video_id', '=', $id)
-            ->where('is_liked', '=', 0)
-            ->count('id');
+            $nb_dislikes = DB::table('reactions')
+                ->where('video_id', '=', $id)
+                ->where('is_liked', '=', 0)
+                ->count('id');
 
-        $nb_subscribers = DB::table('subscribers')
-            ->where('user_id', $yourtubeur->id)
-            ->where('is_subscribed', '=', 1)
-            ->count('id');
+            $nb_subscribers = DB::table('subscribers')
+                ->where('user_id', $yourtubeur->id)
+                ->where('is_subscribed', '=', 1)
+                ->count('id');
 
-        $related_videos = DB::table('videos')
-            ->where([
-                ['category_id', $video->category_id],
-                ['id', '!=', $video->id],
-                ['is_valid', '>', '0']
-            ])
-            ->inRandomOrder()
-            ->get();
+            $related_videos = DB::table('videos')
+                ->where([
+                    ['category_id', $video->category_id],
+                    ['id', '!=', $video->id],
+                    ['is_valid', '>', '0']
+                ])
+                ->inRandomOrder()
+                ->get();
 
-        DB::table('videos')
-            ->where('id', $id)
-            ->update(['likes' => $nb_likes]);
-        DB::table('videos')
-            ->where('id', $id)
-            ->update(['dislikes' => $nb_dislikes]);
-        DB::table('profiles')
-            ->where('id', $yourtubeur->id)
-            ->update(['subscribers' => $nb_subscribers]);
+            DB::table('videos')
+                ->where('id', $id)
+                ->update(['likes' => $nb_likes]);
+            DB::table('videos')
+                ->where('id', $id)
+                ->update(['dislikes' => $nb_dislikes]);
+            DB::table('profiles')
+                ->where('id', $yourtubeur->id)
+                ->update(['subscribers' => $nb_subscribers]);
 
-        return view('videos/showVideo', [
-            'video' => $video,
-            'yourtubeur' => $yourtubeur,
-            'subscriber' => $subscriber,
-            'comments' => $comments,
-            'nb_likes' => $nb_likes,
-            'nb_dislikes' => $nb_dislikes,
-            'nb_subscribers' => $nb_subscribers,
-            'related_videos' => $related_videos
-        ]);
+            return view('videos/showVideo', [
+                'video' => $video,
+                'yourtubeur' => $yourtubeur,
+                'subscriber' => $subscriber,
+                'comments' => $comments,
+                'nb_likes' => $nb_likes,
+                'nb_dislikes' => $nb_dislikes,
+                'nb_subscribers' => $nb_subscribers,
+                'related_videos' => $related_videos
+            ]);
+        } else {
+            return redirect()->route('accueil')->with('video_waiting', true);
+        }
     }
 
     /**
@@ -227,8 +231,7 @@ class VideosController extends Controller
         return redirect()->route('profile_show', Auth::user()->name)->with('video_delete_error', true);
     }
 
-    public
-    function showAllVideos(Videos $videos)
+    public function showAllVideos(Videos $videos)
     {
         $auth_id = Auth::id();
         $nb_videos = DB::table('videos')->where('is_valid', 1)->join('categories', 'category_id', '=', 'categories.id')->orderBy('videos.created_at', 'DESC')->take(6)->get(['categories.title AS category_name', 'videos.*']);
