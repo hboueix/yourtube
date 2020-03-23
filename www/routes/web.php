@@ -25,7 +25,6 @@ Route::get('/results', [
     'uses' => 'SearchController@index'
 ]);
 
-Auth::routes(['verify' => true]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile/create/', [
@@ -33,6 +32,8 @@ Route::middleware(['auth'])->group(function () {
         'uses' => 'ProfileController@create'
     ]);
 });
+
+Auth::routes(['verify' => true]);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile/edit/', [
