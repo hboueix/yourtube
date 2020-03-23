@@ -2,19 +2,23 @@
 @section('content')
     <!-- Modal -->
     @if (session('video_approved'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Vidéo approuvée avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Vidéo approuvée avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('report_approved'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Signalement approuvé avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Signalement approuvé avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('report_deleted'))
@@ -26,27 +30,33 @@
         </div>
     @endif
     @if (session('comment_approved'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Commentaire approuvé avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Commentaire approuvé avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('comment_deleted'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Commentaire supprimé avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Commentaire supprimé avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('role_updated'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Role de l'utilisateur mis à jour avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Role de l'utilisateur mis à jour avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     <div class="container">
