@@ -1,32 +1,36 @@
 version: "3.3"
 services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile-web
-    image: web:latest
-    container_name: web
-    depends_on:
-      - db
-    volumes:
-      - ./www:/var/www/html/
-      - ./logs:/var/log/apache2/
-
-    links:
-      - db:db
-    networks:
-      static-network:
-        ipv4_address: 172.18.0.4
-  db:
-    image: mariadb/server
-    container_name: db
-    restart: always
-    environment:
-      MYSQL_DATABASE: test_db
-      MYSQL_ROOT_PASSWORD: root
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile-web
+        image: web:latest
+        container_name: web
+        depends_on:
+            - db
+        volumes:
+            - ./www:/var/www/html/
+            - ./logs:/var/log/apache2/
+        ports:
+            - 80:80
+            - 443:443
+        links:
+            - db:db
+        networks:
+            static-network:
+                ipv4_address: 172.18.0.4
+    db:
+        image: mariadb/server
+        container_name: db
+        restart: always
+        environment:
+            MYSQL_DATABASE: test_db
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - 3306:3306
 
 networks:
-  static-network:
-    ipam:
-      config:
-        - subnet: 172.18.0.0/16
+    static-network:
+        ipam:
+            config:
+                - subnet: 172.18.0.0/16

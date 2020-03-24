@@ -1,0 +1,45 @@
+FROM php:7.4-apache
+
+RUN apt-get update && apt-get -y upgrade
+RUN echo "ServerName 172.18.0.4" >> /etc/apache2/apache2.conf
+
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+
+COPY ./www/ /var/www/html/
+COPY ./yourtube.conf /etc/apache2/sites-available/
+
+RUN a2ensite yourtube.conf && a2dissite 000-default.conf
+RUN a2enmod rewrite && a2enmod ssl && a2enmod headers
+
+# Create self-signed certificate for ssl
+RUN openssl genrsa -out /etc/ssl/mykey.pem 2048
+RUN openssl req -new -x509 -key /etc/ssl/mykey.pem -out /etc/ssl/ca.crt -days 1095 -subj "/C=FR/ST=Aquitaine/L=Bordeaux/O=Yourtube/OU=IT/CN=dev.yourtube.fr"
+RUN openssl req -new -key /etc/ssl/mykey.pem -out /etc/ssl/dev.yourtube.csr  -subj "/C=FR/ST=Aquitaine/L=Bordeaux/O=Yourtube/OU=IT/CN=dev.yourtube.fr"
+RUN openssl x509 -req -in /etc/ssl/dev.yourtube.csr -out /etc/ssl/dev.yourtube.pem -CA /etc/ssl/ca.crt -CAkey /etc/ssl/mykey.pem -CAcreateserial -CAserial /etc/ssl/ca.srl -days 90
+
+
+# For Laravel config
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
+
+#RUN cd /var/www/html && composer install
+
+#RUN cd /var/www/html/ && npm run dev \
+#    && php artisan migrate:refresh --seed \
+#    && php artisan key generate \
+#    && php artisan storage:link
+
+
+
+
+
+EXPOSE 80
+EXPOSE 443
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+
+
+
+

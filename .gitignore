@@ -14,3 +14,5 @@
 /www/yarn-error.log
 /www/.idea
 .idea
+/logs
+docker-compose.override.yml
