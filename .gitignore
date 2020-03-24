@@ -14,6 +14,9 @@
 /www/yarn-error.log
 /www/.idea
 .idea
-/logs
-/mysql
+/logs/*
+/mysql/*
+/data/*
+/config/php/*
+/bin/*/*.old
 docker-compose.override.yml

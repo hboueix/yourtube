@@ -1,45 +1,60 @@
 version: "3.3"
 services:
-    web:
+    webserver:
         build:
-            context: .
-            dockerfile: Dockerfile-web
-        image: web:latest
-        container_name: web
-        depends_on:
-            - db
-        volumes:
-            - ./www:/var/www/html/
-            - ./logs:/var/log/apache2/
+            context: ./bin/webserver
+            dockerfile: Dockerfile
+        container_name: 'yt-webserver'
+        restart: 'always'
         ports:
-            - 80:80
-            - 443:443
+            - '80:80'
+            - '443:443'
         links:
-            - db:db
+            - mariadb
+        volumes:
+            - ${DOCUMENT_ROOT-./www}:/var/www/html
+            - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
+            - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
+            - ${LOG_DIR-./logs/apache2}:/var/log/apache2/
+        depends_on:
+            - mariadb
         networks:
             static-network:
-                ipv4_address: 172.18.0.4
-    db:
+                ipv4_address: 172.18.0.10
+    mariadb:
         image: mariadb/server
-        container_name: db
-        restart: always
-        environment:
-            MYSQL_DATABASE: test_db
-            MYSQL_ROOT_PASSWORD: root
+        container_name: 'yt-mariadb'
+        restart: 'always'
         ports:
-            - 3306:3306
+            - '3306:3306'
+        volumes:
+            - ${MYSQL_DATA_DIR-./data/mysql}:/var/lib/mysql
+            - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: yourtube
+            MYSQL_USER: yourtube
+            MYSQL_PASSWORD: yourtube
+        networks:
+            static-network:
+                ipv4_address: 172.18.0.20
     myadmin:
         image: phpmyadmin/phpmyadmin
-        container_name: myadmin
-        volumes:
-            - ./mysql:/var/lib/mysql
-        depends_on:
-            - db
+        container_name: 'yt-myadmin'
         ports:
-            - 8080:80
+            - '8080:80'
         links:
-            - db:db
-
+            - mariadb
+        environment:
+            PMA_HOST: mariadb
+            PMA_PORT: 3306
+        volumes:
+            - /sessions
+        depends_on:
+            - mariadb
+        networks:
+            static-network:
+                ipv4_address: 172.18.0.30
 networks:
     static-network:
         ipam:
