@@ -15,4 +15,5 @@
 /www/.idea
 .idea
 /logs
+/mysql
 docker-compose.override.yml
