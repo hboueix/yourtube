@@ -9,9 +9,6 @@ use Illuminate\Http\File;
 
 $factory->define(Profile::class, function (Faker $faker) {
     return [
-        'last_name' => 'Yourtube',
-        'first_name' => 'Administrateur',
-        'dateOfBirth' => $faker->dateTime,
-        'avatar' => 'default-user-avatar.png'
+        //
     ];
 });

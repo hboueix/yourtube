@@ -15,5 +15,20 @@ class CategoriesTableSeeder extends Seeder
         Categories::create([
             'title' => 'Non classé'
         ]);
+        Categories::create([
+            'title' => 'Sport'
+        ]);
+        Categories::create([
+            'title' => 'Chat'
+        ]);
+        Categories::create([
+            'title' => 'Chien'
+        ]);
+        Categories::create([
+            'title' => 'Documentaire'
+        ]);
+        Categories::create([
+            'title' => 'Jeux Vidéo'
+        ]);
     }
 }
