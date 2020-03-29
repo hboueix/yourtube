@@ -48,7 +48,7 @@
                                     class="card-title">{{ $video->title }}</h5>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
-                            <span class="badge badge-pill badge-info">{{$video->category_name}}</span>
+                            <span class="badge badge-pill badge-info" style="color: white">{{$video->category_name}}</span>
                             <span><i class="fas fa-eye mr-1"></i>{{$video->nbWatch}}</span>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                 class="card-title">{{ $t_video->title }}</h5>
                     </a>
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="badge badge-pill badge-info">{{$video->category_name}}</span>
+                        <span class="badge badge-pill badge-info" style="color: white">{{$video->category_name}}</span>
                         <span><i class="fas fa-eye mr-1"></i>{{$t_video->nbWatch}}</span>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                             class="card-title">{{ $r_video->title }}</h5>
                 </a></div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <span class="badge badge-pill badge-info">{{$video->category_name}}</span>
+                    <span class="badge badge-pill badge-info" style="color: white">{{$video->category_name}}</span>
                     <span><i class="fas fa-eye mr-1"></i>{{$r_video->nbWatch}}</span>
                 </div>
             </div>
