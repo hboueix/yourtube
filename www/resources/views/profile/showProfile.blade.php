@@ -50,7 +50,7 @@
                             <a href="{{ route('profile_edit') }}">
                                 <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"
                                                                                         style="margin-right: 5px"></i>Éditer
-                                    profil
+                                    mon profil
                                 </button>
                             </a>
                         </div>
@@ -90,11 +90,11 @@
                     <div class="text-center">
                         <div style="font-size: 20px;">
                             <span title="Nombre de likes" class="badge badge-secondary"> <i class="fas fa-thumbs-up"
-                                                                    style="margin-right: 10px"></i><span>{{ $video->likes }}</span></span>
+                                                                                            style="margin-right: 10px"></i><span>{{ $video->likes }}</span></span>
                             <span title="Nom de dislikes" class="badge badge-secondary"> <i class="fas fa-thumbs-down"
-                                                                    style="margin-right: 10px"></i><span>{{ $video->dislikes }}</span></span>
+                                                                                            style="margin-right: 10px"></i><span>{{ $video->dislikes }}</span></span>
                             <span title="Nombre de vues" class="badge badge-secondary">  <i class="fas fa-eye"
-                                                                     style="margin-right: 10px"></i><span>{{ $video->nbWatch }}</span></span>
+                                                                                            style="margin-right: 10px"></i><span>{{ $video->nbWatch }}</span></span>
                         </div>
                         <br>
                         @if($profile->id == \Illuminate\Support\Facades\Auth::id())
