@@ -12,6 +12,9 @@ RUN apt-get -qq -y install --fix-missing apt-utils build-essential git curl libc
 # Get composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Install sendmail
+RUN apt-get -qq -y install sendmail
+
 # Install xdebug
 #RUN pecl install xdebug-2.5.0
 #RUN docker-php-ext-enable xdebug
