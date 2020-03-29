@@ -25,21 +25,21 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">{{ __('Editer son profil') }}</div>
-                    <form method="post" action="{{ route('profile_update') }}" enctype="multipart/form-data"
-                          style="margin: 5px">
+                    <form method="post" action="{{ route('profile_update') }}" enctype="multipart/form-data" class="pl-4 pr-4 pt-2 pb-2">
+                        <label>Avatar</label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="customFile" name="image">
                             <label class="custom-file-label" for="customFile">Changer d'avatar</label>
+                            <input type="file" class="custom-file-input" id="customFile" name="image">
+                        </div>
+                        <div class="form-group mt-2">
+                            <label for="first_name">Prénom</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="Prénom"
+                                   name="first_name" value="{{ $profile ?? '' ? $profile->first_name : '' }}" required>
                         </div>
                         <div class="form-group">
                             <label for="last_name">Nom</label>
                             <input type="text" class="form-control" id="last_name" placeholder="Nom" name="last_name"
                                    value="{{ $profile ?? '' ? $profile->last_name : '' }}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="first_name">Prénom</label>
-                            <input type="text" class="form-control" id="first_name" placeholder="Prénom"
-                                   name="first_name" value="{{ $profile ?? '' ? $profile->first_name : '' }}" required>
                         </div>
                         <div class="form-group">
                             <label for="last_name">Date de naissance</label>
