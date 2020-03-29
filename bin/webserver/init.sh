@@ -15,5 +15,8 @@ php artisan key:generate
 # Run migrations
 php artisan migrate:refresh --seed
 
+# Link storage to public folder
+php artisan storage:link
+
 # Start apache in foreground
 /usr/sbin/apache2ctl -D FOREGROUND
