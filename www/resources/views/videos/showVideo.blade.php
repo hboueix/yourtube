@@ -130,14 +130,13 @@
                 </div>
                 <form method="post" action="{{route('video_destroy', $video->id)}}">
                     <div class="modal-body">
-                        <p>Voulez -vous vraiment supprimer cette vidéo ?</p>
+                        <p>Voulez-vous vraiment supprimer cette vidéo ?</p>
                     </div>
-                    @csrf
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
-                                                                        style="margin-right: 10px"></i>Supprimer
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="margin-right: 5px"></i>Supprimer
                         </button>
                     </div>
+                    @csrf
                 </form>
             </div>
         </div>
@@ -169,8 +168,9 @@
                 </div>
                 @if(Auth::user())
                     @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete_video">
-                            <i class="fas fa-times" style="margin-right: 10px"></i>Supprimer
+                        <button type="button" title="Supprimer la vidéo" class="btn btn-danger" data-toggle="modal"
+                                data-target="#delete_video">
+                            <i class="fas fa-trash-alt"></i>
                         </button>
                     @else
                         <button type="button" class="btn btn-outline-danger" data-toggle="modal"
@@ -198,7 +198,7 @@
             </a>
             <div>
                 @if($yourtubeur->user_id == \Illuminate\Support\Facades\Auth::id())
-                    <span class="btn btn-primary ml-2">{{$nb_subscribers ?? 0 }}
+                    <span class="btn btn-secondary ml-2">{{$nb_subscribers ?? 0 }}
                         @if($nb_subscribers <= 1)
                             abonné
                         @else
@@ -209,18 +209,18 @@
                     @if($subscriber != null)
                         @if($subscriber->is_subscribed === 1)
                             <a href="{{route('profile_unsubscribe', [$yourtubeur->id, $video->id])}}">
-                                <button type="button" class="btn btn-danger">Se désabonner<span
+                                <button type="button" class="btn btn-secondary">Se désabonner<span
                                         class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
                             </a>
                         @else
                             <a href="{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}">
-                                <button type="button" class="btn btn-primary">S'abonner<span
+                                <button type="button" class="btn btn-secondary">S'abonner<span
                                         class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
                             </a>
                         @endif
                     @else
                         <a href="{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}">
-                            <button type="button" class="btn btn-primary">S'abonner<span
+                            <button type="button" class="btn btn-secondary">S'abonner<span
                                     class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
                         </a>
                     @endif
@@ -256,7 +256,8 @@
             <p>
                 <a data-toggle="collapse" href="#iframe" role="button" aria-expanded="false"
                    aria-controls="collapseExample">
-                    <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-code" style="margin-right: 5px;"></i>Intégrer
+                    <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-code"
+                                                                            style="margin-right: 5px;"></i>Intégrer
                     </button>
                 </a>
             </p>
