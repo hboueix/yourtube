@@ -76,8 +76,10 @@
                     <tbody>
                     @foreach($videos as $video)
                         <tr>
-                            <td><a href="{{route('video_show', $video->id)}}" target="_blank"><img src="{{asset('storage/' . $video->miniature)}}" width="100"></a></td>
-                            <td><a href="{{route('video_show', $video->id)}}" target="_blank">{{ucfirst($video->title)}}</a></td>
+                            <td><a href="{{route('video_show', $video->id)}}" target="_blank"><img
+                                        src="{{asset('storage/' . $video->miniature)}}" width="100"></a></td>
+                            <td><a href="{{route('video_show', $video->id)}}"
+                                   target="_blank">{{ucfirst($video->title)}}</a></td>
                             <td>{{$video->description}}</td>
                             <td>
                                 <a href="{{ route('video_approve', $video->id) }}">
@@ -113,8 +115,10 @@
                     <tbody>
                     @foreach($reports as $report)
                         <tr>
-                            <td><a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a></td>
-                            <td><a href="{{route('video_show', $report->video_id)}}" target="_blank">{{$report->title}}</a></td>
+                            <td><a href="{{route('profile_show', $report->name)}}" target="_blank">{{$report->name}}</a>
+                            </td>
+                            <td><a href="{{route('video_show', $report->video_id)}}"
+                                   target="_blank">{{$report->title}}</a></td>
                             <td>{{$report->content}}</td>
                             <td>
                                 <a href="{{ route('report_approve', $report->report_id) }}">
@@ -123,7 +127,8 @@
                                     </button>
                                 </a>
                                 <a href="{{ route('report_destroy', $report->report_id) }}">
-                                    <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer le signalement">
+                                    <button type="button" class="btn btn-danger" data-toggle="tooltip"
+                                            data-placement="top" title="Supprimer le signalement">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </a>
@@ -150,8 +155,10 @@
                     <tbody>
                     @foreach($comments as $comment)
                         <tr>
-                            <td><a href="{{route('profile_show', $comment->name)}}" target="_blank">{{$comment->name}}</a></td>
-                            <td><a href="{{route('video_show', $comment->id)}}" target="_blank">{{$comment->title}}</a></td>
+                            <td><a href="{{route('profile_show', $comment->name)}}"
+                                   target="_blank">{{$comment->name}}</a></td>
+                            <td><a href="{{route('video_show', $comment->id)}}" target="_blank">{{$comment->title}}</a>
+                            </td>
                             <td>{{$comment->content}}</td>
                             <td>
                                 <a href="{{route('comment_approve', $comment->comment_id)}}">
@@ -160,7 +167,8 @@
                                     </button>
                                 </a>
                                 <a href="{{route('comment_destroy', $comment->comment_id)}}">
-                                    <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer le commentaire">
+                                    <button type="button" class="btn btn-danger" data-toggle="tooltip"
+                                            data-placement="top" title="Supprimer le commentaire">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </a>
@@ -206,22 +214,27 @@
                                 </div>
                             </div>
                             <div class="media">
-                                @if(strlen($profiler->avatar) > 0)
-                                    <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3" alt="miniature"
-                                         width="80" height="80">
-                                @else
-                                    <img src="https://static.asianetnews.com/img/default-user-avatar.png"
-                                         class="mr-3" width="80" height="80" style="border-radius: 100%">
-                                @endif
+                                <a href="{{ route('profile_show', $profiler->name) }}">
+                                    @if(strlen($profiler->avatar) > 0)
+                                        <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3"
+                                             alt="miniature"
+                                             width="80" height="80">
+                                    @else
+                                        <img src="https://static.asianetnews.com/img/default-user-avatar.png"
+                                             class="mr-3" width="80" height="80" style="border-radius: 100%">
+                                    @endif
+                                </a>
                                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
-                                    <h5 class="mt-1"><b
-                                            style="text-transform: capitalize">{{ $profiler->role_name }}</b>
-                                        | {{ ucfirst($profiler->name) }}</h5>
+                                    <a href="{{ route('profile_show', $profiler->name) }}" style="color: inherit">
+                                        <h5 class="mt-1">
+                                            {{ ucfirst($profiler->name) }}</h5></a>
 
-                                    <h6 class="mt-1">{{ $profiler->email }}</h6>
-                                    <p>
-                                        {{ $profiler->dateOfBirth }}
-                                    </p>
+                                    <span class="font-weight-bold">Email </span> : {{ $profiler->email }} -
+                                    @if($profiler->email_verified_at != null)
+                                        <span class="p-1 badge badge-success">vérifié </span>
+                                    @else
+                                        <span class="p-1 badge badge-warning">en attente </span>
+                                    @endif
                                     <p>
                                         <span class="font-weight-bold">Crée le</span> : {{ $profiler->created_at }}
                                     </p>
@@ -232,7 +245,8 @@
                                             <select class="form-control d-inline" id="exampleFormControlSelect1"
                                                     style="width: 70%" name="roles">
                                                 @foreach($roles as $role)
-                                                    <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
+                                                    <option @if($profiler->role_id === $role->id) selected
+                                                            @endif value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
                                                 @endforeach
                                             </select>
                                             <input type="hidden" name="id" value="">
@@ -242,12 +256,7 @@
                                             </button>
                                         </div>
                                     </form>
-                                    <a href="{{ route('profile_show', $profiler->name) }}">
-                                        <button type="button" class="btn btn-success" style=" margin: 5px">
-                                            <i class="fas fa-user"></i>
-                                        </button>
-                                    </a>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                                    <button type="button" class="float-right btn btn-danger" data-toggle="modal"
                                             data-target="#delete_user">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
@@ -274,7 +283,8 @@
                     <div class="card-body">
                         <ul>
                             @foreach($categories as $categorie)
-                                <li>{{$categorie->title}} <a href="{{route('category_delete', $categorie->id)}}"><i class="fas fa-times"></i></a> </li>
+                                <li>{{$categorie->title}} <a href="{{route('category_delete', $categorie->id)}}"><i
+                                            class="fas fa-times"></i></a></li>
                             @endforeach
                         </ul>
                     </div>
