@@ -110,7 +110,7 @@
                     <input type="hidden" name="id" value="">
                     @csrf
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"
                                                                         style="margin-right: 10px"></i>Signaler !
                         </button>
                     </div>

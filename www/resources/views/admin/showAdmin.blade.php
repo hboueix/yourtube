@@ -204,8 +204,8 @@
                                             <input type="hidden" name="id" value="">
                                             @csrf
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
-                                                                                                style="margin-right: 10px"></i>Supprimer
+                                                <button type="submit" class="btn btn-danger"><i
+                                                        class="fas fa-trash-alt mr-1"></i>Supprimer
                                                     !
                                                 </button>
                                             </div>
@@ -251,7 +251,7 @@
                                             </select>
                                             <input type="hidden" name="id" value="">
                                             @csrf
-                                            <button type="submit" class="btn btn-primary float-right d-inline">
+                                            <button type="submit" class="btn btn-secondary float-right d-inline">
                                                 <i class="fas fa-pen"></i>
                                             </button>
                                         </div>
