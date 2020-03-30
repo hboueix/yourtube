@@ -218,7 +218,7 @@
                                     @if(strlen($profiler->avatar) > 0)
                                         <img src="{{ asset('storage/' . $profiler->avatar) }}" class="mr-3"
                                              alt="miniature"
-                                             width="80" height="80">
+                                             width="80" height="80" style="border-radius: 100%">
                                     @else
                                         <img src="https://static.asianetnews.com/img/default-user-avatar.png"
                                              class="mr-3" width="80" height="80" style="border-radius: 100%">
