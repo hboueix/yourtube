@@ -17,6 +17,5 @@
 /logs/*
 /mysql/*
 /data/*
-/config/php/*
 /bin/*/*.old
 docker-compose.override.yml
