@@ -3,10 +3,10 @@ services:
     webserver:
         build:
             context: ./bin/webserver
-            dockerfile: Dockerfile
         container_name: 'yt-webserver'
         restart: 'always'
         ports:
+            - '25:25'
             - '80:80'
             - '443:443'
         links:
