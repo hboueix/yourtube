@@ -4,7 +4,6 @@ services:
         build:
             context: ./bin/webserver
         container_name: 'yt-webserver'
-        restart: 'always'
         ports:
             - '25:25'
             - '80:80'
@@ -24,7 +23,6 @@ services:
     mariadb:
         image: mariadb/server
         container_name: 'yt-mariadb'
-        restart: 'always'
         ports:
             - '3306:3306'
         volumes:
