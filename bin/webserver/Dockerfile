@@ -52,14 +52,6 @@ RUN apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev
 RUN a2enmod rewrite headers
 RUN echo "ServerName 172.18.0.4" >> /etc/apache2/apache2.conf
 
-# In docker-compose file, pass the current UID and create such a user
-# otherwise command from inside container will create root-owned files and directories
-ARG uid
-ARG username
-RUN useradd -G www-data,root -u $uid -d /home/$username $username
-RUN mkdir -p /home/$username/.composer && \
-    chown -R $username:$username /home/$username 
-
 # Copy the init script in /tmp
 COPY ./init.sh /tmp/
 RUN chmod +x /tmp/init.sh

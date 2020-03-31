@@ -3,9 +3,6 @@ services:
     webserver:
         build:
             context: ./bin/webserver
-            args:
-                uid: ${UID}
-                username: 'devuser'
         container_name: 'yt-webserver'
         restart: 'always'
         ports:
