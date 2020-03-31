@@ -43,18 +43,18 @@
                 <ul class="navbar-nav" style="width: 100%;">
                     <div class="mx-auto search-dropdown">
                         <div class="input-group">
-                            <input type="text" id="myInput" class="form-control" placeholder="Rechercher..."
+                            <input type="text" id="searchInput" class="form-control" placeholder="Rechercher..."
                                    aria-label="rechercher" aria-describedby="rechercher"
-                                   onfocus="myFunction()" onblur="myFunction()" oninput="getContent()"
+                                   onfocus="toogleShow()" onblur="toggleShow()" oninput="getContent()"
                                    onkeyup="handle(event)">
                             <div class="input-group-append">
-                                <a class="btn btn-outline-secondary" type="button" id="rechercher" onclick="route_results()"><i
+                                <a class="btn btn-outline-secondary" type="button" id="rechercher" onclick="getResults()"><i
                                         class="fas fa-search"></i></a>
                             </div>
                         </div>
-                        <div id='myDropdown' class='dropdown-content'
-                             onmouseover="document.getElementById('myInput').removeAttribute('onblur')"
-                             onmouseleave="document.getElementById('myInput').setAttribute('onblur', 'myFunction()')">
+                        <div id='resultsDropdown' class='dropdown-content'
+                             onmouseover="document.getElementById('searchInput').removeAttribute('onblur')"
+                             onmouseleave="document.getElementById('searchInput').setAttribute('onblur', 'toggleShow()')">
                         </div>
                     </div>
                 </ul>
@@ -150,13 +150,13 @@
 
 <script type="text/javascript">
 
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+    function toggleShow() {
+        document.getElementById("resultsDropdown").classList.toggle("show");
     }
 
     function getContent() {
-        const search = document.getElementById('myInput');
-        const myDropdown = document.getElementById('myDropdown');
+        const search = document.getElementById('searchInput');
+        const resultsDropdown = document.getElementById('resultsDropdown');
         const searchValue = search.value;
         if (searchValue != "") {
             const xhr = new XMLHttpRequest();
@@ -166,25 +166,25 @@
             xhr.onreadystatechange = function () {
 
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    myDropdown.innerHTML = xhr.responseText;
+                    resultsDropdown.innerHTML = xhr.responseText;
                 }
             }
             xhr.send()
         } else {
-            myDropdown.innerHTML = "";
+            resultsDropdown.innerHTML = "";
         }
     }
 
     function handle(e) {
-        const searchValue = document.getElementById("myInput").value;
+        const searchValue = document.getElementById("searchInput").value;
         if(e.keyCode === 13){
             event.preventDefault();
-            route_results();
+            getResults();
         }
     }
 
-    function route_results() {
-        const searchValue = document.getElementById("myInput").value;
+    function getResults() {
+        const searchValue = document.getElementById("searchInput").value;
         const url = "{{route('results')}}/?search=" + searchValue;
         document.location.href = url;
     }
