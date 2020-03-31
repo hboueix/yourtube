@@ -3,6 +3,12 @@
 Avant de commencer, assurez-vous d'avoir Docker et d'avoir copié `docker-compose.override.yml.dist` en `docker-compose.override.yml` afin de 
 pouvoir redéfinir les services que vous souhaitez utiliser et les ports attribués.
 
+## Nouvelle procédure de mise en place du projet
+
+- Cloner le projet
+- À la racine du projet, entrez la commande `export UID=${UID}`
+- Puis `docker-compose up --build -d`
+
 ## Procédure de mise en place du projet
 
 - Cloner le projet
