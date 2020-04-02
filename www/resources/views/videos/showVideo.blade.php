@@ -231,32 +231,32 @@
             <p>{{$video->description}}</p>
         </div>
         <div class="d-flex">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}" target="_blank">
-                <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-facebook"
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}" target="_blank" class="mr-1">
+                <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-facebook"
                                                                         style="margin-right: 5px;"></i>Facebook
                 </button>
             </a>
             <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}}"
-               target="_blank">
-                <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-twitter"
+               target="_blank" class="mr-1">
+                <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-twitter"
                                                                         style="margin-right: 5px;"></i>Twitter
                 </button>
             </a>
-            <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $video->id)}}" target="_blank">
-                <button type="button" class="btn btn-primary btn-sm"><i class="fab fa-linkedin"
+            <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $video->id)}}" target="_blank" class="mr-1">
+                <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-linkedin"
                                                                         style="margin-right: 5px;"></i>Linkedin
                 </button>
             </a>
             <a href="mailto:?subject={{$video->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}} via Yourtube.fr"
-               target="_blank">
-                <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-envelope"
+               target="_blank" class="mr-1">
+                <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-envelope"
                                                                         style="margin-right: 5px;"></i>Mail
                 </button>
             </a>
             <p>
                 <a data-toggle="collapse" href="#iframe" role="button" aria-expanded="false"
                    aria-controls="collapseExample">
-                    <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-code"
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-code"
                                                                             style="margin-right: 5px;"></i>Intégrer
                     </button>
                 </a>
