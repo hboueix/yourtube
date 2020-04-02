@@ -51,9 +51,17 @@ class CategoriesController extends Controller
      * @param \App\Categories $categories
      * @return \Illuminate\Http\Response
      */
-    public function show(Categories $categories)
+    public function show(Categories $categories, $id)
     {
-        //
+        $category_name = DB::table('categories')->select('title')->where('id', $id)->first();
+        $videos = DB::table('videos')->where('category_id', $id)->get();
+
+        dd($videos);
+
+        return view('category/show', [
+            'category_name' => $category_name,
+            'videos' => $videos
+        ]);
     }
 
     /**
