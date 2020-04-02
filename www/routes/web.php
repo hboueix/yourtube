@@ -25,6 +25,10 @@ Route::get('/results', [
     'uses' => 'SearchController@index'
 ]);
 
+Route::get('/category/{id}', [
+    'as' => 'category_show',
+    'uses' => 'CategoriesController@show'
+]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile/create/', [
