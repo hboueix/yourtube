@@ -13,6 +13,7 @@ class SearchController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
+
         $videos = DB::table('videos')
             ->where([
                 ['is_valid', '>', '0'],
@@ -22,6 +23,7 @@ class SearchController extends Controller
             ->orderBy('videos.created_at', 'DESC')
             ->take(6)
             ->get(['categories.title AS category_name', 'videos.*']);
+
         $profiles = DB::table('profiles')
             ->join('users', 'user_id', '=', 'users.id')
             ->join('model_has_roles', 'users.id', '=', 'model_id')
@@ -31,7 +33,11 @@ class SearchController extends Controller
                 ['name', '<>', 'administrateur']
             ])
             ->get(['users.*', 'profiles.*']);
+
+        $result_number = sizeof($videos) + sizeof($profiles);
+
         return view('results', [
+            'result_number' => $result_number,
             'search' => $search,
             'videos' => $videos,
             'profiles' => $profiles

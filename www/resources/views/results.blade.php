@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="card-body">
-        <h4>Résultats pour : {{$search}}</h4>
+        <h4>{{$result_number}} @if($result_number <= 1) résultat @else résultats @endif pour : {{$search}}</h4>
         <hr/>
         <div class="row">
             @foreach ($profiles as $profiler)
