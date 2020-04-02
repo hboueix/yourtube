@@ -86,7 +86,7 @@ class VideosController extends Controller
             ->where('id', $id)
             ->first();
 
-        if ($video->is_valid == 1 || $video->is_valid == 0 && Auth::id() == $video->user_id) {
+        if ($video->is_valid == 1 || $video->is_valid == 0 && Auth::id() == $video->user_id || Auth::user()->hasAnyRole(['administrateur', 'moderateur'])) {
             $yourtubeur = DB::table('profiles')
                 ->join('users', 'user_id', '=', 'users.id')
                 ->where('users.id', $video->user_id)
