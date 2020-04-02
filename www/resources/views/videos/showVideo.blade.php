@@ -104,7 +104,7 @@
                 <form method="post" action="{{route('video_report', $video->id)}}">
                     <div class="modal-body">
                         <label for="content"></label><textarea type="text" class="form-control" id="content"
-                                                               placeholder="Votre signalement..."
+                                                               placeholder="Raison du signalement..."
                                                                name="content"></textarea>
                     </div>
                     <input type="hidden" name="id" value="">
@@ -167,16 +167,15 @@
                     </a>
                 </div>
                 @if(Auth::user())
-                    @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
+                    @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']) || Auth::id() == $video->user_id)
                         <button type="button" title="Supprimer la vidéo" class="btn btn-danger" data-toggle="modal"
                                 data-target="#delete_video">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     @else
-                        <button type="button" class="btn btn-outline-danger" data-toggle="modal"
+                        <button type="button" class="btn btn-outline-danger" title="Signaler la vidéo" data-toggle="modal"
                                 data-target="#reporting"><i
-                                class="fas fa-flag"
-                                style="margin-right: 10px"></i>Signaler
+                                class="fas fa-flag"></i>
                         </button>
                     @endif
                 @endif
@@ -227,7 +226,7 @@
                 @endif
             </div>
         </div>
-        <div class="mt-3">
+        <div class="mt-3 mb-5 pl-4">
             <p>{{$video->description}}</p>
         </div>
         <div class="d-flex">
