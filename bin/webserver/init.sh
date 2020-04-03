@@ -1,22 +1,30 @@
 #!/bin/bash
 
-# Create a .env file
-cp /var/www/html/.env.default /var/www/html/.env
+CONTAINER_ALREADY_STARTED="CONTAINER_ALREADY_STARTED_PLACEHOLDER"
+if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
+    touch $CONTAINER_ALREADY_STARTED
+    echo "-- First container startup --"
 
-# Composer install
-cd /var/www/html && composer install
+    # Create a .env file
+    cp /var/www/html/.env.default /var/www/html/.env
 
-# Change www folder user to apache user
-chown -R www-data:www-data /var/www/html
+    # Composer install
+    cd /var/www/html && composer install
 
-# Generate app encryption key
-php artisan key:generate
+    # Change www folder user to apache user
+    chown -R www-data:www-data /var/www/html
 
-# Run migrations
-php artisan migrate:refresh --seed
+    # Generate app encryption key
+    php artisan key:generate
 
-# Link storage to public folder
-php artisan storage:link
+    # Run migrations
+    php artisan migrate:refresh --seed
+
+    # Link storage to public folder
+    php artisan storage:link
+else
+    echo "-- Not first container startup --"
+fi
 
 # Start apache in foreground
 /usr/sbin/apache2ctl -D FOREGROUND
