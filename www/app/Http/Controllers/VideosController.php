@@ -235,8 +235,8 @@ class VideosController extends Controller
     {
         $auth_id = Auth::id();
         $nb_videos = DB::table('videos')->where('is_valid', 1)->join('categories', 'category_id', '=', 'categories.id')->orderBy('videos.created_at', 'DESC')->take(6)->get(['categories.title AS category_name', 'videos.*']);
-        $rand_videos = DB::table('videos')->where('is_valid', 1)->inRandomOrder('id')->take(6)->get();
-        $tend_videos = DB::table('videos')->where('is_valid', 1)->orderBy('nbWatch', 'DESC')->take(6)->get();
+        $rand_videos = DB::table('videos')->where('is_valid', 1)->join('categories', 'category_id', '=', 'categories.id')->inRandomOrder('videos.id')->take(6)->get(['categories.title AS category_name', 'videos.*']);
+        $tend_videos = DB::table('videos')->where('is_valid', 1)->join('categories', 'category_id', '=', 'categories.id')->orderBy('videos.nbWatch', 'DESC')->take(6)->get(['categories.title AS category_name', 'videos.*']);
         return view('welcome', [
             'user_id' => $auth_id,
             'videos' => $nb_videos,
