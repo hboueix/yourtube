@@ -45,7 +45,7 @@
                         <div class="input-group">
                             <input type="text" id="searchInput" class="form-control" placeholder="Rechercher..."
                                    aria-label="rechercher" aria-describedby="rechercher"
-                                   onfocus="toogleShow()" onblur="toggleShow()" oninput="getContent()"
+                                   onfocus="toggleShow()" onblur="toggleShow()" oninput="getContent()"
                                    onkeyup="handle(event)">
                             <div class="input-group-append">
                                 <a class="btn btn-outline-secondary" type="button" id="rechercher" onclick="getResults()"><i
