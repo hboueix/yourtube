@@ -177,7 +177,7 @@
 
     function handle(e) {
         const searchValue = document.getElementById("searchInput").value;
-        if(e.keyCode === 13){
+        if(e.keyCode === 13 && searchValue != ""){
             event.preventDefault();
             getResults();
         }
@@ -185,8 +185,10 @@
 
     function getResults() {
         const searchValue = document.getElementById("searchInput").value;
-        const url = "{{route('results')}}/?search=" + searchValue;
-        document.location.href = url;
+        if (searchValue != "") {
+            const url = "{{route('results')}}/?search=" + searchValue;
+            document.location.href = url;
+        }
     }
 </script>
 </body>

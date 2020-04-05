@@ -153,19 +153,54 @@
             </div>
             <div class="d-flex justify-content-between">
                 <div>
-                    <a href="{{route('video_like', $video->id)}}">
-                        <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
-                                                                         style="margin-right: 10px"></i>
-                            <span>{{$nb_likes ?? 0}}</span>
-                        </button>
-                    </a>
-                    <a href="{{route('video_dislike', $video->id)}}">
-                        <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
+                    <button onclick='videoLike()' type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
                                                                         style="margin-right: 10px"></i>
-                            <span>{{$nb_dislikes ?? 0}}</span>
-                        </button>
-                    </a>
+                        <span id='nbLike'>{{$nb_likes ?? 0}}</span>
+                    </button>
+                    <button onclick='videoDislike()' type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
+                                                                    style="margin-right: 10px"></i>
+                        <span id='nbDislike'>{{$nb_dislikes ?? 0}}</span>
+                    </button>
                 </div>
+                <script type="text/javascript">
+                    function videoLike() {
+                        const nbLike = document.getElementById('nbLike')
+                        const nbDislike = document.getElementById('nbDislike') 
+
+                        const xhr = new XMLHttpRequest();
+
+                        xhr.open('GET', '{{route("video_like", $video->id)}}', true);
+                        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                        xhr.onreadystatechange = function () {
+
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                const result = JSON.parse(xhr.response);
+                                nbLike.innerHTML = result.nb_likes;
+                                nbDislike.innerHTML = result.nb_dislikes;
+                            }
+                        }
+                        xhr.send()
+                    }
+
+                    function videoDislike() {
+                        const nbDislike = document.getElementById('nbDislike') 
+                        const nbLike = document.getElementById('nbLike')
+
+                        const xhr = new XMLHttpRequest();
+
+                        xhr.open('GET', '{{route("video_dislike", $video->id)}}', true);
+                        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                        xhr.onreadystatechange = function () {
+
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                const result = JSON.parse(xhr.response);
+                                nbLike.innerHTML = result.nb_likes;
+                                nbDislike.innerHTML = result.nb_dislikes;
+                            }
+                        }
+                        xhr.send()
+                    }
+                </script>
                 @if(Auth::user())
                     @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']) || Auth::id() == $video->user_id)
                         <button type="button" title="Supprimer la vidéo" class="btn btn-danger" data-toggle="modal"

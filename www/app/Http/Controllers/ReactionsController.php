@@ -85,8 +85,9 @@ class ReactionsController extends Controller
         //
     }
 
-    public function like($id)
+    public function like(Request $request)
     {
+        $id = $request->id;
         $auth_id = Auth::id();
         $reaction = DB::table('reactions')->where([
             'user_id' => $auth_id,
@@ -100,7 +101,7 @@ class ReactionsController extends Controller
                 'created_at' => date('y-m-d h:m:s'),
                 'updated_at' => date('y-m-d h:m:s')
             ]);
-            return redirect()->route('video_show', $id)->with('video_liked', true);
+            //return redirect()->route('video_show', $id)->with('video_liked', true);
         } elseif ($reaction->is_liked == 0) {
             DB::table('reactions')->where([
                 'user_id' => $auth_id,
@@ -109,14 +110,27 @@ class ReactionsController extends Controller
                 'is_liked' => 1,
                 'updated_at' => date('y-m-d h:m:s')
             ]);
-            return redirect()->route('video_show', $id)->with('video_liked', true);
-        } else {
-            return redirect()->route('video_show', $id)->with('video_liked_error', true);
+            //return redirect()->route('video_show', $id)->with('video_liked', true);
+        } else { 
+            //return redirect()->route('video_show', $id)->with('video_liked_error', true);
         }
+        $nb_likes = DB::table('reactions')
+            ->where('video_id', '=', $id)
+            ->where('is_liked', '=', 1)
+            ->count('is_liked');
+        $nb_dislikes = DB::table('reactions')
+            ->where('video_id', '=', $id)
+            ->where('is_liked', '=', 0)
+            ->count('id');
+        return response()->json([
+            'nb_likes' => $nb_likes,
+            'nb_dislikes' => $nb_dislikes
+        ]);
     }
 
-    public function dislike($id)
+    public function dislike(Request $request)
     {
+        $id = $request->id;
         $auth_id = Auth::id();
         $reaction = DB::table('reactions')->where([
             'user_id' => $auth_id,
@@ -130,7 +144,7 @@ class ReactionsController extends Controller
                 'created_at' => date('y-m-d h:m:s'),
                 'updated_at' => date('y-m-d h:m:s')
             ]);
-            return redirect()->route('video_show', $id)->with('video_disliked', true);
+            //return redirect()->route('video_show', $id)->with('video_disliked', true);
         } elseif ($reaction->is_liked == 1) {
             DB::table('reactions')->where([
                 'user_id' => $auth_id,
@@ -139,10 +153,22 @@ class ReactionsController extends Controller
                 'is_liked' => 0,
                 'updated_at' => date('y-m-d h:m:s')
             ]);
-            return redirect()->route('video_show', $id)->with('video_disliked', true);
+            //return redirect()->route('video_show', $id)->with('video_disliked', true);
         } else {
-            return redirect()->route('video_show', $id)->with('video_disliked_error', true);
+            //return redirect()->route('video_show', $id)->with('video_disliked_error', true);
         }
+        $nb_dislikes = DB::table('reactions')
+            ->where('video_id', '=', $id)
+            ->where('is_liked', '=', 0)
+            ->count('id');
+        $nb_likes = DB::table('reactions')
+            ->where('video_id', '=', $id)
+            ->where('is_liked', '=', 1)
+            ->count('is_liked');
+        return response()->json([
+            'nb_dislikes' => $nb_dislikes,
+            'nb_likes' => $nb_likes
+        ]);
     }
 
 }
