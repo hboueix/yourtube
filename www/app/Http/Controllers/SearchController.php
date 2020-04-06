@@ -65,12 +65,12 @@ class SearchController extends Controller
                     $profile = Profile::where([
                         ['id', $user->id],
                     ])->first();
-                    $output .= "<a href='" . route('profile_show', $user->name) . "'><img src='" . asset('storage/' . $profile->avatar) . "'>" . $user->name . "</a>";
+                    $output .= "<a href='" . route('profile_show', $user->name) . "'><img src='" . asset('storage/' . $profile->avatar) . "'width=55 class='mr-2'>" . $user->name . "</a>";
                 }
             }
             if ($videos) {
                 foreach ($videos as $video) {
-                    $output .= "<a href='" . route('video_show', $video->id) . "'><img src='". asset('storage/' . $video->miniature) . "'>" . $video->title . "</a>";
+                    $output .= "<a href='" . route('video_show', $video->id) . "'><img src='". asset('storage/' . $video->miniature) . "' width=55 class='mr-2'>" . $video->title . "</a>";
                 }
             }
             if ($output != "") {
