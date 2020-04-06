@@ -201,7 +201,6 @@
                                             <div class="modal-body">
                                                 <h6>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</h6>
                                             </div>
-                                            <input type="hidden" name="id" value="">
                                             @csrf
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-danger"><i
@@ -249,7 +248,6 @@
                                                             @endif value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
                                                 @endforeach
                                             </select>
-                                            <input type="hidden" name="id" value="">
                                             @csrf
                                             <button type="submit" class="btn btn-secondary float-right d-inline">
                                                 <i class="fas fa-pen"></i>

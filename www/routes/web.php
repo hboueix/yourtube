@@ -81,7 +81,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     ]);
     Route::post('/video/report/{id}', [
         'as' => 'video_report',
-        'uses' => 'ReportingController@index'
+        'uses' => 'ReportingController@create'
     ]);
     Route::get('/video/like/{id}', [
         'as' => 'video_like',

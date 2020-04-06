@@ -48,7 +48,6 @@
                             <label for="description">Description</label>
                             <textarea type="text" class="form-control" id="description" placeholder="Description de votre vidéo" name="description" value="{{ $videos ?? '' ? $videos->description : '' }}" required></textarea>
                         </div>
-                        <input type="hidden" name="id" value="">
                         @csrf
                         <button type="submit" class="btn btn-primary">Mettre en ligne</button>
                     </form>

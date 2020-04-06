@@ -24,17 +24,7 @@ class ReportingController extends Controller
      */
     public function index(Request $request, Videos $videos, $id)
     {
-        $auth_id = Auth::id();
-        $parameters = $request->except('_token');
-        DB::table('reportings')
-            ->insert([
-                'video_id' => $id,
-                'reporter_id' => $auth_id,
-                'content' => $parameters['content'],
-                'created_at' => date('y-m-d h:m:s'),
-                'updated_at' => date('y-m-d h:m:s')
-            ]);
-        return redirect()->route('video_show', $id)->with('video_reported', true);
+        //
     }
 
     /**
@@ -42,9 +32,28 @@ class ReportingController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
+        $auth_id = Auth::id();
+        $parameters = $request->except('_token');
+        $is_already_report = DB::table('reportings')
+            ->where([
+                'video_id' => $id,
+                'reporter_id' => $auth_id
+            ])->get();
+        if ($is_already_report) {
+            return redirect()->route('video_show', $id)->with('video_reported', false);
+        } else {
+            DB::table('reportings')
+                ->insert([
+                    'video_id' => $id,
+                    'reporter_id' => $auth_id,
+                    'content' => $parameters['content'],
+                    'created_at' => date('y-m-d h:m:s'),
+                    'updated_at' => date('y-m-d h:m:s')
+                ]);
+            return redirect()->route('video_show', $id)->with('video_reported', true);
+        }
     }
 
     /**

@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (!session('video_reported'))
+        <div class="container">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Vous avez déjà signalé la vidéo.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    @endif
     @if (session('video_reported'))
         <div class="container">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -107,10 +117,9 @@
                                                                placeholder="Raison du signalement..."
                                                                name="content"></textarea>
                     </div>
-                    <input type="hidden" name="id" value="">
                     @csrf
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-flag"
                                                                         style="margin-right: 10px"></i>Signaler !
                         </button>
                     </div>

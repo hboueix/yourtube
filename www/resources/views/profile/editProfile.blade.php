@@ -53,7 +53,6 @@
                                    placeholder="Entrez votre email" name="email"
                                    value="{{ Auth::user() ?? '' ? Auth::user()->email : '' }}" required>
                         </div>
-                        <input type="hidden" name="id" value="">
                         @csrf
                         <button type="submit" class="btn btn-primary">Mettre à jour</button>
                     </form>
