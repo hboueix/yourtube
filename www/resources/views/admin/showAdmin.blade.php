@@ -242,7 +242,7 @@
                                 <div class="text-center" style="width: 30%;">
                                     <form method="post" action="{{route('role_update', $profiler->id)}}">
                                         <div class="form-group">
-                                            <select class="form-control d-inline" id="exampleFormControlSelect1"
+                                            <select class="form-control d-inline"
                                                     style="width: 70%" name="roles">
                                                 @foreach($roles as $role)
                                                     <option @if($profiler->role_id === $role->id) selected

@@ -8,7 +8,8 @@
                     <div class="card-header">{{ __('Editer sa vidéo') }}</div>
                     <form method="post" action="{{ route('video_update', $video->id) }}" enctype="multipart/form-data"
                           style="margin: 5px">
-                        <div class="custom-file">
+                        <label for="miniature">Changer la miniature</label>
+                        <div class="custom-file mb-2">
                             <label class="custom-file-label" for="miniature">Changer la miniature</label>
                             <input type="file" class="custom-file-input" id="miniature" name="miniature">
                         </div>
@@ -24,7 +25,15 @@
                                       placeholder="Description de votre vidéo" name="description"
                                       required>{{$video->description}}</textarea>
                         </div>
-                        <input type="hidden" name="id" value="">
+                        <div class="form-group">
+                            <select class="form-control d-inline w-100"
+                                    style="width: 70%" name="category">
+                                @foreach($categories as $category)
+                                    <option @if($video->category_id === $category->id) selected
+                                            @endif value="{{ $category->id }}">{{ ucfirst($category->title) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         @csrf
                         <button type="submit" class="btn btn-primary">Mettre à jour</button>
                     </form>

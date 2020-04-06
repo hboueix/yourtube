@@ -155,9 +155,12 @@ class VideosController extends Controller
     {
         $auth_id = Auth::id();
         $video = DB::table('videos')->select()->where('id', $id)->first();
+        $categories = DB::table('categories')->get();
+
         if ($auth_id == $video->user_id) {
             return view('videos/editVideo', [
-                'video' => $video
+                'video' => $video,
+                'categories' => $categories
             ]);
         } else {
             return redirect()->route('accueil')->with('video_edit_error', true);
@@ -188,10 +191,11 @@ class VideosController extends Controller
                     ]);
                 }
             }
+
             DB::table('videos')->where('id', $id)->update([
                 'title' => $parameters['title'],
                 'description' => $parameters['description'],
-
+                'category_id' => $parameters['category']
             ]);
             return redirect()->route('profile_show', Auth::user()->name)->with('video_edit_error', true);
         } else {
