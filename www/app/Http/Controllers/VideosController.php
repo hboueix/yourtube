@@ -83,8 +83,9 @@ class VideosController extends Controller
     {
         $auth_id = Auth::id();
         $video = DB::table('videos')
-            ->where('id', $id)
-            ->first();
+            ->join('categories', 'category_id', '=', 'categories.id')
+            ->where('videos.id', $id)
+            ->first(['videos.*', 'categories.title AS category_name']);
 
         if ($video->is_valid == 1 || $video->is_valid == 0 && Auth::id() == $video->user_id || Auth::user()->hasAnyRole(['administrateur', 'moderateur'])) {
             $yourtubeur = DB::table('profiles')
@@ -128,16 +129,6 @@ class VideosController extends Controller
                 ])
                 ->inRandomOrder()
                 ->get();
-
-            DB::table('videos')
-                ->where('id', $id)
-                ->update(['likes' => $nb_likes]);
-            DB::table('videos')
-                ->where('id', $id)
-                ->update(['dislikes' => $nb_dislikes]);
-            DB::table('profiles')
-                ->where('id', $yourtubeur->id)
-                ->update(['subscribers' => $nb_subscribers]);
 
             return view('videos/showVideo', [
                 'video' => $video,

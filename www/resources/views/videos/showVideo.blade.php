@@ -133,7 +133,8 @@
                         <p>Voulez-vous vraiment supprimer cette vidéo ?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" style="margin-right: 5px"></i>Supprimer
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"
+                                                                        style="margin-right: 5px"></i>Supprimer
                         </button>
                     </div>
                     @csrf
@@ -154,18 +155,18 @@
             <div class="d-flex justify-content-between">
                 <div>
                     <button onclick='videoLike()' type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
-                                                                        style="margin-right: 10px"></i>
+                                                                                           style="margin-right: 10px"></i>
                         <span id='nbLike'>{{$nb_likes ?? 0}}</span>
                     </button>
                     <button onclick='videoDislike()' type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
-                                                                    style="margin-right: 10px"></i>
+                                                                                             style="margin-right: 10px"></i>
                         <span id='nbDislike'>{{$nb_dislikes ?? 0}}</span>
                     </button>
                 </div>
                 <script type="text/javascript">
                     function videoLike() {
                         const nbLike = document.getElementById('nbLike')
-                        const nbDislike = document.getElementById('nbDislike') 
+                        const nbDislike = document.getElementById('nbDislike')
 
                         const xhr = new XMLHttpRequest();
 
@@ -183,7 +184,7 @@
                     }
 
                     function videoDislike() {
-                        const nbDislike = document.getElementById('nbDislike') 
+                        const nbDislike = document.getElementById('nbDislike')
                         const nbLike = document.getElementById('nbLike')
 
                         const xhr = new XMLHttpRequest();
@@ -208,7 +209,8 @@
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     @else
-                        <button type="button" class="btn btn-outline-danger" title="Signaler la vidéo" data-toggle="modal"
+                        <button type="button" class="btn btn-outline-danger" title="Signaler la vidéo"
+                                data-toggle="modal"
                                 data-target="#reporting"><i
                                 class="fas fa-flag"></i>
                         </button>
@@ -264,39 +266,46 @@
         <div class="mt-3 mb-5 pl-4">
             <p>{{$video->description}}</p>
         </div>
-        <div class="d-flex">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}" target="_blank" class="mr-1">
-                <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-facebook"
-                                                                        style="margin-right: 5px;"></i>Facebook
-                </button>
-            </a>
-            <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}}"
-               target="_blank" class="mr-1">
-                <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-twitter"
-                                                                        style="margin-right: 5px;"></i>Twitter
-                </button>
-            </a>
-            <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $video->id)}}" target="_blank" class="mr-1">
-                <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-linkedin"
-                                                                        style="margin-right: 5px;"></i>Linkedin
-                </button>
-            </a>
-            <a href="mailto:?subject={{$video->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}} via Yourtube.fr"
-               target="_blank" class="mr-1">
-                <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-envelope"
-                                                                        style="margin-right: 5px;"></i>Mail
-                </button>
-            </a>
-            <p>
+        <div class="d-flex justify-content-between">
+            <div>
+                Catégorie : <a href="{{ route('category_show', $video->category_id) }}"><span
+                        class="badge badge-pill badge-info"
+                        style="color: white">{{$video->category_name}}</span></a>
+            </div>
+            <div>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}"
+                   target="_blank" class="mr-1">
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-facebook"
+                                                                              style="margin-right: 5px;"></i>Facebook
+                    </button>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}}"
+                   target="_blank" class="mr-1">
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-twitter"
+                                                                              style="margin-right: 5px;"></i>Twitter
+                    </button>
+                </a>
+                <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $video->id)}}" target="_blank"
+                   class="mr-1">
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-linkedin"
+                                                                              style="margin-right: 5px;"></i>Linkedin
+                    </button>
+                </a>
+                <a href="mailto:?subject={{$video->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}} via Yourtube.fr"
+                   target="_blank" class="mr-1">
+                    <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-envelope"
+                                                                              style="margin-right: 5px;"></i>Mail
+                    </button>
+                </a>
                 <a data-toggle="collapse" href="#iframe" role="button" aria-expanded="false"
                    aria-controls="collapseExample">
                     <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-code"
-                                                                            style="margin-right: 5px;"></i>Intégrer
+                                                                              style="margin-right: 5px;"></i>Intégrer
                     </button>
                 </a>
-            </p>
+            </div>
         </div>
-        <div class="collapse" id="iframe">
+        <div class="collapse mt-2" id="iframe">
             <div class="card card-body">
                 &lt;iframe width="560" height="315" src="{{asset('storage/'. $video->path)}}"&gt;&lt;/iframe&gt;
             </div>
