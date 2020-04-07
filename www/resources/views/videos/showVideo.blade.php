@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (!session('video_reported'))
+    @if (session('video_reported_error'))
         <div class="container">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 Vous avez déjà signalé la vidéo.
