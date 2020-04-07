@@ -87,7 +87,7 @@ class VideosController extends Controller
             ->where('videos.id', $id)
             ->first(['videos.*', 'categories.title AS category_name']);
 
-        if ($video->is_valid == 1 || $video->is_valid == 0 && Auth::id() == $video->user_id || Auth::user()->hasAnyRole(['administrateur', 'moderateur'])) {
+        if ($video->is_valid == 1 || $video->is_valid == 0 && Auth::id() == $video->user_id || Auth::user() && Auth::user()->hasAnyRole(['administrateur', 'moderateur'])) {
             $yourtubeur = DB::table('profiles')
                 ->join('users', 'user_id', '=', 'users.id')
                 ->where('users.id', $video->user_id)
@@ -213,10 +213,9 @@ class VideosController extends Controller
     public
     function destroy(Videos $videos, $id)
     {
-        $auth_id = Auth::id();
         $videos = DB::table('videos')->select('id', 'user_id')->where('id', $id)->first();
         $reporting = DB::table('reportings')->select('id')->where("video_id", '=', $id)->first();
-        if ($auth_id == $videos->user_id || Auth::user()->hasAnyRole(['administrateur', 'moderateur'])) {
+        if (Auth::id() == $videos->user_id || Auth::user()->hasAnyRole(['administrateur', 'moderateur'])) {
             if ($reporting != null) {
                 DB::table('reportings')->where("video_id", '=', $id)->delete();
             }

@@ -42,7 +42,7 @@ class ReportingController extends Controller
                 'reporter_id' => $auth_id
             ])->get();
         if ($is_already_report) {
-            return redirect()->route('video_show', $id)->with('video_reported', false);
+            return redirect()->route('video_show', $id)->with('video_reported_error', true);
         } else {
             DB::table('reportings')
                 ->insert([
