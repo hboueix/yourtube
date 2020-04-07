@@ -102,10 +102,6 @@ class VideosController extends Controller
                 ])
                 ->first();
 
-            DB::table('videos')
-                ->where('id', $id)
-                ->update(['nbWatch' => ((int)$video->nbWatch + 1)]);
-
             $nb_likes = DB::table('reactions')
                 ->where('video_id', '=', $id)
                 ->where('is_liked', '=', 1)
@@ -243,6 +239,18 @@ class VideosController extends Controller
     {
         DB::table('videos')->where('id', $id)->update(['is_valid' => 1]);
         return redirect()->route('reportings')->with('video_approved', true);
+    }
+
+    public function incrementViews(Videos $videos, $id)
+    {
+        $video = DB::table('videos')
+            ->join('categories', 'category_id', '=', 'categories.id')
+            ->where('videos.id', $id)
+            ->first(['videos.*', 'categories.title AS category_name']);
+
+        DB::table('videos')
+            ->where('id', $id)
+            ->update(['nbWatch' => ((int)$video->nbWatch + 1)]);
     }
 
 }

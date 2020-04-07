@@ -10,6 +10,11 @@ Route::get('/video/watch/{id}', [
     'uses' => 'VideosController@show'
 ]);
 
+Route::get('/incrementViews/{id}', [
+    'as' => 'increment_views',
+    'uses' => 'VideosController@incrementViews'
+]);
+
 Route::get('/profile/user/{slug}', [
     'as' => 'profile_show',
     'uses' => 'ProfileController@show'

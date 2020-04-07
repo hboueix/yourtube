@@ -210,6 +210,13 @@
                         }
                         xhr.send()
                     }
+
+                    setTimeout((function() {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', '{{route("increment_views", $video->id)}}', true);
+                        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                        xhr.send();
+                    }), 10000);
                 </script>
                 @if(Auth::user())
                     @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']) || Auth::id() == $video->user_id)
