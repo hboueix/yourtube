@@ -196,6 +196,7 @@
                             }
                         }
                         xhr.send();
+                        // Toaster
                         const toastContainer = document.getElementById('toast-container')
                         toastContainer.innerHTML += "<div id='video_liked' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='3000'> \
                                                         <div class=\"toast-header\"> \
@@ -232,6 +233,7 @@
                             }
                         }
                         xhr.send();
+                        //Toaster
                         const toastContainer = document.getElementById('toast-container')
                         toastContainer.innerHTML += "<div id='video_disliked' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='3000'> \
                                                         <div class=\"toast-header\"> \
@@ -330,6 +332,24 @@
                             }
                         }
                         xhr.send();
+                        //Toaster
+                        const toastContainer = document.getElementById('toast-container')
+                        toastContainer.innerHTML += "<div id='user_subscribed' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='3000'> \
+                                                        <div class=\"toast-header\"> \
+                                                            <img src=\"{{ asset('storage/favicon.ico') }}\" style='width: 20px;'class=\"rounded mr-2\"> \
+                                                            <strong class=\"mr-auto\">Informations</strong> \
+                                                            <button type=\"button\" class=\"ml-2 mb-1 close\" data-dismiss=\"toast\" aria-label=\"Close\"> \
+                                                                <span aria-hidden=\"true\">&times;</span> \
+                                                            </button> \
+                                                        </div> \
+                                                        <div id='toast-content' class=\"toast-body\"> \
+                                                            Vous vous êtes abonné avec succès ! \
+                                                        </div> \
+                                                    </div>"
+                        $('#user_subscribed').toast('show');
+                        setTimeout(() => {
+                            toastContainer.removeChild(document.getElementById('user_subscribed'));
+                        }, 3000);
                     } else {
                         const xhr = new XMLHttpRequest();
                         xhr.open('GET', "{{route('profile_unsubscribe', [$yourtubeur->id, $video->id])}}", true);
@@ -340,6 +360,24 @@
                             }
                         }
                         xhr.send();
+                        //Toaster
+                        const toastContainer = document.getElementById('toast-container')
+                        toastContainer.innerHTML += "<div id='user_unsubscribed' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='3000'> \
+                                                        <div class=\"toast-header\"> \
+                                                            <img src=\"{{ asset('storage/favicon.ico') }}\" style='width: 20px;'class=\"rounded mr-2\"> \
+                                                            <strong class=\"mr-auto\">Informations</strong> \
+                                                            <button type=\"button\" class=\"ml-2 mb-1 close\" data-dismiss=\"toast\" aria-label=\"Close\"> \
+                                                                <span aria-hidden=\"true\">&times;</span> \
+                                                            </button> \
+                                                        </div> \
+                                                        <div id='toast-content' class=\"toast-body\"> \
+                                                            Vous vous êtes désabonné avec succès ! \
+                                                        </div> \
+                                                    </div>"
+                        $('#user_unsubscribed').toast('show');
+                        setTimeout(() => {
+                            toastContainer.removeChild(document.getElementById('user_unsubscribed'));
+                        }, 3000);
                     }
                 }
             </script>
