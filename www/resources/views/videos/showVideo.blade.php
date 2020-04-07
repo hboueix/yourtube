@@ -101,6 +101,12 @@
             </div>
         </div>
     @endif
+    <div aria-live="polite" aria-atomic="true" style="position: relative;">
+    <!-- Position it -->
+        <div id='toast-container' style="position: absolute; top: 0; right: 0;">
+            <!-- JS scripts will place toasters -->
+        </div>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -189,7 +195,24 @@
                                 nbDislike.innerHTML = result.nb_dislikes;
                             }
                         }
-                        xhr.send()
+                        xhr.send();
+                        const toastContainer = document.getElementById('toast-container')
+                        toastContainer.innerHTML += "<div id='video_liked' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='3000'> \
+                                                        <div class=\"toast-header\"> \
+                                                            <img src=\"{{ asset('storage/favicon.ico') }}\" style='width: 20px;'class=\"rounded mr-2\"> \
+                                                            <strong class=\"mr-auto\">Informations</strong> \
+                                                            <button type=\"button\" class=\"ml-2 mb-1 close\" data-dismiss=\"toast\" aria-label=\"Close\"> \
+                                                                <span aria-hidden=\"true\">&times;</span> \
+                                                            </button> \
+                                                            </div> \
+                                                            <div id='toast-content' class=\"toast-body\"> \
+                                                                Vidéo liked avec succès ! \
+                                                        </div> \
+                                                    </div>"
+                        $('#video_liked').toast('show');
+                        setTimeout(() => {
+                            toastContainer.removeChild(document.getElementById('video_liked'));
+                        }, 3000);
                     }
 
                     function videoDislike() {
@@ -209,6 +232,23 @@
                             }
                         }
                         xhr.send();
+                        const toastContainer = document.getElementById('toast-container')
+                        toastContainer.innerHTML += "<div id='video_disliked' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='3000'> \
+                                                        <div class=\"toast-header\"> \
+                                                            <img src=\"{{ asset('storage/favicon.ico') }}\" style='width: 20px;'class=\"rounded mr-2\"> \
+                                                            <strong class=\"mr-auto\">Informations</strong> \
+                                                            <button type=\"button\" class=\"ml-2 mb-1 close\" data-dismiss=\"toast\" aria-label=\"Close\"> \
+                                                                <span aria-hidden=\"true\">&times;</span> \
+                                                            </button> \
+                                                            </div> \
+                                                            <div id='toast-content' class=\"toast-body\"> \
+                                                                Vidéo disliked avec succès ! \
+                                                        </div> \
+                                                    </div>"
+                        $('#video_disliked').toast('show');
+                        setTimeout(() => {
+                            toastContainer.removeChild(document.getElementById('video_disliked'));
+                        }, 3000);
                     }
 
                     setTimeout((function() {
