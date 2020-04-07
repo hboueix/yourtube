@@ -208,7 +208,7 @@
                                 nbDislike.innerHTML = result.nb_dislikes;
                             }
                         }
-                        xhr.send()
+                        xhr.send();
                     }
 
                     setTimeout((function() {
@@ -260,24 +260,52 @@
                 @else
                     @if($subscriber != null)
                         @if($subscriber->is_subscribed === 1)
-                            <a href="{{route('profile_unsubscribe', [$yourtubeur->id, $video->id])}}">
-                                <button type="button" class="btn btn-secondary">Se désabonner<span
-                                        class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
-                            </a>
+                            <button id="abonnementBtn" onclick="toggleSubscription()" type="button" class="btn btn-secondary">Se désabonner
+                                <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
+                            </button>
                         @else
-                            <a href="{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}">
-                                <button type="button" class="btn btn-secondary">S'abonner<span
-                                        class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
-                            </a>
+                            <button id="abonnementBtn" onclick="toggleSubscription()" type="button" class="btn btn-secondary">S'abonner
+                                <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
+                            </button>
                         @endif
                     @else
-                        <a href="{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}">
-                            <button type="button" class="btn btn-secondary">S'abonner<span
-                                    class="ml-2">{{$nb_subscribers ?? 0 }}</span></button>
-                        </a>
+                        <button id="abonnementBtn" onclick="toggleSubscription()" type="button" class="btn btn-secondary">S'abonner
+                            <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
+                        </button>
                     @endif
                 @endif
             </div>
+            <script type='text/javascript'>
+                function toggleSubscription() {
+                    const aboBtn = document.getElementById('abonnementBtn');
+                    const nbSubscribers = parseInt(document.getElementById('nbSubscribers').innerHTML);
+                    console.log(nbSubscribers.innerHTML );
+
+                    if (aboBtn.innerHTML.match("S'abonner") != null) {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', "{{route('profile_subscribe', [$yourtubeur->id, $video->id])}}", true);
+                        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                aboBtn.innerHTML = "Se désabonner<span id='nbSubscribers' class='ml-2'>" + (nbSubscribers + 1) + "</span>";
+                                //nbSubscribers.innerHTML = parseInt(nbSubscribers.value) + 1;
+                            }
+                        }
+                        xhr.send();
+                    } else {
+                        const xhr = new XMLHttpRequest();
+                        xhr.open('GET', "{{route('profile_unsubscribe', [$yourtubeur->id, $video->id])}}", true);
+                        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4 && xhr.status == 200) {
+                                aboBtn.innerHTML = "S'abonner<span id='nbSubscribers' class='ml-2'>" + (nbSubscribers - 1) + "</span>";
+                                //nbSubscribers.innerHTML = parseInt(nbSubscribers.value) - 1;
+                            }
+                        }
+                        xhr.send();
+                    }
+                }
+            </script>
         </div>
         <div class="mt-3 mb-5 pl-4">
             <p>{{$video->description}}</p>

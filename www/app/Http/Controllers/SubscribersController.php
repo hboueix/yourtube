@@ -26,7 +26,7 @@ class SubscribersController extends Controller
                 'updated_at' => date('y-m-d h:m:s')
             ]);
 
-            return redirect()->route('video_show', $video_id)->with('user_subscribed', true);
+            //return redirect()->route('video_show', $video_id)->with('user_subscribed', true);
 
         } elseif($subscribers->is_subscribed == 0) {
             DB::table('subscribers')->where([
@@ -37,11 +37,11 @@ class SubscribersController extends Controller
                 'updated_at' => date('y-m-d h:m:s')
             ]);
 
-            return redirect()->route('video_show', $video_id)->with('user_subscribed', true);
+            //return redirect()->route('video_show', $video_id)->with('user_subscribed', true);
 
         } else {
 
-            return redirect()->route('video_show', $video_id)->with('user_subscribed_error', true);
+            //return redirect()->route('video_show', $video_id)->with('user_subscribed_error', true);
 
         }
     }
@@ -57,7 +57,7 @@ class SubscribersController extends Controller
             'updated_at' => date('y-m-d h:m:s')
         ]);
 
-        return redirect()->route('video_show', $video_id)->with('user_unsubscribed', true);
+        //return redirect()->route('video_show', $video_id)->with('user_unsubscribed', true);
     }
 
     /**
