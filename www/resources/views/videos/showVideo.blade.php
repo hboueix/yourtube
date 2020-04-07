@@ -279,7 +279,6 @@
                 function toggleSubscription() {
                     const aboBtn = document.getElementById('abonnementBtn');
                     const nbSubscribers = parseInt(document.getElementById('nbSubscribers').innerHTML);
-                    console.log(nbSubscribers.innerHTML );
 
                     if (aboBtn.innerHTML.match("S'abonner") != null) {
                         const xhr = new XMLHttpRequest();
@@ -288,7 +287,6 @@
                         xhr.onreadystatechange = function () {
                             if (xhr.readyState == 4 && xhr.status == 200) {
                                 aboBtn.innerHTML = "Se désabonner<span id='nbSubscribers' class='ml-2'>" + (nbSubscribers + 1) + "</span>";
-                                //nbSubscribers.innerHTML = parseInt(nbSubscribers.value) + 1;
                             }
                         }
                         xhr.send();
@@ -299,7 +297,6 @@
                         xhr.onreadystatechange = function () {
                             if (xhr.readyState == 4 && xhr.status == 200) {
                                 aboBtn.innerHTML = "S'abonner<span id='nbSubscribers' class='ml-2'>" + (nbSubscribers - 1) + "</span>";
-                                //nbSubscribers.innerHTML = parseInt(nbSubscribers.value) - 1;
                             }
                         }
                         xhr.send();
