@@ -41,50 +41,10 @@
             </div>
         </div>
     @endif
-    @if (session('video_disliked'))
-        <div class="container">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Vidéo disliked avec succès !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    @endif
     @if (session('video_liked_error'))
         <div class="container">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 Vous ne pouvez pas liker une vidéo que vous avez déjà liké !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    @endif
-    @if (session('video_liked'))
-        <div class="container">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Vidéo liked avec succès !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    @endif
-    @if (session('user_subscribed'))
-        <div class="container">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Vous vous êtes abonné avec succès !
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
-    @endif
-    @if (session('user_unsubscribed'))
-        <div class="container">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                Vous vous êtes désabonné avec succès !
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
