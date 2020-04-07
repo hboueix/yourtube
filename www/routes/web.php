@@ -170,11 +170,3 @@ Route::middleware(['role:administrateur|moderateur', 'verified'])->group(functio
         'uses' => 'ReportingController@edit'
     ]);
 });
-
-/*Route::middleware(['role:moderateur'])->group(function () {
-
-});
-
-Route::middleware(['role:yourtubeur'])->group(function () {
-
-});*/
