@@ -219,7 +219,7 @@
                                              alt="miniature"
                                              width="80" height="80" style="border-radius: 100%">
                                     @else
-                                        <img src="https://static.asianetnews.com/img/default-user-avatar.png"
+                                        <img src="{{ asset('storage/default-user-avatar.png') }}" alt='miniature'
                                              class="mr-3" width="80" height="80" style="border-radius: 100%">
                                     @endif
                                 </a>
