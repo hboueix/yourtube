@@ -48,7 +48,8 @@
                                    onfocus="toggleShow()" onblur="toggleShow()" oninput="getContent()"
                                    onkeyup="handle(event)">
                             <div class="input-group-append">
-                                <a class="btn btn-outline-secondary" type="button" id="rechercher" onclick="getResults()"><i
+                                <a class="btn btn-outline-secondary" type="button" id="rechercher"
+                                   onclick="getResults()"><i
                                         class="fas fa-search"></i></a>
                             </div>
                         </div>
@@ -66,15 +67,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
                         </li>
-{{--
-                        @if (Route::has('register'))
---}}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
-                            </li>
-{{--
-                        @endif
---}}
+                        {{--
+                                                @if (Route::has('register'))
+                        --}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
+                        </li>
+                        {{--
+                                                @endif
+                        --}}
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -147,7 +148,51 @@
         @yield('content')
     </main>
 </div>
+<!-- Footer -->
+<hr>
+<footer class="pt-4">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-4 mt-md-0 mt-3">
+            <h5 class="text-uppercase">Yourtube</h5>
+            <p>Yourtube est un site web d'hébergement de vidéo en ligne français. Celui-ci est toujours en développement, nous vous
+            remercions de votre compréhension.</p>
+        </div>
+        <div class="col-md-2 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Actions</h5>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="#!">S'inscrire</a>
+                </li>
+                <li>
+                    <a href="#!">Se connecter</a>
+                </li>
+                <li>
+                    <a href="#!">Mettre en ligne une vidéo</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-2 mb-md-0 mb-3">
+            <h5 class="text-uppercase">Liens utiles</h5>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="#!">Link 1</a>
+                </li>
+                <li>
+                    <a href="#!">Link 2</a>
+                </li>
+                <li>
+                    <a href="#!">Link 3</a>
+                </li>
+                <li>
+                    <a href="#!">Link 4</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-copyright text-center py-3">© 2019 - 2020 Copyright | Développé avec ❤️ par Hugo B. & Thibault F.
+    </div>
 
+</footer>
 <script type="text/javascript">
 
     function toggleShow() {
@@ -177,7 +222,7 @@
 
     function handle(e) {
         const searchValue = document.getElementById("searchInput").value;
-        if(e.keyCode === 13 && searchValue != ""){
+        if (e.keyCode === 13 && searchValue != "") {
             event.preventDefault();
             getResults();
         }
