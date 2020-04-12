@@ -24,11 +24,13 @@
                 <div class="card">
                     <div class="card-header">{{ __('Partager une vidéo') }}</div>
                     <form method="post" action="{{ route('video_upload') }}" enctype="multipart/form-data" style="margin: 5px">
+                        <label>Miniature</label>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="miniature" name="miniature">
                             <label class="custom-file-label" for="miniature">Miniature de la vidéo</label>
                         </div>
-                        <div class="custom-file" style="margin-top:10px">
+                        <label for="video" class="mt-1">Vidéo</label>
+                        <div class="custom-file">
                             <input type="file" class="custom-file-input" id="video" name="video" required>
                             <label class="custom-file-label" for="video">Vidéo (mp4)</label>
                         </div>
