@@ -183,7 +183,7 @@
             </ul>
         </div>
     </div>
-    <div class="footer-copyright text-center py-3">© 2019 - 2020 Copyright | Développé avec ❤️ par Hugo B. & Thibault F.
+    <div class="footer-copyright text-center py-3">© 2019 - 2020 Copyright | Développé avec ❤️ par Hugo B, Thibault F. & Maxime L.
     </div>
 
 </footer>
