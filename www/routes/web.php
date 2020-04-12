@@ -45,6 +45,16 @@ Route::get('/contact', [
     'uses' => 'HomeController@contact'
 ]);
 
+Route::post('/contact', [
+    'as' => 'contact_send',
+    'uses' => 'HomeController@contact_send'
+]);
+
+Route::get('/contact/send', [
+    'as' => 'send_contact_mail',
+    'uses' => 'HomeController@basic_email'
+]);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile/create/', [
         'as' => 'profile_create',

@@ -7,6 +7,7 @@ use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class HomeController extends Controller
 {
@@ -49,11 +50,41 @@ class HomeController extends Controller
         ]);
     }
 
-    public function cgu() {
+    public function cgu()
+    {
         return view('cgu/index');
     }
 
-    public function contact() {
+    public function contact()
+    {
         return view('contact/index');
+    }
+
+    public function contact_send(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'firstname' => 'required|max:12',
+            'lastname' => 'required|max:12',
+            'email' => 'required|email:rfc,dns',
+            'message' => 'required'
+        ]);
+
+        $parameters = $request->except('_token');
+
+        $data = [
+            'firstname' => $parameters['firstname'],
+            'lastname' => $parameters['lastname'],
+            'email' => $parameters['email'],
+            'content' => $parameters['message']
+        ];
+
+        Mail::send(['text'=>'mail'], $data, function($message) {
+            $message->to('tib23800@gmail.com', 'Yourtube')->subject
+            ('Message via le formulaire de contact');
+            $message->from('contact@yourtube.fr', 'Yourtube');
+        });
+
+        return redirect()->route('contact_show')->with('send', true);
     }
 }
