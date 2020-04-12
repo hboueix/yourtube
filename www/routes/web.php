@@ -35,6 +35,16 @@ Route::get('/category/{id}', [
     'uses' => 'CategoriesController@show'
 ]);
 
+Route::get('/cgu', [
+    'as' => 'cgu_show',
+    'uses' => 'HomeController@cgu'
+]);
+
+Route::get('/contact', [
+    'as' => 'contact_show',
+    'uses' => 'HomeController@contact'
+]);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile/create/', [
         'as' => 'profile_create',

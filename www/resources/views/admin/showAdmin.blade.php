@@ -186,7 +186,7 @@
                     <div class="card-header"><i class="fas fa-users"></i> Liste utilisateurs</div>
                     <div class="card-body">
                         @foreach ($profile as $profiler)
-                            <div class="modal fade" id="delete_user" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="delete_user{{$profiler->id}}" tabindex="-1" role="dialog"
                                  aria-labelledby="delete_user" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -255,7 +255,7 @@
                                         </div>
                                     </form>
                                     <button type="button" class="float-right btn btn-danger" data-toggle="modal"
-                                            data-target="#delete_user" title="Supprimer l'utilisateur">
+                                            data-target="#delete_user{{$profiler->id}}" title="Supprimer l'utilisateur">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </div>

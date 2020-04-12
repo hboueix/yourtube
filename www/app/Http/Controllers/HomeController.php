@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
@@ -57,5 +47,13 @@ class HomeController extends Controller
             'nb_subscribers' => $nb_subscribers,
             'user' => $user
         ]);
+    }
+
+    public function cgu() {
+        return view('cgu/index');
+    }
+
+    public function contact() {
+        return view('contact/index');
     }
 }

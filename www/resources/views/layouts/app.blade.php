@@ -161,13 +161,13 @@
             <h5 class="text-uppercase">Actions</h5>
             <ul class="list-unstyled">
                 <li>
-                    <a href="#!">S'inscrire</a>
+                    <a href="{{route('register')}}">S'inscrire</a>
                 </li>
                 <li>
-                    <a href="#!">Se connecter</a>
+                    <a href="{{route('login')}}">Se connecter</a>
                 </li>
                 <li>
-                    <a href="#!">Mettre en ligne une vidéo</a>
+                    <a href="{{route('video_form')}}">Mettre en ligne une vidéo</a>
                 </li>
             </ul>
         </div>
@@ -175,10 +175,10 @@
             <h5 class="text-uppercase">Liens utiles</h5>
             <ul class="list-unstyled">
                 <li>
-                    <a href="#!">Nous contacter</a>
+                    <a href="{{route('contact_show')}}">Nous contacter</a>
                 </li>
                 <li>
-                    <a href="#!">CGU</a>
+                    <a href="{{route('cgu_show')}}">CGU</a>
                 </li>
             </ul>
         </div>
