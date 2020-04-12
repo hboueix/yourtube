@@ -37,16 +37,14 @@
             <hr/>
             <div class="row">
                 @foreach($videos as $video)
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 pb-3">
                         <a href="{{ route('video_show', $video->id) }}"
                            style="text-decoration: none; color: inherit">
                             <div
                                 style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $video->miniature)}}'); background-position: center; background-size: cover">
                             </div>
-                            <div class="card-body">
                                 <h5
-                                    class="card-title">{{ $video->title }}</h5>
-                            </div>
+                                    class="card-title pt-2">{{ $video->title }}</h5>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ route('category_show', $video->category_id) }}"><span
@@ -61,16 +59,14 @@
             <hr/>
             <div class="row">
                 @foreach($tend_videos as $t_video)
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 pb-3">
                         <a href="{{ route('video_show', $t_video->id) }}"
                            style="text-decoration: none; color: inherit">
                             <div
                                 style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $t_video->miniature)}}'); background-position: center; background-size: cover">
                             </div>
-                            <div class="card-body">
                                 <h5
-                                    class="card-title">{{ $t_video->title }}</h5>
-                            </div>
+                                    class="card-title pt-2">{{ $t_video->title }}</h5>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ route('category_show', $t_video->category_id) }}"><span
@@ -85,16 +81,14 @@
             <hr/>
             <div class="row">
                 @foreach ($rand_videos as $r_video)
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 pb-3">
                         <a href="{{ route('video_show', $r_video->id) }}"
                            style="text-decoration: none; color: inherit">
                             <div
                                 style="width: 100%; height: 200px; background-image: url('{{asset('storage/'. $r_video->miniature)}}'); background-position: center; background-size: cover">
                             </div>
-                            <div class="card-body">
                                 <h5
-                                    class="card-title">{{ $r_video->title }}</h5>
-                            </div>
+                                    class="card-title pt-2">{{ $r_video->title }}</h5>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ route('category_show', $r_video->category_id) }}"><span
