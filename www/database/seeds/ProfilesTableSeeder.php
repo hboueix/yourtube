@@ -16,6 +16,7 @@ class ProfilesTableSeeder extends Seeder
             'user_id' => 1,
             'last_name' => 'Yourtube',
             'first_name' => 'Administrateur',
+            'subscribers' => 0,
             'dateOfBirth' => date('y-m-d'),
             'avatar' => 'default-user-avatar.png'
         ]);
