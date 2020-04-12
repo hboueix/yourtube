@@ -185,6 +185,9 @@ class ProfileController extends Controller
 
     public function m_destroy(Profile $profile, $id)
     {
+        DB::table('reportings')
+            ->where('reporter_id', $id)
+            ->delete();
         DB::table('profiles')
             ->where('user_id', $id)
             ->delete();

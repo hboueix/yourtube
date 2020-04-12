@@ -175,16 +175,10 @@
             <h5 class="text-uppercase">Liens utiles</h5>
             <ul class="list-unstyled">
                 <li>
-                    <a href="#!">Link 1</a>
+                    <a href="#!">Nous contacter</a>
                 </li>
                 <li>
-                    <a href="#!">Link 2</a>
-                </li>
-                <li>
-                    <a href="#!">Link 3</a>
-                </li>
-                <li>
-                    <a href="#!">Link 4</a>
+                    <a href="#!">CGU</a>
                 </li>
             </ul>
         </div>

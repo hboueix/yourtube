@@ -139,7 +139,7 @@ Route::middleware(['role:administrateur', 'verified'])->group(function () {
     ]);
 });
 
-Route::middleware(['role:administrateur|moderateur', 'verified'])->group(function () {
+Route::middleware(['role:administrateur', 'verified'])->group(function () {
     Route::get('/admin/', [
         'as' => 'reportings',
         'uses' => 'ReportingController@show'
