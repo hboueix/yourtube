@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    <div aria-live="polite" aria-atomic="true" style="position: -webkit-sticky; position: sticky; top: 20px; left: 20px;">
+        <div id='toast-container'>
+        </div>
+    </div>
     @if (session('video_reported_error'))
         <div class="container">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -61,12 +65,6 @@
             </div>
         </div>
     @endif
-    <div aria-live="polite" aria-atomic="true" style="position: relative;">
-    <!-- Position it -->
-        <div id='toast-container' style="position: absolute; top: 0; right: 0;">
-            <!-- JS scripts will place toasters -->
-        </div>
-    </div>
     <!-- Modal -->
     <div class="modal fade" id="reporting" tabindex="-1" role="dialog" aria-labelledby="reporting" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -158,7 +156,7 @@
                         xhr.send();
                         // Toaster
                         const toastContainer = document.getElementById('toast-container')
-                        toastContainer.innerHTML += "<div id='video_liked' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='3000'> \
+                        toastContainer.innerHTML += "<div id='video_liked' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='30000'> \
                                                         <div class=\"toast-header\"> \
                                                             <img src=\"{{ asset('storage/favicon.ico') }}\" style='width: 20px;'class=\"rounded mr-2\"> \
                                                             <strong class=\"mr-auto\">Informations</strong> \
@@ -195,7 +193,7 @@
                         xhr.send();
                         //Toaster
                         const toastContainer = document.getElementById('toast-container')
-                        toastContainer.innerHTML += "<div id='video_disliked' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='3000'> \
+                        toastContainer.innerHTML += "<div id='video_disliked' class=\"toast\" role=\"alert\" aria-live=\"assertive\" aria-atomic=\"true\" data-delay='30000'> \
                                                         <div class=\"toast-header\"> \
                                                             <img src=\"{{ asset('storage/favicon.ico') }}\" style='width: 20px;'class=\"rounded mr-2\"> \
                                                             <strong class=\"mr-auto\">Informations</strong> \
