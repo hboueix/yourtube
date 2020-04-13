@@ -1,28 +1,17 @@
 # YourTube
 
-Avant de commencer, assurez-vous d'avoir Docker et d'avoir copié `docker-compose.override.yml.dist` en `docker-compose.override.yml` afin de 
-pouvoir redéfinir les services que vous souhaitez utiliser et les ports attribués.
+## Mise en place
 
-## Nouvelle procédure de mise en place du projet
+Tout d'abord, il faut bien sûr cloner le projet sur votre machine. Rendez-vous maintenant à la racine du projet fraîchement cloné et tapez la commande `docker-compose up -d`. Cette commande va créer 3 containers : 
+- *yt-webserver* : le container principal qui fait tourner un serveur web apache et notre application Laravel
+- *yt-mariadb* : comme son nom l'indique c'est notre base de données MariaDB
+- *yt-myadmin* : container optionnel pour avoir un PHPMyAdmin  
 
-- Cloner le projet
-- À la racine du projet, entrez la commande `export UID=${UID}`
-- Puis `docker-compose up --build -d`
-
-## Procédure de mise en place du projet
-
-- Cloner le projet
-- Configurer le .env en accord avec votre configuration
-- Créer une base de donnée nommée : yourtube
-- Effectuer la commande : `composer install` puis `npm install`
-- Enfin `npm run dev`
-- Réaliser la commande : `php artisan migrate:refresh --seed`
-- Générer sa clé : `php artisan key:generate`
-- Créer le lien symbolique : `php artisan storage:link`
-- Lancer le serveur avec la commande : `php artisan serve`
-- Yourtube est accessible sur l'adresse 127.0.0.1:8000 !
-
+Voilà votre application est prête, vous pouvez vous rendre sur `localhost:80` pour l'utiliser.
+  
 ### Informations utiles
+
+Si le container *yt-myadmin* ne vous intéresse pas, vous pouvez le supprimer dans le fichier `docker-compose.yml`. Les containers *yt-webserver* et *yt-mariadb* sont en revanche indispensables.  
 
 Un compte par défaut est créé. Vous pouvez donc vous connecter sans avoir à vous inscrire. 
 
@@ -30,6 +19,19 @@ Le compte créé est :
 
 - mail : admin@yourtube.fr
 - mdp : M0td3p4ss3
+
+Pour un déploiment en production, vous pouvez modifier :
+- le fichier de configuration du vhost dans le fichier `config/vhosts/yourtube.conf` 
+- le fichier de configuration php `config/php/php.ini`
+- le fichier d'environnement dans `www/.env`
+
+### Troubleshooting
+
+Il est possible que vous rencontriez des problèmes lors du lancement des containers si vous avez déjà des applications qui utilisent les ports définis dans le fichier `docker-compose.yml`. Vous pouvez alors les modifier. Pour rappel voici les ports définis par défaut :
+- 80
+- 443
+- 3306
+- 8080
 
 ## Fonctionnalités
 
