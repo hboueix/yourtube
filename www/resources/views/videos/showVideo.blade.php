@@ -131,14 +131,28 @@
             </div>
             <div class="d-flex justify-content-between">
                 <div>
-                    <button onclick='videoLike()' type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
-                                                                                           style="margin-right: 10px"></i>
-                        <span id='nbLike'>{{$nb_likes ?? 0}}</span>
-                    </button>
-                    <button onclick='videoDislike()' type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
-                                                                                             style="margin-right: 10px"></i>
-                        <span id='nbDislike'>{{$nb_dislikes ?? 0}}</span>
-                    </button>
+                    @auth
+                        <button onclick='videoLike()' type="button" class="btn btn-success"><i class="fas fa-thumbs-up"
+                                                                                            style="margin-right: 10px"></i>
+                            <span id='nbLike'>{{$nb_likes ?? 0}}</span>
+                        </button>
+                        <button onclick='videoDislike()' type="button" class="btn btn-danger"><i class="fas fa-thumbs-down"
+                                                                                                style="margin-right: 10px"></i>
+                            <span id='nbDislike'>{{$nb_dislikes ?? 0}}</span>
+                        </button>
+                    @endauth
+                    @guest
+                        <a href="{{route('login')}}">
+                            <button type="button" class="btn btn-success"><i class="fas fa-thumbs-up" style="margin-right: 10px"></i>
+                                <span id='nbLike'>{{$nb_likes ?? 0}}</span>
+                            </button>
+                        </a>
+                        <a href="{{route('login')}}">
+                            <button type="button" class="btn btn-danger"><i class="fas fa-thumbs-down" style="margin-right: 10px"></i>
+                                <span id='nbDislike'>{{$nb_dislikes ?? 0}}</span>
+                            </button>
+                        </a>
+                    @endguest
                 </div>
                 <script type="text/javascript">
                     function videoLike() {
@@ -262,21 +276,30 @@
                         @endif
                     </span>
                 @else
-                    @if($subscriber != null)
-                        @if($subscriber->is_subscribed === 1)
-                            <button id="abonnementBtn" onclick="toggleSubscription()" type="button" class="btn btn-secondary">Se désabonner
-                                <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
-                            </button>
+                    @auth
+                        @if($subscriber != null)
+                            @if($subscriber->is_subscribed === 1)
+                                <button id="abonnementBtn" onclick="toggleSubscription()" type="button" class="btn btn-secondary">Se désabonner
+                                    <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
+                                </button>
+                            @else
+                                <button id="abonnementBtn" onclick="toggleSubscription()" type="button" class="btn btn-secondary">S'abonner
+                                    <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
+                                </button>
+                            @endif
                         @else
                             <button id="abonnementBtn" onclick="toggleSubscription()" type="button" class="btn btn-secondary">S'abonner
                                 <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
                             </button>
                         @endif
-                    @else
-                        <button id="abonnementBtn" onclick="toggleSubscription()" type="button" class="btn btn-secondary">S'abonner
-                            <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
-                        </button>
-                    @endif
+                    @endauth
+                    @guest
+                        <a href="{{route('login')}}">
+                            <button id="abonnementBtn" type="button" class="btn btn-secondary">S'abonner
+                                <span id="nbSubscribers" class="ml-2">{{$nb_subscribers ?? 0 }}</span>
+                            </button>
+                        </a>
+                    @endguest
                 @endif
             </div>
             <script type='text/javascript'>

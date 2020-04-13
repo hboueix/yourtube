@@ -28,7 +28,7 @@ class CategoriesTableSeeder extends Seeder
             'title' => 'Documentaire'
         ]);
         Categories::create([
-            'title' => 'Jeux Vidéo'
+            'title' => 'Musique'
         ]);
     }
 }
