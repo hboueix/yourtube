@@ -12,6 +12,12 @@ Voilà votre application est prête, vous pouvez vous rendre sur `localhost:80` 
 ### Informations utiles
 
 Si le container *yt-myadmin* ne vous intéresse pas, vous pouvez le supprimer dans le fichier `docker-compose.yml`. Les containers *yt-webserver* et *yt-mariadb* sont en revanche indispensables.  
+  
+Si vous souhaitez modifier l'application web, il faut ajouter le groupe *www-data* à votre utilisateur. Pour ce faire :
+```
+sudo usermod -a -G www-data $USER
+```
+Vous pourrez alors modifier le contenu du dossier `www`.
 
 Un compte par défaut est créé. Vous pouvez donc vous connecter sans avoir à vous inscrire. 
 
