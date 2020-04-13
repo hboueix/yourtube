@@ -22,11 +22,13 @@
         </div>
     @endif
     @if (session('report_deleted'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Signalement supprimé avec succès !
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                Signalement supprimé avec succès !
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
     @endif
     @if (session('comment_approved'))
@@ -115,7 +117,8 @@
                     <tbody>
                     @foreach($reports as $report)
                         <tr>
-                            <td><a href="{{route('profile_show', $report->name)}}" target="_blank" title='Voir le profil'>{{$report->name}}</a>
+                            <td><a href="{{route('profile_show', $report->name)}}" target="_blank"
+                                   title='Voir le profil'>{{$report->name}}</a>
                             </td>
                             <td><a href="{{route('video_show', $report->video_id)}}"
                                    target="_blank" title='Voir la vidéo'>{{$report->title}}</a></td>
@@ -157,7 +160,8 @@
                         <tr>
                             <td><a href="{{route('profile_show', $comment->name)}}"
                                    target="_blank" title='Voir le profil'>{{$comment->name}}</a></td>
-                            <td><a href="{{route('video_show', $comment->id)}}" target="_blank" title='Voir la vidéo'>{{$comment->title}}</a>
+                            <td><a href="{{route('video_show', $comment->id)}}" target="_blank"
+                                   title='Voir la vidéo'>{{$comment->title}}</a>
                             </td>
                             <td>{{$comment->content}}</td>
                             <td>
@@ -219,12 +223,14 @@
                                              alt="miniature" title='Voir le profil'
                                              width="80" height="80" style="border-radius: 100%">
                                     @else
-                                        <img src="{{ asset('storage/default-user-avatar.png') }}" alt='miniature' title='Voir le profil'
+                                        <img src="{{ asset('storage/default-user-avatar.png') }}" alt='miniature'
+                                             title='Voir le profil'
                                              class="mr-3" width="80" height="80" style="border-radius: 100%">
                                     @endif
                                 </a>
                                 <div class="media-body" style="text-overflow:  ellipsis;  overflow: hidden !important;">
-                                    <a href="{{ route('profile_show', $profiler->name) }}" style="color: inherit" title='Voir le profil'>
+                                    <a href="{{ route('profile_show', $profiler->name) }}" style="color: inherit"
+                                       title='Voir le profil'>
                                         <h5 class="mt-1">
                                             {{ ucfirst($profiler->name) }}</h5></a>
 
@@ -249,7 +255,8 @@
                                                 @endforeach
                                             </select>
                                             @csrf
-                                            <button type="submit" class="btn btn-secondary float-right d-inline" title='Appliquer le rôle'>
+                                            <button type="submit" class="btn btn-secondary float-right d-inline"
+                                                    title='Appliquer le rôle'>
                                                 <i class="fas fa-pen"></i>
                                             </button>
                                         </div>
@@ -281,7 +288,8 @@
                     <div class="card-body">
                         <ul>
                             @foreach($categories as $categorie)
-                                <li>{{$categorie->title}} <a href="{{route('category_delete', $categorie->id)}}" title='Supprimer la catégorie'><i
+                                <li>{{$categorie->title}} <a href="{{route('category_delete', $categorie->id)}}"
+                                                             title='Supprimer la catégorie'><i
                                             class="fas fa-times"></i></a></li>
                             @endforeach
                         </ul>
