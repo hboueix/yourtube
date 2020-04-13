@@ -35,12 +35,12 @@
                         Félicitations pour votre rôle : <span
                             style="font-weight: 600">{{ucfirst($user->roles()->pluck('name')[0])}}</span>.
                         <hr/>
-                        <a href="{{ route('profile_show', Auth::user()->name) }}">
+                        <a href="{{ route('profile_show', Auth::user()->name) }}" title="Accéder mon profil">
                             <button type="submit" class="btn btn-secondary">
                                 <i class="fas fa-user" style="margin-right: 5px"></i>Mon profil
                             </button>
                         </a>
-                        <a href="{{ route('password.request') }}">
+                        <a href="{{ route('password.request') }}" title="Réinitialiser mon mot de passe">
                             <button type="submit" class="btn btn-dark">
                                 <i class="fas fa-key" style="margin-right: 5px"></i>Changer de mot de passe
                             </button>

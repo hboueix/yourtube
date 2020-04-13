@@ -47,7 +47,7 @@
                     <!-- SIDEBAR BUTTONS -->
                     @if($profile->id == \Illuminate\Support\Facades\Auth::id())
                         <div>
-                            <a href="{{ route('profile_edit') }}">
+                            <a href="{{ route('profile_edit') }}" title="Éditer mon profil">
                                 <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-pencil-alt"
                                                                                         style="margin-right: 5px"></i>Éditer
                                     mon profil
