@@ -122,7 +122,11 @@
         </video>
         <div class="mt-3">
             <div class="d-flex justify-content-between">
-                <h2>{{$video->title}}</h2>
+                <h2>{{$video->title}}
+                    @if($video->is_valid == 0)
+                        <span class="badge badge-warning">En attente de modération</span>
+                    @endif
+                </h2>
                 <h3>{{($video->nbWatch <= 1 ? $video->nbWatch . ' vue' : $video->nbWatch . ' vues')}}</h3>
             </div>
             <div class="d-flex justify-content-between">
