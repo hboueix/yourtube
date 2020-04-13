@@ -47,10 +47,10 @@
                                     class="card-title pt-2">{{ $video->title }}</h5>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="{{ route('category_show', $video->category_id) }}"><span
+                            <a href="{{ route('category_show', $video->category_id) }}" title="Catégorie : {{$video->category_name}}"><span
                                     class="badge badge-pill badge-info"
                                     style="color: white">{{$video->category_name}}</span></a>
-                            <span><i class="fas fa-eye mr-1"></i>{{$video->nbWatch}}</span>
+                            <span title="Nombre de vues"><i class="fas fa-eye mr-1"></i>{{$video->nbWatch}}</span>
                         </div>
                     </div>
                 @endforeach
@@ -69,10 +69,10 @@
                                     class="card-title pt-2">{{ $t_video->title }}</h5>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="{{ route('category_show', $t_video->category_id) }}"><span
+                            <a href="{{ route('category_show', $t_video->category_id) }}" title="Catégorie : {{$t_video->category_name}}"><span
                                     class="badge badge-pill badge-info"
                                     style="color: white">{{$t_video->category_name}}</span></a>
-                            <span><i class="fas fa-eye mr-1"></i>{{$t_video->nbWatch}}</span>
+                            <span title="Nombre de vues"><i class="fas fa-eye mr-1"></i>{{$t_video->nbWatch}}</span>
                         </div>
                     </div>
                 @endforeach
@@ -91,10 +91,10 @@
                                     class="card-title pt-2">{{ $r_video->title }}</h5>
                         </a>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="{{ route('category_show', $r_video->category_id) }}"><span
+                            <a href="{{ route('category_show', $r_video->category_id) }}" title="Catégorie : {{$r_video->category_name}}"><span
                                     class="badge badge-pill badge-info"
                                     style="color: white">{{$r_video->category_name}}</span></a>
-                            <span><i class="fas fa-eye mr-1"></i>{{$r_video->nbWatch}}</span>
+                            <span title="Nombre de vues"><i class="fas fa-eye mr-1"></i>{{$r_video->nbWatch}}</span>
                         </div>
                     </div>
                 @endforeach

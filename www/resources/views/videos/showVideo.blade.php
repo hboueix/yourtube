@@ -345,37 +345,37 @@
         </div>
         <div class="d-flex justify-content-between">
             <div>
-                Catégorie : <a href="{{ route('category_show', $video->category_id) }}"><span
+                Catégorie : <a href="{{ route('category_show', $video->category_id) }}" title="Catégorie : {{$video->category_name}}"><span
                         class="badge badge-pill badge-info"
                         style="color: white">{{$video->category_name}}</span></a>
             </div>
             <div>
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{route('video_show', $video->id)}}"
-                   target="_blank" class="mr-1">
+                   target="_blank" class="mr-1" title="Partager cette vidéo sur Facebook">
                     <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-facebook"
                                                                               style="margin-right: 5px;"></i>Facebook
                     </button>
                 </a>
                 <a href="https://twitter.com/intent/tweet?text=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}}"
-                   target="_blank" class="mr-1">
+                   target="_blank" class="mr-1" title="Partager cette vidéo sur Twitter">
                     <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-twitter"
                                                                               style="margin-right: 5px;"></i>Twitter
                     </button>
                 </a>
                 <a href="https://www.linkedin.com/shareArticle?url={{route('video_show', $video->id)}}" target="_blank"
-                   class="mr-1">
+                   class="mr-1" title="Partager cette vidéo sur Linkedin">
                     <button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-linkedin"
                                                                               style="margin-right: 5px;"></i>Linkedin
                     </button>
                 </a>
                 <a href="mailto:?subject={{$video->title}}'&body=Cette vidéo pourrait vous intéresser : {{route('video_show', $video->id)}} via Yourtube.fr"
-                   target="_blank" class="mr-1">
+                   target="_blank" class="mr-1" title="Envoyer cette vidéo par mail">
                     <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-envelope"
                                                                               style="margin-right: 5px;"></i>Mail
                     </button>
                 </a>
                 <a data-toggle="collapse" href="#iframe" role="button" aria-expanded="false"
-                   aria-controls="collapseExample">
+                   aria-controls="collapseExample" title="Intégrer cette vidéo à votre site">
                     <button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-code"
                                                                               style="margin-right: 5px;"></i>Intégrer
                     </button>

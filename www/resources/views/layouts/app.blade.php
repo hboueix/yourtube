@@ -48,7 +48,7 @@
                                    onfocus="toggleShow()" onblur="toggleShow()" oninput="getContent()"
                                    onkeyup="handle(event)">
                             <div class="input-group-append">
-                                <a class="btn btn-outline-secondary" type="button" id="rechercher"
+                                <a class="btn btn-outline-secondary" type="button" title="Rechercher" id="rechercher"
                                    onclick="getResults()"><i
                                         class="fas fa-search"></i></a>
                             </div>
@@ -65,13 +65,13 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Connexion') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}" title="Se connecter">{{ __('Connexion') }}</a>
                         </li>
                         {{--
                                                 @if (Route::has('register'))
                         --}}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Inscription') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}" title="S'inscrire">{{ __('Inscription') }}</a>
                         </li>
                         {{--
                                                 @endif
@@ -122,11 +122,11 @@
                         @if(Auth::user()->hasAnyRole(['administrateur', 'moderateur']))
                             <div class="d-flex align-items-center">
                                 @if($notifications === 0)
-                                    <a href="{{route('reportings')}}"><span class="badge badge-success"><i
+                                    <a href="{{route('reportings')}}" title="Il n'y a pas de notifications"><span class="badge badge-success"><i
                                                 class="far fa-bell mr-1"></i>{{$notifications ?? '0'}}</span>
                                     </a>
                                 @else
-                                    <a href="{{route('reportings')}}"><span class="badge badge-danger"><i
+                                    <a href="{{route('reportings')}}" title="Il y a {{ $notifications }} notifications"><span class="badge badge-danger"><i
                                                 class="far fa-bell mr-1"></i>{{$notifications ?? '0'}}</span>
                                     </a>
                                 @endif
@@ -134,7 +134,7 @@
                         @endif
 
                         <a class="d-flex" href="{{ route('video_form') }}">
-                            <button type="submit" class="btn btn-light">
+                            <button type="submit" class="btn btn-light" title="Mettre en ligne une vidéo">
                                 <i class="fas fa-upload"></i>
                             </button>
                         </a>
@@ -161,13 +161,13 @@
             <h5 class="text-uppercase">Actions</h5>
             <ul class="list-unstyled">
                 <li>
-                    <a href="{{route('register')}}">S'inscrire</a>
+                    <a href="{{route('register')}}" title="S'inscrire">S'inscrire</a>
                 </li>
                 <li>
-                    <a href="{{route('login')}}">Se connecter</a>
+                    <a href="{{route('login')}}" title="Se connecter">Se connecter</a>
                 </li>
                 <li>
-                    <a href="{{route('video_form')}}">Mettre en ligne une vidéo</a>
+                    <a href="{{route('video_form')}}" title="Mettre en ligne une vidéo">Mettre en ligne une vidéo</a>
                 </li>
             </ul>
         </div>
@@ -175,10 +175,10 @@
             <h5 class="text-uppercase">Liens utiles</h5>
             <ul class="list-unstyled">
                 <li>
-                    <a href="{{route('contact_show')}}">Nous contacter</a>
+                    <a href="{{route('contact_show')}}" title="Nous contacter">Nous contacter</a>
                 </li>
                 <li>
-                    <a href="{{route('cgu_show')}}">CGU</a>
+                    <a href="{{route('cgu_show')}}" title="Conditions Générales d'Utilisation">CGU</a>
                 </li>
             </ul>
         </div>
